@@ -39,7 +39,7 @@ export const Styles = StyleSheet.create({
         fontWeight: 500,
         margin: 10,
         fontFamily: 'Segoe UI',
-        marginLeft: 10
+        marginLeft: 15
     },
     DishContainer: {
         display: 'flex',

@@ -40,6 +40,28 @@ const Images = {
 
     Vector_10 : require(Fixed_Path+'Vector_10.png'),
 
+    Vector_13 : require(Fixed_Path+'Vector_13.png'),
+    Vector_27 : require(Fixed_Path+'Vector_27.png'),
+    Veg_Icon : require(Fixed_Path+'Veg_Icon.png'),
+    Orderable_Image : require(Fixed_Path+'Orderable_Image.png'),
+    Check_List_Selected: require(Fixed_Path+'Check_List_Selected.png'),
+
+    Plus_Symbol: require(Fixed_Path+'Plus_Symbol.png'),
+    Minus_Symbol: require(Fixed_Path+'Minus_Symbol.png'),
+
+    Back_Symbol: require(Fixed_Path+'Back_Symbol.png'),
+
+    Plant_Protin: require(Fixed_Path+'Plant_Protin.png'),
+    Mask_Group: require(Fixed_Path+'Mask_Group.png'),
+    
+    Delivery_Bike_Icon: require(Fixed_Path+'Delivery_Bike_Icon.png'),
+    Bike_Facing_Icon: require(Fixed_Path+'Bike_Facing_Icon.png'),
+    Clock_Timer_Icon: require(Fixed_Path+'Clock_Timer_Icon.png'),
+    Offer_Icon: require(Fixed_Path+'Offer_Icon.png'),
+
+    HeaderSearchIcon: require(Fixed_Path+'HeaderSearchIcon.png'),
+    Vector_22: require(Fixed_Path+'Vector_22.png'),
+
 }
 
 export default Images 

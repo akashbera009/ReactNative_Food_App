@@ -1,27 +1,29 @@
-import { View, Image, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Image, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React from 'react'
 
 // custom components import 
 import HeaderSearchBar from './HeaderSearchBar'
 import HeaderBadge from './HeaderBadge'
 
-//util file for images 
+//util file 
 import Images from '../utils/LocalImages'
 import Colors from '../utils/ColorFile'
 
 const Header = () => {
     return (
-        <View style={Styles.HeaderSection}>
-            <View style={Styles.HeaderTopbar}>
-                <Image source={Images.Group_86} height={21} width={14.25} />
-                <Image source={Images.Line_31} />
-                <TouchableOpacity>
-                    <Image source={Images.Menu_Icon} height={27.15} width={21} />
-                </TouchableOpacity>
+        <TouchableWithoutFeedback >
+            <View style={Styles.HeaderSection}>
+                <View style={Styles.HeaderTopbar}>
+                    <Image source={Images.Group_86} height={21} width={14.25} />
+                    <Image source={Images.Line_31} />
+                    <TouchableOpacity>
+                        <Image source={Images.Menu_Icon} height={27.15} width={21} />
+                    </TouchableOpacity>
+                </View>
+                <HeaderSearchBar />
+                <HeaderBadge />
             </View>
-            <HeaderSearchBar />
-            <HeaderBadge />
-        </View>
+        </TouchableWithoutFeedback>
     )
 }
 const Styles = StyleSheet.create({
@@ -32,6 +34,7 @@ const Styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-around',
         alignItems: 'center',
+        boxShadow: '2px 2px 5px #00000022'
     },
     HeaderTopbar: {
         width: '100%',

@@ -1,7 +1,7 @@
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 
-//util file for images 
+//util file 
 import Images from '../../utils/LocalImages'
 
 const OfferContainer = () => {
@@ -22,7 +22,7 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:'space-around',
         gap: 10,
-        marginHorizontal: 10 ,
+        paddingHorizontal: 10 ,
         marginVertical: 8
     }
 })

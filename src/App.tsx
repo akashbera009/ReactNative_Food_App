@@ -1,28 +1,38 @@
-import { View, Text,TextInput } from 'react-native'
-import React from 'react'
-import Home  from "../src/components/Index";
-// const originalTextRender = Text.render;
-// const originalTextInputRender = TextInput.render;
-// Text.render = function (...args) {
-//   const origin = originalTextRender.apply(this, args);
+import React from 'react';
+import { Text, TextInput, View } from 'react-native';
 
-//   return React.cloneElement(origin, {
-//     allowFontScaling: false,
-//   });
-// };
-// TextInput.render = function (...args) {
-//   const origin = originalTextInputRender.apply(this, args);
+// navigation import  
+import AppNavigation from './navigation/AppNavigation';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-//   return React.cloneElement(origin, {
-//     allowFontScaling: false,
-//   });
-// };
+// Optional: Disable font scaling globally (uncomment if needed)
+/*
+const originalTextRender = Text.render;
+const originalTextInputRender = TextInput.render;
+
+Text.render = function (...args) {
+  const origin = originalTextRender.apply(this, args);
+  return React.cloneElement(origin, {
+    allowFontScaling: false,
+  });
+};
+
+TextInput.render = function (...args)  {
+  const origin = originalTextInputRender.apply(this, args);
+  return React.cloneElement(origin, {
+    allowFontScaling: false,
+  });
+};
+*/
+
 const App = () => {
-  return (
-    <View>
-      <Home/>
-    </View>
-  )
-}
+  // const inset = useSafeAreaInsets();
 
-export default App
+  return (
+    // <View style={{ flex: 1, paddingBottom: inset.bottom }}>
+      <AppNavigation />
+    // </View>
+  );
+};
+
+export default App;

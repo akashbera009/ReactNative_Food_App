@@ -1,8 +1,20 @@
 const Colors = {
-    white : '#ffffff',
+    white: '#ffffff',
     greyForBorder: '#c4c4c494',
-    brightBorderColor :'#E5E5E5',
+    brightBorderColor: '#E5E5E5',
     ragingsBackground: '#2B7D0F',
-    boxShadowColor: '#00000067'
+    ratingCOntainerBGColor: '#4AB425',
+    boxShadowColor: '#00000067',
+    priceTextColour: '#817070',
+    LighterGreyForBorder: '#aaa6a621',
+    DeliveryDetailsNavbarColor: '#8c7b7b44',
+    Black: '#000000',
+    Transparent: 'rgba(0,0,0,0.1)',
+    ActiveTabTextColor: '#8C7B7B',
+    offerTextBgColor: '#1A30F3',
+    RecomemdedTextColor: '#3C3636',
+    AddbuttonBgColor: '#FFECEC',
+    AddbuttonTextColor: '#F60F0F',
+    CursorBGColor: '#A4A0A0',
 }
 export default Colors

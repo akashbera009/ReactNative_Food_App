@@ -1,5 +1,7 @@
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
+
+// utility import 
 import Images from '../utils/LocalImages'
 import Colors from '../utils/ColorFile'
 
@@ -42,6 +44,7 @@ const Styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         maxHeight: 50, 
+        marginLeft: 5
     },
     BadgeBox: {
         paddingHorizontal: 10,

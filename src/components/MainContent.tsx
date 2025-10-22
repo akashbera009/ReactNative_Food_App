@@ -1,17 +1,23 @@
-import { View, Text, ScrollView } from 'react-native'
-import React from 'react'//comments are missing
+import { ScrollView , StyleSheet } from 'react-native'
+import React from 'react'
+
+//Custom Componenets import 
 import RestaurantCard from './Common/RestaurantCard'
 import DishContainer from './Common/DishContainer'
-import OfferContainer from './Common/OfferContainer'
+import OfferContainer from './Common/OfferContainer' 
 
 const MainContent = () => {
   return (
-    <ScrollView >
+    <ScrollView style ={Styles.MainContainer}>
         <OfferContainer/>
         <DishContainer/>
-        <RestaurantCard/>
+        <RestaurantCard/>  
     </ScrollView>
   )
 }
-
+const Styles = StyleSheet.create({
+  MainContainer:{
+    marginBottom: 30
+  }
+})
 export default MainContent

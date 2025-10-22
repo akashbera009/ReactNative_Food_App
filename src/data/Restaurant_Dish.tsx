@@ -1,6 +1,6 @@
 import Images from "../utils/LocalImages"
 
-export const Restaurant_Dish_Data:Restaurant_Dish_Data_Type[] = [
+export const Restaurant_Dish_Data: Restaurant_Dish_Data_Type[] = [
     {
         dishName: 'Eat Healthy',
         subTitle: 'Healthy food',
@@ -8,7 +8,8 @@ export const Restaurant_Dish_Data:Restaurant_Dish_Data_Type[] = [
         price: 300,
         ratings: 4.3,
         description1: 'Zomato funds environmental projects to offset',
-        description2:'offset delivery carbon footprint '
+        description2: 'offset delivery carbon footprint ',
+        location: 'Kukatpally, Hyderabad'
     },
     {
         dishName: 'Amul',
@@ -17,7 +18,8 @@ export const Restaurant_Dish_Data:Restaurant_Dish_Data_Type[] = [
         price: 150,
         ratings: 4.2,
         description1: 'Zomato funds environmental projects to offset',
-        description2:'offset delivery carbon footprint '
+        description2: 'offset delivery carbon footprint ',
+        location: 'Kukatpally, Hyderabad',
     },
     {
         dishName: 'Tinku Fast Food Center',
@@ -26,7 +28,8 @@ export const Restaurant_Dish_Data:Restaurant_Dish_Data_Type[] = [
         price: 150,
         ratings: 4.0,
         description1: 'Zomato funds environmental projects to offset',
-        description2:'offset delivery carbon footprint '
+        description2: 'offset delivery carbon footprint ',
+        location: 'Kukatpally, Hyderabad',
     },
     {
         dishName: 'Hanuman Sweets',
@@ -35,7 +38,8 @@ export const Restaurant_Dish_Data:Restaurant_Dish_Data_Type[] = [
         price: 100,
         ratings: 4.1,
         description1: 'Zomato funds environmental projects to offset',
-        description2:'offset delivery carbon footprint '
+        description2: 'offset delivery carbon footprint ',
+        location: 'Kukatpally, Hyderabad',
     },
     {
         dishName: 'Snacks Corner',
@@ -44,7 +48,8 @@ export const Restaurant_Dish_Data:Restaurant_Dish_Data_Type[] = [
         price: 100,
         ratings: 4.1,
         description1: 'Zomato funds environmental projects to offset',
-        description2:'offset delivery carbon footprint '
+        description2: 'offset delivery carbon footprint ',
+        location: 'Kukatpally, Hyderabad',
     },
     {
         dishName: 'Pallavi Biryani',
@@ -53,6 +58,7 @@ export const Restaurant_Dish_Data:Restaurant_Dish_Data_Type[] = [
         price: 150,
         ratings: 3.8,
         description1: 'Zomato funds environmental projects to offset',
-        description2:'offset delivery carbon footprint '
-    },
+        description2: 'offset delivery carbon footprint ',
+        location: 'Kukatpally, Hyderabad',
+    }
 ]
