@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TextInput, View } from 'react-native';
 
 // navigation import  
-import AppNavigation from './navigation/AppNavigation';
+import AppNavigation from './src/navigation/AppNavigation';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // Optional: Disable font scaling globally (uncomment if needed)

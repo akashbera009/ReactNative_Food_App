@@ -61,6 +61,9 @@ const Images = {
 
     HeaderSearchIcon: require(Fixed_Path+'HeaderSearchIcon.png'),
     Vector_22: require(Fixed_Path+'Vector_22.png'),
+    Vector_15: require(Fixed_Path+'Vector_15.png'),
+    Vector_16: require(Fixed_Path+'Vector_16.png'),
+    Vector_17: require(Fixed_Path+'Vector_17.png'),
 
 }
 

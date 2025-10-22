@@ -19,10 +19,14 @@ import { RouteProp } from '@react-navigation/native';
 // utils import 
 import Images from '../../utils/LocalImages';
 import Colors from '../../utils/ColorFile';
-import { Extra_Addon_Data } from '../../data/Extra_Addon_Data';
+import { Max_Safety_SVG } from '../../asstes/SVG';
 
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+// data imports
+import { Extra_Addon_Data } from '../../data/Extra_Addon_Data';
 import { DeliveryInfo_Details } from '../../data/DeliveryInfo_Details';
+
+// safeArea imports
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type OrderScreenProps = {
     route: RouteProp<RootStackParamList, 'OrderScreen'>;
@@ -48,6 +52,7 @@ export default function OrderPage({ route }: OrderScreenProps) {
                 <Image source={Images.Back_Symbol} style={Styles.BackButton} />
             </TouchableOpacity>
 
+            {/* Side things */}
             <View style={[Styles.ratingContainer, { marginTop: inset.top }]}>
                 <Text style={[Styles.RatingContainerText, Styles.RatingContainerTextCount]}>{DishItem.ratings} <Image source={Images.StarIcon} style={Styles.StarIcon} /></Text>
                 <Text style={[Styles.RatingContainerText, Styles.RatingContainerTextText]}>DELIVERY</Text>
@@ -67,9 +72,12 @@ export default function OrderPage({ route }: OrderScreenProps) {
                 <Text style={Styles.dishName}>{DishItem.dishName}</Text>
                 <Text style={Styles.subtitle}>{DishItem.subTitle}</Text>
                 <Text style={Styles.location}>{DishItem.location}</Text>
-
-                <Image source={Images.Max_Safety} style={Styles.maxSeftyImage} />
-
+                <View style={Styles.maxSafetyContainer}>
+                    <View style={Styles.InnerMaxSafetyContainer}>
+                        <Text style={Styles.maxSafetyText}>MAX SAFELTY</Text>
+                    </View>
+                    <Text style={Styles.deliveryText}>DELIVERY</Text>
+                </View>
             </View>
 
             {/* delivery details */}
@@ -97,71 +105,84 @@ export default function OrderPage({ route }: OrderScreenProps) {
                         <Image source={Images.Bike_Facing_Icon} style={Styles.DeliveryModeTimeImage} />
                         <View style={Styles.DeliveryModeTimeTextContainer}>
                             <Text style={Styles.DeliveryModeTimeText}> MODE</Text>
-                            <Text style={Styles.DeliveryModeTimeText}> delivery</Text>
+                            <Text style={Styles.DeliveryModeTimeTextLower}> delivery</Text>
                         </View>
                     </View>
                     <View style={Styles.DeliveryModeTimeImageAndTextContainer}>
                         <Image source={Images.Clock_Timer_Icon} style={Styles.DeliveryModeTimeImage} />
                         <View style={Styles.DeliveryModeTimeTextContainer}>
                             <Text style={Styles.DeliveryModeTimeText}> TIME</Text>
-                            <Text style={Styles.DeliveryModeTimeText}>{DeliveryInfo_Details.Time} mins</Text>
+                            <Text style={Styles.DeliveryModeTimeTextLower}>{DeliveryInfo_Details.Time} mins</Text>
                         </View>
                     </View>
                     <View style={Styles.DeliveryModeTimeImageAndTextContainer}>
                         <Image source={Images.Offer_Icon} style={Styles.DeliveryModeTimeImage} />
                         <View style={Styles.DeliveryModeTimeTextContainer}>
-                            <Text style={Styles.DeliveryModeTimeText}>OFFERS</Text>
-                            <Text style={Styles.DeliveryModeTimeText}> view all</Text>
+                            <View style={Styles.OfferUpperContainer}>
+                                <Text style={Styles.DeliveryModeTimeText}>OFFERS</Text>
+                                <Image source={Images.Vector_22} style={Styles.OfferViewMore} />
+                            </View>
+                            <Text style={Styles.DeliveryModeTimeTextLower}> view all (3)</Text>
                         </View>
                     </View>
                 </View>
 
+                {/* distance charge container */}
                 <View style={Styles.DistanceCharge}>
                     <Image source={Images.Delivery_Bike_Icon} style={Styles.deliveryScooterImage} />
                     <Text style={Styles.ChargeText}>₹{DeliveryInfo_Details.Price} distance charge </Text>
                 </View >
 
+                {/* selection and searchbar  */}
                 <View style={Styles.SelectionAndSearchBar}>
-                    <View style={Styles.VegAndEggContainer} >
-                        <View style={Styles.VegSwitchContainer}>
-                            <TouchableOpacity
-                                style={Styles.VegSwitch}
-                                onPress={() => setVegActive(!vegActive)}
-                                activeOpacity={1}
-                            >
-                                <View style={[Styles.CursorBG, vegActive ? { alignItems: 'flex-end' } : { alignItems: 'flex-start' }]}>
-                                    <View style={Styles.Cursor} />
+                    <View style={Styles.InnerSelectionAndSearchBar}>
+                        <View style={Styles.VegAndEggContainer} >
+                            <View style={Styles.VegSwitchTextContainer} >
+                                <View style={Styles.VegSwitchContainer}>
+                                    <TouchableOpacity
+                                        style={Styles.VegSwitch}
+                                        onPress={() => setVegActive(!vegActive)}
+                                        activeOpacity={1}
+                                    >
+                                        <View style={[Styles.CursorBG, vegActive ? { alignItems: 'flex-end' } : { alignItems: 'flex-start' }]}>
+                                            <View style={Styles.Cursor} />
+                                        </View>
+                                    </TouchableOpacity>
                                 </View>
-                            </TouchableOpacity>
-                        </View>
-                        <Text style={Styles.vegText}>Veg</Text>
-
-                        <View style={Styles.VegSwitchContainer}>
-                            <TouchableOpacity
-                                style={Styles.VegSwitch}
-                                onPress={() => setEggActive(!eggActive)}
-                                activeOpacity={1}
-                            >
-                                <View style={[Styles.CursorBG, eggActive ? { alignItems: 'flex-end' } : { alignItems: 'flex-start' }]}>
-                                    <View style={Styles.Cursor} />
+                                <Text style={Styles.vegText}>Veg</Text>
+                            </View>
+                            <View style={Styles.VegSwitchTextContainer} >
+                                <View style={Styles.VegSwitchContainer}>
+                                    <TouchableOpacity
+                                        style={Styles.VegSwitch}
+                                        onPress={() => setEggActive(!eggActive)}
+                                        activeOpacity={1}
+                                    >
+                                        <View style={[Styles.CursorBG, eggActive ? { alignItems: 'flex-end' } : { alignItems: 'flex-start' }]}>
+                                            <View style={Styles.Cursor} />
+                                        </View>
+                                    </TouchableOpacity>
                                 </View>
-                            </TouchableOpacity>
+                                <Text style={Styles.vegText}>Egg</Text>
+                            </View>
                         </View>
-                        <Text style={Styles.vegText}>Egg</Text>
-                    </View>
 
-                {/* searchbar  */}
-                    <View style={Styles.headerSearchBar} >
-                        <Image source={Images.HeaderSearchIcon} style={Styles.HeaderSearchIcon} />
-                        <TextInput
-                            value={searchTerm}
-                            onChangeText={setSearchTerm}
-                            placeholder='Search'
-                            placeholderTextColor={'#5351514a'}
-                        />
+                        {/* searchbar  */}
+                        <View style={Styles.headerSearchBar} >
+                            <Image source={Images.HeaderSearchIcon} style={Styles.HeaderSearchIcon} />
+                            <TextInput
+                                value={searchTerm}
+                                onChangeText={setSearchTerm}
+                                placeholder='Search'
+                                placeholderTextColor={'#5351514a'}
+                            />
+                        </View>
                     </View>
                 </View>
             </View>
+
+            {/* Border  */}
+            <View style={Styles.Border} />
 
             {/* addon suggestion  */}
             <View style={Styles.RecomenedAddonContainer} >
@@ -176,29 +197,42 @@ export default function OrderPage({ route }: OrderScreenProps) {
                             style={Styles.AddonEntryContainer}
                             onPress={() =>
                                 navigation.push('ExtraItemAdd', {
-                                    ExtraItem: JSON.parse(JSON.stringify(item))
+                                    // ExtraItem: JSON.parse(JSON.stringify(item))
+                                    ExtraItem: item
                                 })
-                            }>
-                            <View >
+                            }
+                            activeOpacity={.7}>
+                            <View style={Styles.LeftContainer} >
                                 <Image source={Images.Veg_Icon} style={Styles.Veg_Icon} />
-                                <Text> {item.name}</Text>
-                                <Text> {item.price}</Text>
+                                <Text style={Styles.ExtraDishName}> {item.name}</Text>
+                                <Text style={Styles.Price}> ₹{item.price}</Text>
                                 <View style={Styles.RatingAndTags}>
-                                    <Text> {item.rating}</Text>
+                                    <View style={Styles.RatingContainer}>
+                                        <View style={Styles.StarContainer}>
+                                            <Image source={Images.Vector_15} style={Styles.Star} />
+                                            <Image source={Images.Vector_15} style={Styles.Star} />
+                                            <Image source={Images.Vector_15} style={Styles.Star} />
+                                            <Image source={Images.Vector_15} style={Styles.Star} />
+                                            <Image source={Images.Vector_16} style={Styles.HalfStar} />
+                                            <Image source={Images.Vector_17} style={Styles.HalfStar} />
+                                        </View>
+                                        <Text style={Styles.ratingContainerText} >{item.ratingCount}</Text>
+                                    </View>
                                     <View style={Styles.bestsellerTag}>
                                         <Text style={Styles.bestsellerTagText}> Must Try</Text>
                                     </View>
                                 </View>
-                                <Text style={Styles.DishDescription}> {item.description}</Text>
+                                <Text style={Styles.DishDescription}> {item.description}
+                                    <Text style={Styles.readMore}>...read more</Text>
+                                </Text>
                             </View>
                             <View >
                                 <Image source={item.Image} style={Styles.RecomemdedContainerImage} />
                                 <Pressable style={Styles.AddButton}>
                                     <Text style={Styles.AddButtonText}>ADD</Text>
-                                    <Text>+</Text>
+                                    <Text style={Styles.PlusButton}>+</Text>
                                 </Pressable>
                             </View>
-
                         </TouchableOpacity>
                     ))}
                 </ScrollView>
@@ -218,7 +252,8 @@ const Styles = StyleSheet.create({
     OrderPageContainer: {
         height: '100%',
         width: '98%',
-        marginHorizontal: 'auto'
+        marginHorizontal: 'auto',
+        backgroundColor: Colors.white
     },
 
     BackButton: {
@@ -227,7 +262,7 @@ const Styles = StyleSheet.create({
     },
     UpperContainer: {
         marginLeft: 10,
-        marginTop: 20
+        marginTop: 10
     },
     dishName: {
         fontSize: 26,
@@ -235,9 +270,37 @@ const Styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 12,
+        color: Colors.RecomemdedTextColor,
     },
     location: {
-        fontSize: 10
+        fontSize: 10,
+        color: Colors.ActiveTabTextColor
+    },
+    maxSafetyContainer: {
+        backgroundColor: Colors.maxSafetyGreenBG,
+        height: 18,
+        width: 47,
+        borderRadius: 2,
+        marginTop: 10
+    },
+    InnerMaxSafetyContainer: {
+        backgroundColor: Colors.maxSafetyYellowBG,
+        height: 8,
+        width: 45,
+        marginHorizontal: 'auto',
+        marginTop: 1,
+        borderRadius: 2
+    },
+    maxSafetyText: {
+        fontSize: 5,
+        marginHorizontal: 'auto',
+        fontWeight: 300
+    },
+    deliveryText: {
+        fontSize: 7,
+        marginHorizontal: 'auto',
+        color: Colors.white,
+        fontWeight: 400
     },
     maxSeftyImage: {
         width: 47,
@@ -250,7 +313,7 @@ const Styles = StyleSheet.create({
         backgroundColor: Colors.ratingCOntainerBGColor,
         borderRadius: 4,
         position: 'absolute',
-        top: 12,
+        top: 24,
         right: -15,
         display: 'flex',
         justifyContent: 'center',
@@ -261,7 +324,6 @@ const Styles = StyleSheet.create({
     },
     RatingContainerText: {
         color: Colors.white,
-
         marginLeft: 10
     },
     RatingContainerTextCount: {
@@ -274,7 +336,7 @@ const Styles = StyleSheet.create({
         width: 86,
         height: 44,
         position: 'absolute',
-        top: 63,
+        top: 72,
         right: -15,
         backgroundColor: 'red',
         borderRadius: 4,
@@ -292,10 +354,10 @@ const Styles = StyleSheet.create({
     },
     DeliveryDetailsContainre: {
         width: "95%",
-        // height: 200,
         marginTop: 20,
         display: 'flex',
-        marginHorizontal: 'auto'
+        marginHorizontal: 'auto',
+        backgroundColor: Colors.white
     },
     DeliveryNavbar: {
         width: '98%',
@@ -326,9 +388,10 @@ const Styles = StyleSheet.create({
         width: '95%',
         marginVertical: 8,
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft: 5
     },
     DeliveryModeTimeImageAndTextContainer: {
         display: 'flex',
@@ -345,9 +408,27 @@ const Styles = StyleSheet.create({
         justifyContent: 'space-around',
         flexDirection: 'column',
     },
+    OfferUpperContainer: {
+        display: 'flex',
+        width: 45,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flexDirection: 'row',
+    },
     DeliveryModeTimeText: {
         fontSize: 9,
-        fontFamily: 'Segoe UI'
+        fontFamily: 'Segoe UI',
+        color: Colors.ActiveTabTextColor
+    },
+    DeliveryModeTimeTextLower: {
+        fontSize: 9,
+        fontFamily: 'Segoe UI',
+        fontWeight: 300
+    },
+    OfferViewMore: {
+        height: 3,
+        width: 6,
+        transform: [{ scale: -1 }]
     },
     DistanceCharge: {
         height: 26,
@@ -372,29 +453,40 @@ const Styles = StyleSheet.create({
     },
     SelectionAndSearchBar: {
         height: 100,
-        width: '100%',
-        // backgroundColor: "#d37d7dff",
-        // margin: 'auto',
+        width: '98%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+    },
+    InnerSelectionAndSearchBar: {
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        // justifyContent:'center'
     },
     VegAndEggContainer: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center',
-        // width: 200
+        justifyContent: 'space-between',
+        width: 140,
+        marginRight: 50
     },
-    vegText:{
+    vegText: {
         fontSize: 8,
-        color:Colors.RecomemdedTextColor
+        color: Colors.RecomemdedTextColor
     },
     VegSwitchContainer: {
         display: 'flex',
         flexDirection: 'row',
         width: 35,
-        marginHorizontal: 5
+        marginHorizontal: 5,
+        marginTop: 5,
+    },
+    VegSwitchTextContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     VegSwitch: {
         height: 20,
@@ -404,22 +496,19 @@ const Styles = StyleSheet.create({
         height: 19,
         width: 19,
         backgroundColor: Colors.white,
-        // backgroundColor: '#000000',
-        borderRadius: 1,
+        borderRadius: 2,
         borderWidth: 2,
-        borderColor: Colors.CursorBGColor,
-
+        borderColor: Colors.CursorBorderColor,
     },
     CursorBG: {
         height: 14,
         width: 35,
+        borderRadius: 2,
         backgroundColor: Colors.CursorBGColor,
         display: 'flex',
         justifyContent: 'center',
-        // alignItems:'flex-end'
     },
     headerSearchBar: {
-        margin: 'auto',
         width: 128,
         height: 43,
         display: 'flex',
@@ -434,8 +523,14 @@ const Styles = StyleSheet.create({
         height: 14,
         width: 18
     },
+    Border: {
+        width: '100%',
+        borderBottomColor: Colors.brightBorderColor,
+        borderWidth: .3,
+        marginVertical: 10,
+    },
     RecomenedAddonContainer: {
-        height: 400,
+        height: 380,
         gap: 8,
         backgroundColor: Colors.white
     },
@@ -457,7 +552,7 @@ const Styles = StyleSheet.create({
     },
     AddonEntryContainer: {
         height: 108,
-        width: '98%',
+        width: '95%',
         backgroundColor: Colors.white,
         marginVertical: 8,
         marginHorizontal: 'auto',
@@ -465,34 +560,83 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    ExtraDishName: {
+        color: Colors.RecomemdedTextColor,
+        fontSize: 14,
+        fontFamily: 'Segoe UI',
+        marginTop: 2
+    },
+    LeftContainer: {
+
+    },
     Veg_Icon: {
         height: 18,
         width: 18
+    },
+    Price: {
+        color: Colors.RecomemdedTextColor,
+        fontSize: 10,
+        fontFamily: 'Segoe UI'
     },
     RatingAndTags: {
         width: 150,
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginVertical: 5
+    },
+    RatingContainer: {
+        borderWidth: .5,
+        borderRadius: 4,
+        borderColor: Colors.ratingContainerTransparentBorderColor,
+        backgroundColor: Colors.ratingContainerYellowBg,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 5,
+    },
+    StarContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    Star: {
+        height: 9,
+        width: 11,
+    },
+    HalfStar: {
+        height: 9,
+        width: 5.28,
+    },
+    ratingContainerText: {
+        color: Colors.Black,
+        fontSize: 8
     },
     bestsellerTag: {
         borderWidth: .5,
-        borderRadius: 4,
-        borderColor: '#E41515',
-        backgroundColor: '#ffa9a995',
+        borderRadius: 6,
+        borderColor: Colors.bestSellerBorder,
+        backgroundColor: Colors.bestSellerBG,
         alignSelf: 'flex-start',
-        paddingHorizontal: 8,
-        paddingVertical: 4,
+        paddingHorizontal: 6,
+        paddingVertical: 2,
         marginTop: 4,
     },
 
     bestsellerTagText: {
-        color: '#E41515',
-        fontSize: 8
+        color: Colors.bestSellerBorder,
+        fontSize: 10
     },
     DishDescription: {
-        fontSize: 11,
+        fontSize: 10,
         width: 221,
+        color: Colors.priceTextColour,
+    },
+    readMore: {
+        fontSize: 11,
+        fontWeight: 500
     },
     RecomemdedContainerImage: {
         height: 98,
@@ -517,6 +661,12 @@ const Styles = StyleSheet.create({
     AddButtonText: {
         color: Colors.AddbuttonTextColor,
         fontSize: 13
+    },
+    PlusButton: {
+        position: 'absolute',
+        color: Colors.AddbuttonTextColor,
+        right: 5,
+        top: 0
     },
     offerSection: {
         height: 50,

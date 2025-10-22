@@ -6,6 +6,7 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import MainContent from '../components/MainContent'
+import Colors from '../utils/ColorFile'
 
 const HomeScreen = () => {
     const inset = useSafeAreaInsets();
@@ -22,6 +23,7 @@ const HomeScreen = () => {
 const Styles = StyleSheet.create({
   HomeScreen: {
     height: '100%',
+    backgroundColor:Colors.white 
   },
 })
 

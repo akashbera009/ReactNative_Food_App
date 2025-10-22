@@ -12,12 +12,14 @@ import Colors from '../../utils/ColorFile'
 import { RootStackParamList } from "../../navigation/AppNavigation";
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Max_Safety_SVG } from '../../asstes/SVG'
+import { Styles } from './DishContainer'
 
 const RestaurantCard = () => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const openBottomSheet = (restaurantItem: Restaurant_Dish_Data_Type) => {
         navigation.push('OrderScreen', {
-           DishItem: restaurantItem
+            DishItem: restaurantItem
         })
     }
     return (
@@ -45,10 +47,8 @@ const RestaurantCard = () => {
                             <View style={CommonStyles.UpperRightContainer}>
                                 <View style={CommonStyles.RatingsContainer}>
                                     <Text style={CommonStyles.RatingsText} allowFontScaling={false}>{item.ratings}</Text>
-                                    {/* <Image source={Images.StarIcon} style={Styles.ratingStarImage}/> */}
-                                    <Image source={Images.StarIcon} style={CommonStyles.ratingStarImage}/>
+                                    <Image source={Images.StarIcon} style={CommonStyles.ratingStarImage} />
                                 </View>
-
                                 <Text style={CommonStyles.PriceText} allowFontScaling={false}>{item.price} for one</Text>
                             </View>
                         </View>
@@ -62,7 +62,12 @@ const RestaurantCard = () => {
 
                             <View style={CommonStyles.LowerRightContainer}>
                                 <Image source={Images.ZigZagArrow} />
-                                <Image source={Images.Max_Safety} />
+                                <View style={CommonStyles.maxSafetyContainer}>
+                                    <View style={CommonStyles.InnerMaxSafetyContainer}>
+                                        <Text style={CommonStyles.maxSafetyText}>MAX SAFELTY</Text>
+                                    </View>
+                                    <Text  style={CommonStyles.deliveryText}>DELIVERY</Text>
+                                </View>
                             </View>
                         </View>
                     </View>
@@ -86,11 +91,11 @@ export const CommonStyles = StyleSheet.create({
     RestaurantDishCard: {
         margin: 'auto',
         width: 385,
-        height: 250,
+        height: 255,
         backgroundColor: Colors.white,
         borderRadius: 10,
         marginVertical: 10,
-        boxShadow: `0px 5px 5px #00000067`,
+        boxShadow: `0px 5px 5px #0000004a`,
         display: 'flex',
         flexDirection: 'column',
     },
@@ -107,13 +112,14 @@ export const CommonStyles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         marginLeft: 5,
+        marginTop: 5,
     },
     UpperContainer: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '95%',
-        margin: 'auto'
+        margin: 'auto',
     },
     UpperLeftContainer: {
         display: 'flex',
@@ -126,7 +132,10 @@ export const CommonStyles = StyleSheet.create({
     },
     subTitle: {
         fontSize: 10,
-        fontFamily: 'Segoe UI'
+        fontFamily: 'Segoe UI',
+        color: Colors.RecomemdedTextColor,
+        marginLeft: 5,
+        fontWeight: 400
     },
     UpperRightContainer: {
         display: 'flex',
@@ -149,13 +158,13 @@ export const CommonStyles = StyleSheet.create({
         fontSize: 10,
         padding: 2,
     },
-    ratingStarImage:{
-        height: 7.5,
-        width: 7.5
+    ratingStarImage: {
+        height: 8,
+        width: 8
     },
     PriceText: {
         fontSize: 10,
-        fontFamily: 'Segoe UI'
+        fontFamily: 'Segoe UI',
     },
     LowerContainer: {
         margin: 'auto',
@@ -164,19 +173,51 @@ export const CommonStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingBottom: 8
+        paddingBottom: 8,
     },
     LowerLeftContainer: {
         display: 'flex',
+        marginLeft: -20,
     },
     descriptionText: {
         fontSize: 10,
-        fontFamily: 'Segoe UI'
+        fontFamily: 'Segoe UI',
+        color: Colors.RecomemdedTextColor,
     },
     LowerRightContainer: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
     },
+    maxSeftyImage: {
+        width: 80,
+        height: 27
+    },
+    maxSafetyContainer: {
+        backgroundColor: Colors.maxSafetyGreenBG,
+        height: 18,
+        width: 61,
+        borderRadius: 2,
+        marginHorizontal: 5
+    },
+    InnerMaxSafetyContainer: {
+        backgroundColor: Colors.maxSafetyYellowBG,
+        height: 8,
+        width: 59,
+        marginHorizontal: 'auto',
+        marginTop: 1,
+        borderRadius: 2
+    },
+    maxSafetyText:{
+        fontSize: 7,
+        marginHorizontal: 'auto',
+        fontWeight: 300
+    },
+    deliveryText:{
+        fontSize: 7,
+        marginHorizontal: 'auto',
+        color:Colors.white,
+         fontWeight: 400
+    }
 })
 export default RestaurantCard

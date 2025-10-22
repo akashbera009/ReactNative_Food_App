@@ -24,6 +24,7 @@ type Extra_Addon_Data_Type = {
     name: string,
     price: number,
     rating: number,
+    ratingCount: number , 
     Image: Image,
     description: string,
     isVeg: boolean,

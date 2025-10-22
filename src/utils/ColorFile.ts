@@ -10,11 +10,22 @@ const Colors = {
     DeliveryDetailsNavbarColor: '#8c7b7b44',
     Black: '#000000',
     Transparent: 'rgba(0,0,0,0.1)',
+    SemiTransparent: 'rgba(0,0,0,0.7)',
     ActiveTabTextColor: '#8C7B7B',
     offerTextBgColor: '#1A30F3',
     RecomemdedTextColor: '#3C3636',
     AddbuttonBgColor: '#FFECEC',
     AddbuttonTextColor: '#F60F0F',
-    CursorBGColor: '#A4A0A0',
+    CursorBorderColor: '#A4A0A0',
+    CursorBGColor: '#C4C4C4',
+    ratingContainerYellowBg: '#fff48f48',
+    ratingContainerTransparentBorderColor: '#ebee3c12',
+    ratingContainerYellowBorderColor: '#EAEE3C',
+    bestSellerBorder: '#E41515',
+    bestSellerBG: '#ffa9a995',
+    AddButtonBG: '#CB202D',
+    maxSafetyGreenBG: '#196B44' ,
+    maxSafetyYellowBG:'#EDD925',
+
 }
 export default Colors

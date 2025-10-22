@@ -23,7 +23,6 @@ const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
   const slide = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { ExtraItem } = route.params;
-  // const [data, setData] = useState('');
   const [counter, setCounter] = useState(1);
   const decreaseCounter = () => {
     if (counter > 1)
@@ -75,11 +74,21 @@ const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
               <Text style={Styles.DishName}>{ExtraItem.name}</Text>
 
               <View style={Styles.ratingAndBestSellerContainer}>
-                <View style={Styles.RatingContainer}><Text style={Styles.ratingContainerText} >{ExtraItem.rating}</Text></View>
+                <View style={Styles.RatingContainer}>
+                  <View style={Styles.StarContainer}>
+                    <Image source={Images.Vector_15} style={Styles.Star} />
+                    <Image source={Images.Vector_15} style={Styles.Star} />
+                    <Image source={Images.Vector_15} style={Styles.Star} />
+                    <Image source={Images.Vector_15} style={Styles.Star} />
+                    <Image source={Images.Vector_16} style={Styles.HalfStar} />
+                    <Image source={Images.Vector_17} style={Styles.HalfStar} />
+                  </View>
+                  <Text style={Styles.ratingContainerText} >{ExtraItem.ratingCount}</Text>
+                </View>
                 <View style={Styles.bestsellerTag}><Text style={Styles.bestsellerTagText} >Bestseller</Text></View>
 
               </View>
-              <Text style={Styles.DishDescription}>[{ExtraItem.description} ...read more</Text>
+              <Text style={Styles.DishDescription}>{ExtraItem.description} ...read more</Text>
 
               {/* Border  */}
               <View style={Styles.Border} />
@@ -89,7 +98,7 @@ const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
 
               {/* extra addon section */}
               <View style={Styles.ExtraItemList}>
-                <ScrollView >
+                <ScrollView  >
                   {ExtraItem.addon.map((extraItem, idx) => (
                     <View key={idx} style={Styles.ExtraItemListEntry}>
                       <View style={Styles.checkBoxAndPrice}>
@@ -109,8 +118,29 @@ const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
                 </ScrollView>
               </View>
 
+              <Text style={Styles.ChooseProtienText}>Choose Your Protien </Text>
+              <Text style={Styles.ChooseProtienSubText} >You can choose upto 3 options</Text>
+              <View style={Styles.ChooseProtienList} >
+                <ScrollView  >
+                  <View style={Styles.ExtraItemListEntry}>
+                    <View style={Styles.checkBoxAndPrice}>
+                      <Image source={Images.Veg_Icon} />
+                      <Text style={Styles.ExtraItemName}>BBQ Protien</Text>
+                    </View>
+                    <View style={Styles.checkBoxAndPrice}>
+                      <Text style={Styles.priceText}>₹40</Text>
+                      <TouchableOpacity style={Styles.checkBox} onPress={() => console.log('hi')}>
+                        <View>
+                          <Image source={Images.Check_List_Selected} style={Styles.tickMarkImage} />
+                        </View>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </ScrollView>
+              </View>
+
               {/* bottom button container  */}
-              <View style={[Styles.AddonButtonContainer, { bottom: inset.bottom }]}>
+              <View style={[Styles.AddonButtonContainer, { bottom: inset.bottom - 20 }]}>
                 <View style={Styles.CounterContainer}>
                   <TouchableOpacity onPress={decreaseCounter} style={{ padding: 12 }}>
                     <Image source={Images.Minus_Symbol} />
@@ -127,16 +157,16 @@ const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
               </View>
 
             </View>
+
           </View>
         </View>
-
       </Animated.View>
     </View>
   );
 };
 export const Styles = StyleSheet.create({
   backDrop: {
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    backgroundColor: Colors.SemiTransparent,
     width: '100%',
     height: '100%',
     justifyContent: 'flex-end'
@@ -146,20 +176,29 @@ export const Styles = StyleSheet.create({
     height: 800,
   },
   OuterContainer: {
+
   },
+  // InnerContainer: {
+  //   height: '100%',
+  //   backgroundColor: Colors.white,
+  //   borderTopRightRadius: 20,
+  //   borderTopLeftRadius: 20,
+  // },
   InnerContainer: {
     height: '100%',
-    backgroundColor: '#ffffffff',
+    backgroundColor: Colors.white,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
+    position: 'relative', // Add this
   },
+
   closeButton: {
     marginVertical: 8,
     marginHorizontal: 'auto',
     height: 40,
     width: 40,
     borderRadius: '50%',
-    backgroundColor: "#000000",
+    backgroundColor: Colors.Black,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
@@ -176,46 +215,70 @@ export const Styles = StyleSheet.create({
   },
   DishContainer: {
     width: '95%',
-    marginHorizontal: 'auto'
+    marginHorizontal: 'auto',
+    // backgroundColor: '#cbcef7ff'
   },
   DishName: {
+    marginTop: 5 , 
     fontSize: 16,
     fontFamily: 'Segoe UI'
   },
-  ratingAndBestSellerContainer:{
-    display:'flex',
-    flexDirection:'row',
+  ratingAndBestSellerContainer: {
+    display: 'flex',
+    flexDirection: 'row',
     width: '40%',
-    justifyContent:'space-between'
+    justifyContent: 'space-between'
   },
   RatingContainer: {
     borderWidth: .5,
     borderRadius: 4,
-    borderColor: '#EAEE3C',
-    backgroundColor: '#fff48f48',
+    borderColor: Colors.ratingContainerTransparentBorderColor,
+    backgroundColor: Colors.ratingContainerYellowBg,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 5,
   },
-  ratingContainerText:{
-    color:'#000000'
+  StarContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  Star: {
+    height: 9,
+    width: 11,
+  },
+  HalfStar: {
+    height: 9,
+    width: 5.28,
+  },
+  ratingContainerText: {
+    color: Colors.Black,
+    fontSize: 8
   },
   bestsellerTag: {
     borderWidth: .5,
     borderRadius: 4,
-    borderColor: '#E41515',
-    backgroundColor: '#ffa9a995',
+    borderColor: Colors.bestSellerBorder,
+    backgroundColor: Colors.bestSellerBG,
     alignSelf: 'flex-start',
     paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingVertical: 2,
     marginTop: 4,
   },
 
   bestsellerTagText: {
-    color: '#E41515',
-    fontSize: 8
+    color: Colors.bestSellerBorder,
+    fontSize: 10
   },
 
   DishDescription: {
+    marginTop: 8,
     fontSize: 11,
     width: 221,
+    color: Colors.priceTextColour
   },
   Border: {
     width: '100%',
@@ -239,14 +302,20 @@ export const Styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 'auto',
     gap: 10,
-    minHeight: 310,
+    minHeight: 110,
+    maxHeight: 310,
+    marginTop: 5,
+    // backgroundColor: '#97e8c0ff'
   },
+
   ExtraItemListEntry: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
     marginVertical: 10,
+    // maxHeight: 200,
+    // backgroundColor: 'green'
   },
   checkBoxAndPrice: {
     display: 'flex',
@@ -266,30 +335,53 @@ export const Styles = StyleSheet.create({
     marginHorizontal: 5,
     borderColor: 'black',
     borderWidth: .2,
-    // backgroundColor: 'green'
   },
   priceText: {
     color: Colors.priceTextColour,
     fontSize: 12
   },
   tickMarkImage: {
-    // backgroundColor: 'red'
   },
   counterText: {
     fontSize: 20,
   },
+  ChooseProtienList: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '95%',
+    alignItems: 'center',
+    marginHorizontal: 'auto',
+    gap: 10,
+    minHeight: 80,
+    maxHeight: 310,
+    marginTop: 5,
+    // backgroundColor: '#e8e597ff'
+  },
+  ChooseProtienText: {
+    fontSize: 14,
+    fontFamily: 'Segoe UI',
+  },
+  ChooseProtienSubText: {
+    fontSize: 11,
+    color: Colors.priceTextColour,
+    fontFamily: 'Segoe UI',
+  },
+
   AddonButtonContainer: {
-    // position: 'absolute',
-    // display: 'flex',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    // bottom: 0,
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row',
-    alignContent: 'flex-end',
+    backgroundColor: Colors.white,
+    paddingVertical: 10,
   },
   AddonButton: {
     width: 270,
     height: 40,
-    backgroundColor: '#CB202D',
+    backgroundColor: Colors.AddButtonBG,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -297,17 +389,17 @@ export const Styles = StyleSheet.create({
   },
   AddonButtonText: {
     fontSize: 20,
-    color: '#FFFFFF',
+    color: Colors.white,
     fontWeight: 600,
     fontFamily: 'Segoe UI'
   },
   CounterContainer: {
     height: 40,
     width: 87,
-    borderColor: '#F60F0F',
+    borderColor: Colors.AddbuttonTextColor,
     borderWidth: 1,
     borderRadius: 4,
-    backgroundColor: '#FFECEC',
+    backgroundColor: Colors.AddbuttonBgColor,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
