@@ -10,7 +10,8 @@ import { RouteProp } from '@react-navigation/native';
 // import utils 
 import Colors from '../../utils/ColorFile';
 import Images from '../../utils/LocalImages';
-
+import Fonts from '../../utils/FontsFile';
+//const Colors = useColors() 
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -20,7 +21,7 @@ type AddonBottomSheetProps = {
 
 
 const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
-  const slide = useRef(new Animated.Value(0)).current;
+  const slide = useRef(new Animated.Value(800)).current;
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { ExtraItem } = route.params;
   const [counter, setCounter] = useState(1);
@@ -177,19 +178,13 @@ export const Styles = StyleSheet.create({
   },
   OuterContainer: {
 
-  },
-  // InnerContainer: {
-  //   height: '100%',
-  //   backgroundColor: Colors.white,
-  //   borderTopRightRadius: 20,
-  //   borderTopLeftRadius: 20,
-  // },
+  }, 
   InnerContainer: {
     height: '100%',
     backgroundColor: Colors.white,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    position: 'relative', // Add this
+    position: 'relative',  
   },
 
   closeButton: {
@@ -216,12 +211,11 @@ export const Styles = StyleSheet.create({
   DishContainer: {
     width: '95%',
     marginHorizontal: 'auto',
-    // backgroundColor: '#cbcef7ff'
   },
   DishName: {
     marginTop: 5 , 
     fontSize: 16,
-    fontFamily: 'Segoe UI'
+    fontFamily: Fonts.generalFont
   },
   ratingAndBestSellerContainer: {
     display: 'flex',
@@ -288,12 +282,12 @@ export const Styles = StyleSheet.create({
   },
   addonHeaderText: {
     fontSize: 14,
-    fontFamily: 'Segoe UI',
+    fontFamily: Fonts.generalFont,
   },
   addonDescriptionText: {
     fontSize: 11,
     color: Colors.priceTextColour,
-    fontFamily: 'Segoe UI',
+    fontFamily: Fonts.generalFont,
   },
   ExtraItemList: {
     display: 'flex',
@@ -305,7 +299,6 @@ export const Styles = StyleSheet.create({
     minHeight: 110,
     maxHeight: 310,
     marginTop: 5,
-    // backgroundColor: '#97e8c0ff'
   },
 
   ExtraItemListEntry: {
@@ -313,9 +306,7 @@ export const Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    marginVertical: 10,
-    // maxHeight: 200,
-    // backgroundColor: 'green'
+    marginVertical: 10, 
   },
   checkBoxAndPrice: {
     display: 'flex',
@@ -355,23 +346,21 @@ export const Styles = StyleSheet.create({
     minHeight: 80,
     maxHeight: 310,
     marginTop: 5,
-    // backgroundColor: '#e8e597ff'
   },
   ChooseProtienText: {
     fontSize: 14,
-    fontFamily: 'Segoe UI',
+    fontFamily: Fonts.generalFont,
   },
   ChooseProtienSubText: {
     fontSize: 11,
     color: Colors.priceTextColour,
-    fontFamily: 'Segoe UI',
+    fontFamily: Fonts.generalFont,
   },
 
   AddonButtonContainer: {
     position: 'absolute',
     left: 0,
     right: 0,
-    // bottom: 0,
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row',
@@ -391,7 +380,7 @@ export const Styles = StyleSheet.create({
     fontSize: 20,
     color: Colors.white,
     fontWeight: 600,
-    fontFamily: 'Segoe UI'
+    fontFamily: Fonts.generalFont
   },
   CounterContainer: {
     height: 40,

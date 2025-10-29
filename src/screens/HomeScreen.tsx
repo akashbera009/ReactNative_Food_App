@@ -7,6 +7,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import MainContent from '../components/MainContent'
 import Colors from '../utils/ColorFile'
+//const Colors = useColors() 
 
 const HomeScreen = () => {
     const inset = useSafeAreaInsets();

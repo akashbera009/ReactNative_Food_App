@@ -19,7 +19,8 @@ import { RouteProp } from '@react-navigation/native';
 // utils import 
 import Images from '../../utils/LocalImages';
 import Colors from '../../utils/ColorFile';
-import { Max_Safety_SVG } from '../../asstes/SVG';
+import Fonts from '../../utils/FontsFile';
+import { Continue_Option} from '../../utils/SVGFils';
 
 // data imports
 import { Extra_Addon_Data } from '../../data/Extra_Addon_Data';
@@ -239,9 +240,27 @@ export default function OrderPage({ route }: OrderScreenProps) {
             </View>
 
             {/* Offer section  */}
-            <View style={[Styles.offerSection, { bottom: inset.bottom }]}>
-                <Text style={Styles.offerSectionText} >{DeliveryInfo_Details.OfferaPercent} % OFF up to ₹{DeliveryInfo_Details.OfferAmount}</Text>
-                <Text numberOfLines={2} style={Styles.offerSectionEndText} >Use code ZOMSAFETY on orders with items worth ₹159 or more</Text>
+            <View style={[Styles.OfferAndCartContainer, { bottom: inset.bottom }]}>
+                <View style={Styles.offerSection}>
+                    <Text style={Styles.offerSectionText} >{DeliveryInfo_Details.OfferaPercent} % OFF up to ₹{DeliveryInfo_Details.OfferAmount}</Text>
+                    <Text numberOfLines={2} style={Styles.offerSectionEndText} >Use code ZOMSAFETY on orders with items worth ₹159 or more</Text>
+                </View>
+                <View style={Styles.ViewCartContainer}>
+                    <View style={Styles.LeftSideContainer} >
+                        <Text style={[Styles.ViewCartText, Styles.LeftSideText]}>{1} ITEM</Text>
+                        <Text style={[Styles.ViewCartText, Styles.LeftSideText]}>₹{120} plus axes</Text>
+                    </View>
+                    <TouchableOpacity
+                        style={Styles.RightSideContainer}
+                        onPress={() =>
+                            navigation.push('CheckOutScreen')
+                        }
+                        activeOpacity={.7}
+                    >
+                        <Text style={[Styles.ViewCartText, Styles.RightSideText]}>View Cart</Text>
+                        <Continue_Option style={Styles.contunue_icon} />
+                    </TouchableOpacity>
+                </View>
             </View>
 
         </View >
@@ -417,12 +436,12 @@ const Styles = StyleSheet.create({
     },
     DeliveryModeTimeText: {
         fontSize: 9,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         color: Colors.ActiveTabTextColor
     },
     DeliveryModeTimeTextLower: {
         fontSize: 9,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         fontWeight: 300
     },
     OfferViewMore: {
@@ -449,7 +468,7 @@ const Styles = StyleSheet.create({
     ChargeText: {
         marginLeft: 10,
         fontSize: 11,
-        fontFamily: 'Segoe UI'
+        fontFamily: Fonts.generalFont
     },
     SelectionAndSearchBar: {
         height: 100,
@@ -530,7 +549,7 @@ const Styles = StyleSheet.create({
         marginVertical: 10,
     },
     RecomenedAddonContainer: {
-        height: 380,
+        height: 320,
         gap: 8,
         backgroundColor: Colors.white
     },
@@ -563,7 +582,7 @@ const Styles = StyleSheet.create({
     ExtraDishName: {
         color: Colors.RecomemdedTextColor,
         fontSize: 14,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         marginTop: 2
     },
     LeftContainer: {
@@ -576,7 +595,7 @@ const Styles = StyleSheet.create({
     Price: {
         color: Colors.RecomemdedTextColor,
         fontSize: 10,
-        fontFamily: 'Segoe UI'
+        fontFamily: Fonts.generalFont
     },
     RatingAndTags: {
         width: 150,
@@ -668,11 +687,20 @@ const Styles = StyleSheet.create({
         right: 5,
         top: 0
     },
+    OfferAndCartContainer: {
+        height: 100,
+        width: '100%',
+        position: 'absolute',
+        left: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     offerSection: {
         height: 50,
         width: '100%',
-        backgroundColor: '#F8F4F4',
-        borderTopColor: '#000000',
+        backgroundColor: Colors.OfferSectionBGColor,
+        borderTopColor: Colors.Black,
         borderWidth: .2,
         borderLeftWidth: 0,
         borderRightWidth: 0,
@@ -680,15 +708,13 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'absolute',
-        left: 0
     },
     offerSectionText: {
         color: Colors.white,
         backgroundColor: Colors.offerTextBgColor,
         alignSelf: 'center',
         borderRadius: 4,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         fontSize: 13,
         paddingVertical: 8,
         paddingHorizontal: 4,
@@ -699,6 +725,45 @@ const Styles = StyleSheet.create({
         color: Colors.offerTextBgColor,
         fontSize: 10,
         width: '60%',
-        fontFamily: 'Segoe UI'
+        fontFamily: Fonts.generalFont
+    },
+    ViewCartContainer: {
+        marginTop: 10,
+        backgroundColor: Colors.AddButtonBG,
+        height: 40,
+        width: '95%',
+        borderRadius: 4,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    RightSideContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: 90,
+        justifyContent: 'space-around',
+        alignItems: 'flex-end',
+        marginRight: 15,
+    },
+    ViewCartText: {
+        color: Colors.white
+    },
+    LeftSideContainer: {
+        marginLeft: 10,
+        display: 'flex',
+        justifyContent: 'space-between'
+    },
+    LeftSideText: {
+        fontFamily: 'Segoe UI',
+        fontSize: 10
+    },
+    RightSideText: {
+        fontSize: 15,
+        fontWeight: 600
+    },
+    contunue_icon: {
+        height: 8,
+        width: 4
     }
 })

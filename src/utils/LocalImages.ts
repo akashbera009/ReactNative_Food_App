@@ -65,6 +65,19 @@ const Images = {
     Vector_16: require(Fixed_Path+'Vector_16.png'),
     Vector_17: require(Fixed_Path+'Vector_17.png'),
 
+    Home_Icon: require(Fixed_Path+'Home_Icon.png'),
+    Settings_Icon: require(Fixed_Path+'Settings_Icon.png'),
+    Help_Icon: require(Fixed_Path+'Help_Icon.png'),
+    Chat_Icon: require(Fixed_Path+'Chat_Icon.png'),
+
+    Popcorn_Icon: require(Fixed_Path+'Popcorn_Icon.png'),
+    Soda_Bottle: require(Fixed_Path+'Soda_Bottle.png'),
+    Donut_Icon: require(Fixed_Path+'Donut_Icon.png'),
+    Gift_Icon: require(Fixed_Path+'Gift_Icon.png'),
+    
+    logout_Icon: require(Fixed_Path+'logout_Icon.png'),
+    Mode_Icon: require(Fixed_Path+'Mode_Icon.png'),
+
 }
 
 export default Images 

@@ -7,12 +7,15 @@ import { Restaurant_Dish_Data } from '../../data/Restaurant_Dish'
 // util file 
 import Images from '../../utils/LocalImages'
 import Colors from '../../utils/ColorFile'
+import Fonts from '../../utils/FontsFile'
+
+//const Colors = useColors() 
 
 // nagiation import 
 import { RootStackParamList } from "../../navigation/AppNavigation";
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Max_Safety_SVG } from '../../asstes/SVG'
+import { Max_Safety_SVG } from '../../utils/SVGFils'
 import { Styles } from './DishContainer'
 
 const RestaurantCard = () => {
@@ -85,7 +88,7 @@ export const CommonStyles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 500,
         margin: 10,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         marginLeft: 10
     },
     RestaurantDishCard: {
@@ -128,11 +131,11 @@ export const CommonStyles = StyleSheet.create({
     },
     DishName: {
         fontSize: 15,
-        fontFamily: 'Segoe UI'
+        fontFamily: Fonts.generalFont
     },
     subTitle: {
         fontSize: 10,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         color: Colors.RecomemdedTextColor,
         marginLeft: 5,
         fontWeight: 400
@@ -164,7 +167,7 @@ export const CommonStyles = StyleSheet.create({
     },
     PriceText: {
         fontSize: 10,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
     },
     LowerContainer: {
         margin: 'auto',
@@ -181,7 +184,7 @@ export const CommonStyles = StyleSheet.create({
     },
     descriptionText: {
         fontSize: 10,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         color: Colors.RecomemdedTextColor,
     },
     LowerRightContainer: {

@@ -24,16 +24,28 @@ type Extra_Addon_Data_Type = {
     name: string,
     price: number,
     rating: number,
-    ratingCount: number , 
+    ratingCount: number,
     Image: Image,
     description: string,
     isVeg: boolean,
     addon: Addon_Type[]
 }
 
-type DeliveryInfo_Type ={
+type DeliveryInfo_Type = {
     Time: string,
     Price: number,
-    OfferaPercent: number , 
-    OfferAmount:number ,
+    OfferaPercent: number,
+    OfferAmount: number,
+    Address: string,
+    Timing: number,
+    TotalPrice: number ,
+    DeliveryCharge : number  , 
+    Taxed: number , 
+    Grand_Total: number 
+}
+
+type Tip_Data_Type = {
+    image: Image,
+    price: number| string,
+    isMostTipped: boolean,
 }

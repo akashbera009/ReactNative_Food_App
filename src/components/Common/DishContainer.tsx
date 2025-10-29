@@ -7,9 +7,10 @@ import { Dish_Data } from '../../data/Dish_Data'
 //util file 
 import Images from '../../utils/LocalImages'
 import Colors from '../../utils/ColorFile'
+import Fonts from '../../utils/FontsFile'
+//const Colors = useColors() 
 
 const DishContainer = () => {
-
   return (
     <View style = {Styles.DishContinerOuter}>
       <Text style = {Styles.DishContainerHeaderText} allowFontScaling= {false}>Eat what makes you happy</Text>
@@ -38,7 +39,7 @@ export const Styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 500,
         margin: 10,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         marginLeft: 15
     },
     DishContainer: {
@@ -59,7 +60,7 @@ export const Styles = StyleSheet.create({
 
     },
     DishSectionDishName: {
-      fontFamily:'Segoe UI',
+      fontFamily:Fonts.generalFont,
       fontSize: 12,
       padding: 8
     },
@@ -77,7 +78,7 @@ export const Styles = StyleSheet.create({
     },
     SeeMoreText:{
       fontSize: 9,
-      fontFamily: 'Segoe UI'
+      fontFamily: Fonts.generalFont
     }
 
 })

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, TextInput, View } from 'react-native';
 
 // navigation import  
 import AppNavigation from './src/navigation/AppNavigation';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+// import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import 'react-native-reanimated';
+
 
 // Optional: Disable font scaling globally (uncomment if needed)
 /*
@@ -25,13 +26,19 @@ TextInput.render = function (...args)  {
 };
 */
 
+import { ThemeProvider } from './src/context/ThemeContext'
+
 const App = () => {
   // const inset = useSafeAreaInsets();
 
   return (
-    // <View style={{ flex: 1, paddingBottom: inset.bottom }}>
+
+    <ThemeProvider >
+      {/* // <View style={{ flex: 1, paddingBottom: inset.bottom }}> */}
       <AppNavigation />
-    // </View>
+      {/* // </View> */}
+
+    </ThemeProvider>
   );
 };
 

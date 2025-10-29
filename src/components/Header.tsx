@@ -1,4 +1,4 @@
-import { View, Image, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { View, Image, TouchableOpacity, StyleSheet, Text, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React from 'react'
 
 // custom components import 
@@ -8,15 +8,24 @@ import HeaderBadge from './HeaderBadge'
 //util file 
 import Images from '../utils/LocalImages'
 import Colors from '../utils/ColorFile'
+//const Colors = useColors() 
+
+import { useNavigation } from '@react-navigation/native';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { RootDrawerParamList } from '../navigation/AppNavigation';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from "../navigation/AppNavigation";
 
 const Header = () => {
+    const drawerNavigation = useNavigation<DrawerNavigationProp<RootDrawerParamList>>();
+    const navigation1 = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     return (
         <TouchableWithoutFeedback >
             <View style={Styles.HeaderSection}>
                 <View style={Styles.HeaderTopbar}>
                     <Image source={Images.Group_86} height={21} width={14.25} />
                     <Image source={Images.Line_31} />
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => drawerNavigation.toggleDrawer()}>
                         <Image source={Images.Menu_Icon} height={27.15} width={21} />
                     </TouchableOpacity>
                 </View>

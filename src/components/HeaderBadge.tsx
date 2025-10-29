@@ -4,6 +4,7 @@ import React from 'react'
 // utility import 
 import Images from '../utils/LocalImages'
 import Colors from '../utils/ColorFile'
+import Fonts from '../utils/FontsFile'
 
 const HeaderBadge = () => {
 
@@ -85,7 +86,7 @@ const Styles = StyleSheet.create({
     },
     BadgeText: {
         fontSize: 12,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         lineHeight: 11,
         fontWeight: 400
     },
