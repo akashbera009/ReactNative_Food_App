@@ -1,4 +1,10 @@
 const Fonts = {
-    generalFont : 'Segoe UI',
+    generalFont: 'segoeuithibd',
+    thinBold: 'segoeuithibd',
+    thinSemi: 'segoeuithis',
+    thinSemiItalic: 'segoeuithisi',
+    thinSpecial: 'segoeuithisz',
 }
 export default Fonts
+
+

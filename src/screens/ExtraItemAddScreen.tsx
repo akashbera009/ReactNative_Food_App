@@ -1,9 +1,7 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 
 // navigation import 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigation/AppNavigation';
 
 // componnet import 
 import AddonBottomSheet from '../components/OrderSection/AddonBottomSheet';
@@ -13,9 +11,7 @@ type ExtraItemAddScreenProps = NativeStackScreenProps<RootStackParamList, 'Extra
 
 const ExtraItemAddScreen = ({ route }: ExtraItemAddScreenProps) => {
   return (
-    <View> 
-        <AddonBottomSheet route={route} /> 
-    </View>
+    <AddonBottomSheet route={route} />
   )
 }
 

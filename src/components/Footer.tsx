@@ -3,35 +3,35 @@ import React from 'react'
 
 // utility import
 import Images from '../utils/LocalImages'
-import Colors from '../utils/ColorFile'
-//const Colors = useColors() 
+import { useThemeColors } from '../utils/ColorFile';
 
+// safeArea imports 
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
 //navigation imports
-import { RootStackParamList } from "../navigation/AppNavigation";
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const Footer = () => {
+    const Colors = useThemeColors()
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const inset = useSafeAreaInsets();
     return (
-
-        <View style={[Styles.Footer, { flex: 1, bottom: inset.bottom }]}>
+        <View style={[Styles.Footer, { flex: 1, bottom: inset.bottom, backgroundColor: Colors.white, }]}>
             <View style={Styles.FooterContainer}>
-                <Pressable onPress={()=>navigation.navigate('HomeScreen')}>
-                    <Image source={Images.Group_13} />
+                <Pressable onPress={() => navigation.navigate('HomeScreen')}>
+                    <Image source={Images.Group_13} style={{ tintColor: Colors.priceTextColour }} />
                 </Pressable>
-                <Pressable onPress={()=>navigation.navigate('ProScreen')}>
-                    <Image source={Images.Group_20} />
+                <Pressable onPress={() => navigation.navigate('ProScreen')}>
+                    <Image source={Images.Group_20} style={{ tintColor: Colors.priceTextColour }} />
                 </Pressable>
-                <Pressable onPress={()=>navigation.navigate('ProScreen')}>
+                <Pressable onPress={() => navigation.navigate('ProScreen')}>
 
-                    <Image source={Images.Group_16} />
+                    <Image source={Images.Group_16} style={{ tintColor: Colors.priceTextColour }} />
                 </Pressable>
-                <Pressable onPress={()=>navigation.navigate('ProScreen')}>
+                <Pressable onPress={() => navigation.navigate('ProScreen')}>
 
-                    <Image source={Images.Group_17} />
+                    <Image source={Images.Group_17} style={{ tintColor: Colors.priceTextColour }} />
                 </Pressable>
             </View>
         </View>
@@ -43,7 +43,6 @@ const Styles = StyleSheet.create({
         height: 45,
         position: 'absolute',
         left: 0,
-        backgroundColor: Colors.white,
     },
     FooterContainer: {
         margin: 'auto',

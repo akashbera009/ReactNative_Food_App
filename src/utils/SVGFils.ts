@@ -14,6 +14,7 @@ import Vector_11 from '../asstes/SVG/Vector_11.svg'
 import Google_Icon from '../asstes/SVG/Google_Icon.svg'
 import Facebook_Icon from '../asstes/SVG/Facebook_Icon.svg'
 import Email_Icon from '../asstes/SVG/Email_Icon.svg'
+import Back_Option from '../asstes/SVG/Back_Option.svg'
 
 export {
     Max_Safety_SVG,
@@ -31,6 +32,7 @@ export {
     Vector_11,
     Google_Icon,
     Facebook_Icon,
-    Email_Icon
+    Email_Icon,
+    Back_Option
 }
 

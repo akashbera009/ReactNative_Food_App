@@ -6,19 +6,15 @@ import { Restaurant_Dish_Data } from '../../data/Restaurant_Dish'
 
 // util file 
 import Images from '../../utils/LocalImages'
-import Colors from '../../utils/ColorFile'
+import { useThemeColors } from '../../utils/ColorFile';
 import Fonts from '../../utils/FontsFile'
 
-//const Colors = useColors() 
-
 // nagiation import 
-import { RootStackParamList } from "../../navigation/AppNavigation";
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Max_Safety_SVG } from '../../utils/SVGFils'
-import { Styles } from './DishContainer'
 
 const RestaurantCard = () => {
+    const Colors = useThemeColors();
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const openBottomSheet = (restaurantItem: Restaurant_Dish_Data_Type) => {
         navigation.push('OrderScreen', {
@@ -27,13 +23,13 @@ const RestaurantCard = () => {
     }
     return (
         <View style={CommonStyles.RestauranScrollContainer} >
-            <Text style={CommonStyles.NoOfRestaurantHeader} allowFontScaling={false}>
+            <Text style={[CommonStyles.NoOfRestaurantHeader, { color: Colors.priceTextColour }]} allowFontScaling={false}>
                 {Restaurant_Dish_Data.length} restaurants around you
             </Text>
             {Restaurant_Dish_Data.map((item, idx) => (
                 <TouchableOpacity
                     key={idx}
-                    style={CommonStyles.RestaurantDishCard}
+                    style={[CommonStyles.RestaurantDishCard, { backgroundColor: Colors.white, shadowColor: Colors.RecomemdedTextColor }]}
                     onPress={() => openBottomSheet(item)}
                     activeOpacity={.7}
                 >
@@ -44,39 +40,38 @@ const RestaurantCard = () => {
 
                         <View style={CommonStyles.UpperContainer}>
                             <View style={CommonStyles.UpperLeftContainer}>
-                                <Text style={CommonStyles.DishName} allowFontScaling={false}>{item.dishName}</Text>
-                                <Text style={CommonStyles.subTitle} allowFontScaling={false}>{item.subTitle}</Text>
+                                <Text style={[CommonStyles.DishName, { color: Colors.priceTextColour }]} allowFontScaling={false}>{item.dishName}</Text>
+                                <Text style={[CommonStyles.subTitle, { color: Colors.RecomemdedTextColor, }]} allowFontScaling={false}>{item.subTitle}</Text>
                             </View>
                             <View style={CommonStyles.UpperRightContainer}>
-                                <View style={CommonStyles.RatingsContainer}>
-                                    <Text style={CommonStyles.RatingsText} allowFontScaling={false}>{item.ratings}</Text>
+                                <View style={[CommonStyles.RatingsContainer, { backgroundColor: Colors.ragingsBackground, }]}>
+                                    <Text style={[CommonStyles.RatingsText, { color: Colors.conatsntWhite, }]} allowFontScaling={false}>{item.ratings}</Text>
                                     <Image source={Images.StarIcon} style={CommonStyles.ratingStarImage} />
                                 </View>
-                                <Text style={CommonStyles.PriceText} allowFontScaling={false}>{item.price} for one</Text>
+                                <Text style={[CommonStyles.PriceText, { color: Colors.Black }]} allowFontScaling={false}>{item.price} for one</Text>
                             </View>
                         </View>
 
                         <View style={CommonStyles.LowerContainer}>
                             <Image source={Images.Green_leaf} />
                             <View style={CommonStyles.LowerLeftContainer}>
-                                <Text style={CommonStyles.descriptionText} allowFontScaling={false}>{item.description1}</Text>
-                                <Text style={CommonStyles.descriptionText} allowFontScaling={false}>{item.description2}</Text>
+                                <Text style={[CommonStyles.descriptionText, { color: Colors.RecomemdedTextColor, }]} allowFontScaling={false}>{item.description1}</Text>
+                                <Text style={[CommonStyles.descriptionText, { color: Colors.RecomemdedTextColor, }]} allowFontScaling={false}>{item.description2}</Text>
                             </View>
 
                             <View style={CommonStyles.LowerRightContainer}>
                                 <Image source={Images.ZigZagArrow} />
-                                <View style={CommonStyles.maxSafetyContainer}>
-                                    <View style={CommonStyles.InnerMaxSafetyContainer}>
+                                <View style={[CommonStyles.maxSafetyContainer, { backgroundColor: Colors.maxSafetyGreenBG, }]}>
+                                    <View style={[CommonStyles.InnerMaxSafetyContainer, { backgroundColor: Colors.maxSafetyYellowBG, }]}>
                                         <Text style={CommonStyles.maxSafetyText}>MAX SAFELTY</Text>
                                     </View>
-                                    <Text  style={CommonStyles.deliveryText}>DELIVERY</Text>
+                                    <Text style={[CommonStyles.deliveryText, { color: Colors.conatsntWhite, }]}>DELIVERY</Text>
                                 </View>
                             </View>
                         </View>
                     </View>
                 </TouchableOpacity>
             ))}
-
         </View>
     )
 }
@@ -95,10 +90,13 @@ export const CommonStyles = StyleSheet.create({
         margin: 'auto',
         width: 385,
         height: 255,
-        backgroundColor: Colors.white,
         borderRadius: 10,
         marginVertical: 10,
-        boxShadow: `0px 5px 5px #0000004a`,
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.25,
         display: 'flex',
         flexDirection: 'column',
     },
@@ -136,7 +134,6 @@ export const CommonStyles = StyleSheet.create({
     subTitle: {
         fontSize: 10,
         fontFamily: Fonts.generalFont,
-        color: Colors.RecomemdedTextColor,
         marginLeft: 5,
         fontWeight: 400
     },
@@ -147,7 +144,6 @@ export const CommonStyles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     RatingsContainer: {
-        backgroundColor: Colors.ragingsBackground,
         width: 44,
         height: 16,
         display: 'flex',
@@ -157,7 +153,6 @@ export const CommonStyles = StyleSheet.create({
         borderRadius: 4
     },
     RatingsText: {
-        color: Colors.white,
         fontSize: 10,
         padding: 2,
     },
@@ -185,7 +180,6 @@ export const CommonStyles = StyleSheet.create({
     descriptionText: {
         fontSize: 10,
         fontFamily: Fonts.generalFont,
-        color: Colors.RecomemdedTextColor,
     },
     LowerRightContainer: {
         display: 'flex',
@@ -197,30 +191,27 @@ export const CommonStyles = StyleSheet.create({
         height: 27
     },
     maxSafetyContainer: {
-        backgroundColor: Colors.maxSafetyGreenBG,
         height: 18,
         width: 61,
         borderRadius: 2,
         marginHorizontal: 5
     },
     InnerMaxSafetyContainer: {
-        backgroundColor: Colors.maxSafetyYellowBG,
         height: 8,
         width: 59,
         marginHorizontal: 'auto',
         marginTop: 1,
         borderRadius: 2
     },
-    maxSafetyText:{
+    maxSafetyText: {
         fontSize: 7,
         marginHorizontal: 'auto',
         fontWeight: 300
     },
-    deliveryText:{
+    deliveryText: {
         fontSize: 7,
         marginHorizontal: 'auto',
-        color:Colors.white,
-         fontWeight: 400
+        fontWeight: 400
     }
 })
 export default RestaurantCard

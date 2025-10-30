@@ -78,6 +78,9 @@ const Images = {
     logout_Icon: require(Fixed_Path+'logout_Icon.png'),
     Mode_Icon: require(Fixed_Path+'Mode_Icon.png'),
 
+    otp: require(Fixed_Path+'otp.png'),
+    Pro: require(Fixed_Path+'Pro.png'),
+
 }
 
 export default Images 

@@ -1,65 +1,75 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React , {useContext} from 'react'
 
 // utils import 
 import Images from '../../utils/LocalImages'
+import { useThemeColors } from '../../utils/ColorFile';
 
-// import { useTheme } from '../../context/ThemeContext'
-
+// safearea imports
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+// navigation imports
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from "../../navigation/AppNavigation";
 
-export default function SideBar() {
-  // const { isDarkMode, setIsDarkMode } = useTheme();
+// context import
+import { ThemeContext } from '../../context/ThemeContext';
+
+export default function SideBar() { 
+  const Colors = useThemeColors();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const inset = useSafeAreaInsets();
+
+  const context = useContext(ThemeContext);
+  
+  if (!context) {
+    throw new Error("TodoContext must be used within a TodoProvider");
+  }
+  
+  const { isDarkMode, setIsDarkMode } = context;
   return (
-    <View style={{ flex:1}}>
+    <View style={{ flex:1 ,backgroundColor:Colors.greyForBorder}}>
       <View style={[Styles.menuOptionsContainer ,{paddingTop: inset.top + 20}]}>
         <TouchableOpacity style={Styles.SingleEntry}
           onPress={() => navigation.navigate('HomeScreen')}>
-          <Image source={Images.Home_Icon} style={Styles.EntryImage} />
-          <Text style={Styles.MenuEntryText} >Home</Text>
+          <Image source={Images.Home_Icon} style={[Styles.EntryImage,{tintColor:Colors.Black}]} />
+          <Text style={[Styles.MenuEntryText, {color:Colors.Black}]} >Home</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={Styles.SingleEntry}>
-          <Image source={Images.Chat_Icon} style={Styles.EntryImage} />
-          <Text style={Styles.MenuEntryText} >Chat</Text>
+          <Image source={Images.Chat_Icon} style={[Styles.EntryImage,{tintColor:Colors.Black}]} />
+          <Text style={[Styles.MenuEntryText, {color:Colors.Black}]} >Chat</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={Styles.SingleEntry}>
-          <Image source={Images.Settings_Icon} style={Styles.EntryImage} />
-          <Text style={Styles.MenuEntryText} >Settings</Text>
+          <Image source={Images.Settings_Icon} style={[Styles.EntryImage,{tintColor:Colors.Black}]} />
+          <Text style={[Styles.MenuEntryText, {color:Colors.Black}]} >Settings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={Styles.SingleEntry}
           onPress={() => navigation.navigate('HelpScreen')}>
-          <Image source={Images.Help_Icon} style={Styles.EntryImage} />
-          <Text style={Styles.MenuEntryText} >Help</Text>
+          <Image source={Images.Help_Icon} style={[Styles.EntryImage,{tintColor:Colors.Black}]} />
+          <Text style={[Styles.MenuEntryText, {color:Colors.Black}]} >Help</Text>
         </TouchableOpacity>
 
 
         <View style={[Styles.BottomContainer, { bottom: inset.bottom }]}>
           <TouchableOpacity
-            // onPress={() => setIsDarkMode(!isDarkMode)}
             style={[Styles.LogoutContainer]}
+             onPress={() => setIsDarkMode(isDarkMode === 'light' ? 'dark' : 'light')}
           >
-            <Image source={Images.Mode_Icon} style={Styles.LogoutIcon} />
-            <Text style={Styles.LogOutText}>Mode Change</Text>
+            <Image source={Images.Mode_Icon} style={[Styles.LogoutIcon,{tintColor:Colors.Black}]} />
+            <Text style={[Styles.LogOutText , {color:Colors.Black}]}>Mode Change</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => navigation.navigate('AuthScreen')}
             style={[Styles.LogoutContainer]}
           >
-            <Image source={Images.logout_Icon} style={Styles.LogoutIcon} />
-            <Text style={Styles.LogOutText}>Log out</Text>
+            <Image source={Images.logout_Icon} style={[Styles.LogoutIcon,{tintColor:Colors.Black}]} />
+            <Text style={[Styles.LogOutText, {color:Colors.Black}]}>Log out</Text>
           </TouchableOpacity>
         </View>
-
       </View>
     </View>
   )

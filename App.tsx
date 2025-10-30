@@ -1,9 +1,8 @@
 import React from 'react';
+import 'react-native-reanimated';
 
 // navigation import  
 import AppNavigation from './src/navigation/AppNavigation';
-// import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import 'react-native-reanimated';
 
 
 // Optional: Disable font scaling globally (uncomment if needed)
@@ -29,16 +28,10 @@ TextInput.render = function (...args)  {
 import { ThemeProvider } from './src/context/ThemeContext'
 
 const App = () => {
-  // const inset = useSafeAreaInsets();
-
   return (
-
     <ThemeProvider >
-      {/* // <View style={{ flex: 1, paddingBottom: inset.bottom }}> */}
       <AppNavigation />
-      {/* // </View> */}
-
-    </ThemeProvider>
+   </ThemeProvider>
   );
 };
 

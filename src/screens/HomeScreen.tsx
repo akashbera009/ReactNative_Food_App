@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet } from 'react-native'
+import {  ScrollView, StyleSheet } from 'react-native'
 import { SafeAreaView , useSafeAreaInsets} from 'react-native-safe-area-context'
 import React from 'react'
 
@@ -6,13 +6,15 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import MainContent from '../components/MainContent'
-import Colors from '../utils/ColorFile'
-//const Colors = useColors() 
+
+// utility import 
+import { useThemeColors } from '../utils/ColorFile'
 
 const HomeScreen = () => {
+  const Colors = useThemeColors()
     const inset = useSafeAreaInsets();
   return (
-    <SafeAreaView style={[Styles.HomeScreen] } >
+    <SafeAreaView style={[Styles.HomeScreen, {backgroundColor:Colors.white}] } >
       <Header />
       <ScrollView>
         <MainContent />
@@ -24,7 +26,6 @@ const HomeScreen = () => {
 const Styles = StyleSheet.create({
   HomeScreen: {
     height: '100%',
-    backgroundColor:Colors.white 
   },
 })
 

@@ -1,4 +1,37 @@
 
+type RootStackParamList = {
+    AuthScreen: undefined; 
+    OTPVerificationScreen:{ mobilenumber :string}; 
+    HomeScreen: undefined;
+    OrderScreen: { DishItem: Restaurant_Dish_Data_Type };
+    ExtraItemAdd: { ExtraItem: Extra_Addon_Data_Type };
+    CheckOutScreen: undefined
+    HelpScreen: undefined;
+    ProScreen: undefined;
+    FoodScreen: {FoodItem : Dish_Data_Type }
+};
+ type RootDrawerParamList = {
+    Main: undefined;
+    Help: undefined;
+};
+
+type OTPScreenProps = {
+  route: RouteProp<RootStackParamList, 'OTPVerificationScreen'>;
+};
+type FoodPageProps = {
+  route: RouteProp<RootStackParamList, 'FoodScreen'>;
+};
+type AddonBottomSheetProps = {
+  route: RouteProp<RootStackParamList, 'ExtraItemAdd'>;
+};
+
+type OrderScreenProps = {
+    route: RouteProp<RootStackParamList, 'OrderScreen'>;
+};
+
+type OrderScreen = NativeStackScreenProps<RootStackParamList, 'OrderScreen'>;
+type OTPScreenType = NativeStackScreenProps<RootStackParamList, 'OTPVerificationScreen'>;
+
 type Restaurant_Dish_Data_Type = {
     dishName: string,
     subTitle: string,

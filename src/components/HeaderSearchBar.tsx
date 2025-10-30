@@ -1,23 +1,25 @@
-import { View, TextInput, Image, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { View, TextInput, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import React, { useState } from 'react'
 
 
 //utility import
-import Colors from '../utils/ColorFile'
+import { useThemeColors } from '../utils/ColorFile';
 import Images from '../utils/LocalImages'
 
 const HeaderSearchBar = () => {
+  const Colors = useThemeColors()
   const [searchTerm, setSearchTerm] = useState('')
   return (
-    <TouchableWithoutFeedback  accessible={true} >
-      <View style={Styles.headerSearchBar} >
-        <Image source={Images.HeaderSearchIcon}  style={Styles.HeaderSearchIcon} />
+    <TouchableWithoutFeedback accessible={true} >
+      <View style={[Styles.headerSearchBar, { borderColor: Colors.greyForBorder, }]} >
+        <Image source={Images.HeaderSearchIcon} style={Styles.HeaderSearchIcon} />
         <TextInput
           value={searchTerm}
           onChangeText={setSearchTerm}
           placeholder='Restaurant name, cuisine, or a dish...'
           allowFontScaling={false}
-          placeholderTextColor={'#0000004a'}
+          placeholderTextColor={Colors.priceTextColour}
+          style={{ color: Colors.priceTextColour }}
         />
       </View>
     </TouchableWithoutFeedback>
@@ -32,7 +34,6 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 2,
-    borderColor: Colors.greyForBorder,
     borderRadius: 8
   },
   HeaderSearchIcon: {

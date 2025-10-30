@@ -16,5 +16,5 @@ export const Tip_Data: Tip_Data_Type[] = [
     { image: Images.Soda_Bottle, price: 20, isMostTipped: false },
     { image: Images.Popcorn_Icon, price: 30, isMostTipped: true },
     { image: Images.Donut_Icon, price: 50, isMostTipped: false },
-    { image: Images.Donut_Icon, price: 'Custom', isMostTipped: false },
+    { image: Images.Gift_Icon, price: 'Custom', isMostTipped: false },
 ]

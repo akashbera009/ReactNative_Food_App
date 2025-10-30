@@ -1,4 +1,4 @@
-import { View, Image, TouchableOpacity, StyleSheet, Text, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { View, Image, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 
 // custom components import 
@@ -7,26 +7,23 @@ import HeaderBadge from './HeaderBadge'
 
 //util file 
 import Images from '../utils/LocalImages'
-import Colors from '../utils/ColorFile'
-//const Colors = useColors() 
+import { useThemeColors } from '../utils/ColorFile';
 
+// navigation imports
 import { useNavigation } from '@react-navigation/native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
-import { RootDrawerParamList } from '../navigation/AppNavigation';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from "../navigation/AppNavigation";
 
 const Header = () => {
+    const Colors = useThemeColors()
     const drawerNavigation = useNavigation<DrawerNavigationProp<RootDrawerParamList>>();
-    const navigation1 = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     return (
         <TouchableWithoutFeedback >
-            <View style={Styles.HeaderSection}>
+            <View style={[Styles.HeaderSection, { backgroundColor: Colors.white, }]}>
                 <View style={Styles.HeaderTopbar}>
-                    <Image source={Images.Group_86} height={21} width={14.25} />
-                    <Image source={Images.Line_31} />
+                    <Image source={Images.Group_86} height={21} width={14.25} style={{ tintColor: Colors.Black }} />
+                    <Image source={Images.Line_31} style={{ tintColor: Colors.Black }} />
                     <TouchableOpacity onPress={() => drawerNavigation.toggleDrawer()}>
-                        <Image source={Images.Menu_Icon} height={27.15} width={21} />
+                        <Image source={Images.Menu_Icon} height={27.15} width={21} style={{ tintColor: Colors.Black }} />
                     </TouchableOpacity>
                 </View>
                 <HeaderSearchBar />
@@ -38,7 +35,6 @@ const Header = () => {
 const Styles = StyleSheet.create({
     HeaderSection: {
         height: 200,
-        backgroundColor: Colors.white,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around',

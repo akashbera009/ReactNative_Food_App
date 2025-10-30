@@ -1,19 +1,25 @@
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import React, { useState } from 'react'
+
+// styling import 
 import LinearGradient from 'react-native-linear-gradient';
 
+// nanvigation import
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from "../../navigation/AppNavigation";
 
-import Colors from '../../utils/ColorFile';
-import { Email_Icon, Facebook_Icon, Google_Icon } from '../../utils/SVGFils';
+//util files 
+import { useThemeColors } from '../../utils/ColorFile';
 import Fonts from '../../utils/FontsFile';
+import { Email_Icon, Facebook_Icon, Google_Icon } from '../../utils/SVGFils';
 
+// safearea imports 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 const LoginPage = () => {
     const navigation1 = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const inset = useSafeAreaInsets();
+    const Colors = useThemeColors();
 
     const [inputValue, setInputValue] = useState<string>('')
     const handleTextChange = (text: string) => {
@@ -24,7 +30,7 @@ const LoginPage = () => {
         if (inputValue.length < 10) {
             return;
         }
-        navigation1.navigate('HomeScreen')
+        navigation1.navigate('OTPVerificationScreen', { mobilenumber: inputValue })
     }
     return (
 
@@ -35,62 +41,62 @@ const LoginPage = () => {
             style={[Styles.linearGradient]}
         >
             <TouchableOpacity
-                style={[Styles.SkipContainer, { top: inset.top }]}
+                style={[Styles.SkipContainer, { top: inset.top, backgroundColor: Colors.SemiTransparent2 }]}
                 onPress={() => navigation1.navigate('HomeScreen')}
             >
-                <Text style={Styles.SkipText} >Skip</Text>
+                <Text style={[Styles.SkipText, { color: Colors.brightBorderColor }]} >Skip</Text>
             </TouchableOpacity>
-            <View style={Styles.InputContainer}>
+            <View style={[Styles.InputContainer, { backgroundColor: Colors.white }]}>
                 <Text style={Styles.InputContainerText} >+91</Text>
                 <TextInput
                     keyboardType='numeric'
                     value={inputValue}
                     onChangeText={handleTextChange}
-                    style={Styles.NumberInput}
+                    style={[Styles.NumberInput, { color: Colors.Black, }]}
                     maxLength={10}
                 />
             </View>
             <TouchableOpacity
-                style={Styles.OTPContainer}
+                style={[Styles.OTPContainer, { backgroundColor: Colors.Black, }]}
                 onPress={handleLogin}
             >
-                <Text style={Styles.OTPText} >Send OTP</Text>
+                <Text style={[Styles.OTPText, { color: Colors.white, }]} >Send OTP</Text>
             </TouchableOpacity>
 
             <View style={Styles.ORContainer}>
-                <View style={Styles.CustomSideBorder} />
-                <Text style={Styles.OrText}> OR </Text>
-                <View style={Styles.CustomSideBorder} />
+                <View style={[Styles.CustomSideBorder, { borderTopColor: Colors.white }]} />
+                <Text style={[Styles.OrText, { color: Colors.white, }]}> OR </Text>
+                <View style={[Styles.CustomSideBorder, { borderTopColor: Colors.white }]} />
             </View>
 
             <View style={Styles.bottomContainer}>
-                <View style={[Styles.LoginContainer, Styles.EmailContainer]}>
+                <View style={[Styles.LoginContainer, Styles.EmailContainer, { backgroundColor: Colors.white }]}>
                     <Email_Icon style={Styles.LoginIcons} />
                     <Text style={Styles.LoginText}>Continue with Email</Text>
                 </View>
-                <View style={[Styles.LoginContainer, Styles.FacebookContainer]}>
+                <View style={[Styles.LoginContainer, Styles.FacebookContainer, { backgroundColor: Colors.white }]}>
                     <Facebook_Icon style={Styles.LoginIcons} />
                     <Text style={Styles.OtherLoginText}>Facebook</Text>
                 </View>
-                <View style={[Styles.LoginContainer, Styles.GoogleContainer]}>
+                <View style={[Styles.LoginContainer, Styles.GoogleContainer, { backgroundColor: Colors.white }]}>
                     <Google_Icon style={Styles.LoginIcons} />
                     <Text style={Styles.OtherLoginText}>Google</Text>
                 </View>
             </View>
             <View style={[Styles.PrivecyPolicyContainer, { marginBottom: inset.bottom }]}>
-                <Text style={Styles.FirstLine}> By continuing, you agree to our </Text>
+                <Text style={[Styles.FirstLine, { color: Colors.white, }]}> By continuing, you agree to our </Text>
                 <View style={Styles.SecondLineContainer}>
                     <View>
-                        <Text style={Styles.SecondtLine}>Terms of Service </Text>
-                        <View style={Styles.CustomBorder} />
+                        <Text style={[Styles.SecondtLine, { color: Colors.white, }]}>Terms of Service </Text>
+                        <View style={[Styles.CustomBorder, { borderTopColor: Colors.AddbuttonBgColor, }]} />
                     </View>
                     <View>
-                        <Text style={Styles.SecondtLine}> Privacy Policy </Text>
-                        <View style={Styles.CustomBorder} />
+                        <Text style={[Styles.SecondtLine, { color: Colors.white, }]}> Privacy Policy </Text>
+                        <View style={[Styles.CustomBorder, { borderTopColor: Colors.AddbuttonBgColor, }]} />
                     </View>
                     <View>
-                        <Text style={Styles.SecondtLine}> Content Policy</Text>
-                        <View style={Styles.CustomBorder} />
+                        <Text style={[Styles.SecondtLine, { color: Colors.white, }]}> Content Policy</Text>
+                        <View style={[Styles.CustomBorder, { borderTopColor: Colors.AddbuttonBgColor, }]} />
                     </View>
                 </View>
             </View>
@@ -110,7 +116,7 @@ const Styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.SemiTransparent2,
+        // backgroundColor: Colors.SemiTransparent2,
         right: 15,
         borderRadius: 12,
         height: 30,
@@ -118,13 +124,11 @@ const Styles = StyleSheet.create({
     },
     SkipText: {
         fontSize: 15,
-        color: Colors.brightBorderColor,
         paddingHorizontal: 15
     },
     InputContainer: {
         height: 60,
         width: '90%',
-        backgroundColor: Colors.white,
         borderRadius: 8,
         marginHorizontal: 'auto',
         display: 'flex',
@@ -145,13 +149,12 @@ const Styles = StyleSheet.create({
         width: '50%',
         fontSize: 27,
         fontWeight: 400,
-        color: Colors.Black,
+        // color: Colors.Black,
     },
     OTPContainer: {
         height: 60,
         width: '90%',
         marginVertical: 20,
-        backgroundColor: Colors.Black,
         borderRadius: 8,
         marginHorizontal: 'auto',
         display: 'flex',
@@ -159,7 +162,6 @@ const Styles = StyleSheet.create({
         justifyContent: 'center'
     },
     OTPText: {
-        color: Colors.white,
         fontSize: 22,
         fontFamily: Fonts.generalFont
     },
@@ -167,24 +169,21 @@ const Styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'nowrap',
-        justifyContent:'center',
-        alignItems:'center',
-        // backgroundColor: '#8b9cf068',
-        width:'90%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '90%',
         marginHorizontal: 'auto',
-        marginVertical: 18, 
+        marginVertical: 18,
     },
     CustomSideBorder: {
         width: '40%',
-        // borderTopColor: Colors.AddbuttonBgColor,
         borderTopColor: '#ffffff',
         borderTopWidth: 1
     },
     OrText: {
-        marginHorizontal: 20, 
+        marginHorizontal: 20,
         fontSize: 15,
         fontWeight: 400,
-        color: Colors.white,
         textAlign: 'center'
     },
 
@@ -199,7 +198,6 @@ const Styles = StyleSheet.create({
     },
     LoginContainer: {
         height: 60,
-        backgroundColor: Colors.white,
         borderRadius: 8,
         display: 'flex',
         alignItems: 'center',
@@ -242,7 +240,6 @@ const Styles = StyleSheet.create({
     },
     FirstLine: {
         fontSize: 14,
-        color: Colors.white,
         width: '100%',
         textAlign: 'center',
         fontFamily: Fonts.generalFont
@@ -255,14 +252,12 @@ const Styles = StyleSheet.create({
     },
     SecondtLine: {
         fontSize: 14,
-        color: Colors.white,
         margin: 3,
         fontFamily: Fonts.generalFont,
     },
     CustomBorder: {
         width: '90%',
         marginHorizontal: 'auto',
-        borderTopColor: Colors.AddbuttonBgColor,
         borderTopWidth: 1
     }
 })

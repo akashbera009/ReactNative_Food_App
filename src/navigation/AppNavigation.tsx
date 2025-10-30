@@ -15,23 +15,9 @@ import HelpScreen from '../screens/HelpScreen';
 import ProScreen from '../screens/ProScreen';
 import CheckOutScreen from '../screens/CheckOutScreen';
 import AuthScreen from '../screens/AuthScreen';
+import FoodScreen from '../screens/FoodScreen';
+import OTPPage from '../components/Authentication/OTPPage';
 
-// import { SafeAreaView } from 'react-native-safe-area-context';
-
-export type RootStackParamList = {
-    AuthScreen: undefined; 
-    OTPVerificationScreen:{ mobilenumber :string}; 
-    HomeScreen: undefined;
-    OrderScreen: { DishItem: Restaurant_Dish_Data_Type };
-    ExtraItemAdd: { ExtraItem: Extra_Addon_Data_Type };
-    CheckOutScreen: undefined
-    HelpScreen: undefined;
-    ProScreen: undefined;
-};
-export type RootDrawerParamList = {
-    Main: undefined;
-    Help: undefined;
-};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator()
@@ -42,6 +28,10 @@ function StackNavigator() {
             <Stack.Screen
                 name='AuthScreen'
                 component={AuthScreen}
+            />
+            <Stack.Screen
+                name='OTPVerificationScreen'
+                component={OTPPage}
             />
             <Stack.Screen
                 name='HomeScreen'
@@ -73,6 +63,10 @@ function StackNavigator() {
                 name='ProScreen'
                 component={ProScreen}
             />
+            <Stack.Screen
+                name='FoodScreen'
+                component={FoodScreen}
+            />
         </Stack.Navigator>
     )
 }
@@ -84,7 +78,6 @@ export default function AppNavigation() {
                         screenOptions={{ headerShown: false, drawerPosition: 'right', }}
                         drawerContent={(props) => <SideBarScreen{...props} />}>
                         <Drawer.Screen name='Main' component={StackNavigator} />
-                        <Drawer.Screen name='Help' component={HelpScreen} />
                     </Drawer.Navigator>
                 </NavigationContainer>
         </GestureHandlerRootView>

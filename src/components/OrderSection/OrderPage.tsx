@@ -13,14 +13,13 @@ import React, { useState } from 'react'
 // navigation import 
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigation/AppNavigation';
 import { RouteProp } from '@react-navigation/native';
 
 // utils import 
 import Images from '../../utils/LocalImages';
-import Colors from '../../utils/ColorFile';
 import Fonts from '../../utils/FontsFile';
-import { Continue_Option} from '../../utils/SVGFils';
+import { Continue_Option } from '../../utils/SVGFils';
+import { useThemeColors } from '../../utils/ColorFile';
 
 // data imports
 import { Extra_Addon_Data } from '../../data/Extra_Addon_Data';
@@ -29,11 +28,9 @@ import { DeliveryInfo_Details } from '../../data/DeliveryInfo_Details';
 // safeArea imports
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-type OrderScreenProps = {
-    route: RouteProp<RootStackParamList, 'OrderScreen'>;
-};
 
 export default function OrderPage({ route }: OrderScreenProps) {
+    const Colors = useThemeColors();
     const inset = useSafeAreaInsets();
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const { DishItem } = route.params;
@@ -45,57 +42,57 @@ export default function OrderPage({ route }: OrderScreenProps) {
     const [eggActive, setEggActive] = useState<boolean>(true)
 
     return (
-        <View style={[Styles.OrderPageContainer, { flex: 1, paddingTop: inset.top }]}>
+        <View style={[Styles.OrderPageContainer, { flex: 1, paddingTop: inset.top, backgroundColor: Colors.white, width: '100%' }]}>
 
             <TouchableOpacity onPress={() =>
                 navigation.pop()
             }>
-                <Image source={Images.Back_Symbol} style={Styles.BackButton} />
+                <Image source={Images.Back_Symbol} style={[Styles.BackButton, { tintColor: Colors.priceTextColour }]} />
             </TouchableOpacity>
 
             {/* Side things */}
-            <View style={[Styles.ratingContainer, { marginTop: inset.top }]}>
-                <Text style={[Styles.RatingContainerText, Styles.RatingContainerTextCount]}>{DishItem.ratings} <Image source={Images.StarIcon} style={Styles.StarIcon} /></Text>
-                <Text style={[Styles.RatingContainerText, Styles.RatingContainerTextText]}>DELIVERY</Text>
+            <View style={[Styles.ratingContainer, { marginTop: inset.top, backgroundColor: Colors.ratingCOntainerBGColor, }]}>
+                <Text style={[Styles.RatingContainerText, { color: Colors.conatsntWhite, }, Styles.RatingContainerTextCount]}>{DishItem.ratings} <Image source={Images.StarIcon} style={Styles.StarIcon} /></Text>
+                <Text style={[Styles.RatingContainerText, { color: Colors.conatsntWhite, }, Styles.RatingContainerTextText]}>DELIVERY</Text>
             </View>
 
-            <View style={[Styles.photoContainer, { marginTop: inset.top }]}>
+            <View style={[Styles.photoContainer, { marginTop: inset.top, borderRadius: 4 }]}>
                 <ImageBackground source={Images.Orderable_Image} resizeMode="cover" style={Styles.sideBgImage}>
                     <View style={Styles.opacity}>
-                        <Text style={[Styles.RatingContainerText, Styles.RatingContainerTextCount]}>6</Text>
-                        <Text style={[Styles.RatingContainerText, Styles.RatingContainerTextText]}>PHOTOS</Text>
+                        <Text style={[Styles.RatingContainerText, { color: Colors.conatsntWhite, }, Styles.RatingContainerTextCount]}>6</Text>
+                        <Text style={[Styles.RatingContainerText, { color: Colors.conatsntWhite, }, Styles.RatingContainerTextText]}>PHOTOS</Text>
                     </View>
                 </ImageBackground >
             </View>
 
 
             <View style={Styles.UpperContainer}>
-                <Text style={Styles.dishName}>{DishItem.dishName}</Text>
-                <Text style={Styles.subtitle}>{DishItem.subTitle}</Text>
-                <Text style={Styles.location}>{DishItem.location}</Text>
-                <View style={Styles.maxSafetyContainer}>
-                    <View style={Styles.InnerMaxSafetyContainer}>
+                <Text style={[Styles.dishName, { color: Colors.priceTextColour }]}>{DishItem.dishName}</Text>
+                <Text style={[Styles.subtitle, { color: Colors.RecomemdedTextColor, }]}>{DishItem.subTitle}</Text>
+                <Text style={[Styles.location, { color: Colors.ActiveTabTextColor }]}>{DishItem.location}</Text>
+                <View style={[Styles.maxSafetyContainer, { backgroundColor: Colors.maxSafetyGreenBG, }]}>
+                    <View style={[Styles.InnerMaxSafetyContainer, { backgroundColor: Colors.maxSafetyYellowBG, }]}>
                         <Text style={Styles.maxSafetyText}>MAX SAFELTY</Text>
                     </View>
-                    <Text style={Styles.deliveryText}>DELIVERY</Text>
+                    <Text style={[Styles.deliveryText, { color: Colors.white, }]}>DELIVERY</Text>
                 </View>
             </View>
 
             {/* delivery details */}
-            <View style={Styles.DeliveryDetailsContainre}>
-                <View style={Styles.DeliveryNavbar}>
+            <View style={[Styles.DeliveryDetailsContainre, { backgroundColor: Colors.white }]}>
+                <View style={[Styles.DeliveryNavbar, { backgroundColor: Colors.DeliveryDetailsNavbarColor, }]}>
                     <TouchableOpacity onPress={() => setDeliveryNav(0)}  >
-                        <Text style={deliveryNav === 0 ? Styles.ActiveText : Styles.NotActiveText}>
+                        <Text style={deliveryNav === 0 ? [Styles.ActiveText, { color: Colors.white, backgroundColor: Colors.Black, }] : [Styles.NotActiveText, { color: Colors.ActiveTabTextColor, }]}>
                             DELIVERY
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setDeliveryNav(1)}>
-                        <Text style={deliveryNav === 1 ? Styles.ActiveText : Styles.NotActiveText}>
+                        <Text style={deliveryNav === 1 ? [Styles.ActiveText, { color: Colors.white, backgroundColor: Colors.Black, }] : [Styles.NotActiveText, { color: Colors.ActiveTabTextColor, }]}>
                             DINING
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setDeliveryNav(2)}>
-                        <Text style={deliveryNav === 2 ? Styles.ActiveText : Styles.NotActiveText}>
+                        <Text style={deliveryNav === 2 ? [Styles.ActiveText, { color: Colors.white, backgroundColor: Colors.Black, }] : [Styles.NotActiveText, { color: Colors.ActiveTabTextColor, }]}>
                             REVIEWS
                         </Text>
                     </TouchableOpacity>
@@ -103,35 +100,35 @@ export default function OrderPage({ route }: OrderScreenProps) {
 
                 <View style={Styles.DeliveryModeTime}>
                     <View style={Styles.DeliveryModeTimeImageAndTextContainer}>
-                        <Image source={Images.Bike_Facing_Icon} style={Styles.DeliveryModeTimeImage} />
+                        <Image source={Images.Bike_Facing_Icon} style={[Styles.DeliveryModeTimeImage, { tintColor: Colors.Black }]} />
                         <View style={Styles.DeliveryModeTimeTextContainer}>
-                            <Text style={Styles.DeliveryModeTimeText}> MODE</Text>
-                            <Text style={Styles.DeliveryModeTimeTextLower}> delivery</Text>
+                            <Text style={[Styles.DeliveryModeTimeText, { color: Colors.ActiveTabTextColor }]}> MODE</Text>
+                            <Text style={[Styles.DeliveryModeTimeTextLower, { color: Colors.Black }]}> delivery</Text>
                         </View>
                     </View>
                     <View style={Styles.DeliveryModeTimeImageAndTextContainer}>
-                        <Image source={Images.Clock_Timer_Icon} style={Styles.DeliveryModeTimeImage} />
+                        <Image source={Images.Clock_Timer_Icon} style={[Styles.DeliveryModeTimeImage, { tintColor: Colors.Black }]} />
                         <View style={Styles.DeliveryModeTimeTextContainer}>
-                            <Text style={Styles.DeliveryModeTimeText}> TIME</Text>
-                            <Text style={Styles.DeliveryModeTimeTextLower}>{DeliveryInfo_Details.Time} mins</Text>
+                            <Text style={[Styles.DeliveryModeTimeText, { color: Colors.ActiveTabTextColor }]}> TIME</Text>
+                            <Text style={[Styles.DeliveryModeTimeTextLower, { color: Colors.Black }]}>{DeliveryInfo_Details.Time} mins</Text>
                         </View>
                     </View>
                     <View style={Styles.DeliveryModeTimeImageAndTextContainer}>
                         <Image source={Images.Offer_Icon} style={Styles.DeliveryModeTimeImage} />
                         <View style={Styles.DeliveryModeTimeTextContainer}>
                             <View style={Styles.OfferUpperContainer}>
-                                <Text style={Styles.DeliveryModeTimeText}>OFFERS</Text>
-                                <Image source={Images.Vector_22} style={Styles.OfferViewMore} />
+                                <Text style={[Styles.DeliveryModeTimeText, { color: Colors.ActiveTabTextColor }]}>OFFERS</Text>
+                                <Image source={Images.Vector_22} style={[Styles.OfferViewMore, { tintColor: Colors.priceTextColour }]} />
                             </View>
-                            <Text style={Styles.DeliveryModeTimeTextLower}> view all (3)</Text>
+                            <Text style={[Styles.DeliveryModeTimeTextLower, { color: Colors.Black }]}> view all (3)</Text>
                         </View>
                     </View>
                 </View>
 
                 {/* distance charge container */}
-                <View style={Styles.DistanceCharge}>
-                    <Image source={Images.Delivery_Bike_Icon} style={Styles.deliveryScooterImage} />
-                    <Text style={Styles.ChargeText}>₹{DeliveryInfo_Details.Price} distance charge </Text>
+                <View style={[Styles.DistanceCharge, { backgroundColor: Colors.DeliveryDetailsNavbarColor, }]}>
+                    <Image source={Images.Delivery_Bike_Icon} style={[Styles.deliveryScooterImage, { tintColor: Colors.priceTextColour }]} />
+                    <Text style={[Styles.ChargeText, { color: Colors.priceTextColour }]}>₹{DeliveryInfo_Details.Price} distance charge </Text>
                 </View >
 
                 {/* selection and searchbar  */}
@@ -145,12 +142,12 @@ export default function OrderPage({ route }: OrderScreenProps) {
                                         onPress={() => setVegActive(!vegActive)}
                                         activeOpacity={1}
                                     >
-                                        <View style={[Styles.CursorBG, vegActive ? { alignItems: 'flex-end' } : { alignItems: 'flex-start' }]}>
-                                            <View style={Styles.Cursor} />
+                                        <View style={[Styles.CursorBG, { backgroundColor: Colors.CursorBGColor }, vegActive ? { alignItems: 'flex-end' } : { alignItems: 'flex-start' }]}>
+                                            <View style={[Styles.Cursor, { backgroundColor: Colors.white, borderColor: Colors.CursorBorderColor }]} />
                                         </View>
                                     </TouchableOpacity>
                                 </View>
-                                <Text style={Styles.vegText}>Veg</Text>
+                                <Text style={[Styles.vegText, { color: Colors.RecomemdedTextColor }]}>Veg</Text>
                             </View>
                             <View style={Styles.VegSwitchTextContainer} >
                                 <View style={Styles.VegSwitchContainer}>
@@ -159,23 +156,24 @@ export default function OrderPage({ route }: OrderScreenProps) {
                                         onPress={() => setEggActive(!eggActive)}
                                         activeOpacity={1}
                                     >
-                                        <View style={[Styles.CursorBG, eggActive ? { alignItems: 'flex-end' } : { alignItems: 'flex-start' }]}>
-                                            <View style={Styles.Cursor} />
+                                        <View style={[Styles.CursorBG, { backgroundColor: Colors.CursorBGColor }, eggActive ? { alignItems: 'flex-end' } : { alignItems: 'flex-start' }]}>
+                                            <View style={[Styles.Cursor, { backgroundColor: Colors.white, borderColor: Colors.CursorBorderColor }]} />
                                         </View>
                                     </TouchableOpacity>
                                 </View>
-                                <Text style={Styles.vegText}>Egg</Text>
+                                <Text style={[Styles.vegText, { color: Colors.RecomemdedTextColor }]}>Egg</Text>
                             </View>
                         </View>
 
                         {/* searchbar  */}
-                        <View style={Styles.headerSearchBar} >
+                        <View style={[Styles.headerSearchBar, { borderColor: Colors.greyForBorder, }]} >
                             <Image source={Images.HeaderSearchIcon} style={Styles.HeaderSearchIcon} />
                             <TextInput
                                 value={searchTerm}
                                 onChangeText={setSearchTerm}
                                 placeholder='Search'
-                                placeholderTextColor={'#5351514a'}
+                                placeholderTextColor={Colors.priceTextColour}
+                                style={{ color: Colors.priceTextColour }}
                             />
                         </View>
                     </View>
@@ -183,19 +181,19 @@ export default function OrderPage({ route }: OrderScreenProps) {
             </View>
 
             {/* Border  */}
-            <View style={Styles.Border} />
+            <View style={[Styles.Border, { borderBottomColor: Colors.brightBorderColor, }]} />
 
             {/* addon suggestion  */}
-            <View style={Styles.RecomenedAddonContainer} >
+            <View style={[Styles.RecomenedAddonContainer, { backgroundColor: Colors.white }]} >
                 <View style={Styles.RecomenedAddonContainerHeader}>
-                    <Text style={Styles.Recomenedtext}>Recomeneded</Text>
+                    <Text style={[Styles.Recomenedtext, { color: Colors.RecomemdedTextColor }]}>Recomeneded</Text>
                     <Image source={Images.Vector_22} style={Styles.Down_Arrow} />
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     {Extra_Addon_Data.map((item, key) => (
                         <TouchableOpacity
                             key={key}
-                            style={Styles.AddonEntryContainer}
+                            style={[Styles.AddonEntryContainer, { backgroundColor: Colors.white, }]}
                             onPress={() =>
                                 navigation.push('ExtraItemAdd', {
                                     // ExtraItem: JSON.parse(JSON.stringify(item))
@@ -205,10 +203,10 @@ export default function OrderPage({ route }: OrderScreenProps) {
                             activeOpacity={.7}>
                             <View style={Styles.LeftContainer} >
                                 <Image source={Images.Veg_Icon} style={Styles.Veg_Icon} />
-                                <Text style={Styles.ExtraDishName}> {item.name}</Text>
-                                <Text style={Styles.Price}> ₹{item.price}</Text>
+                                <Text style={[Styles.ExtraDishName, { color: Colors.RecomemdedTextColor, }]}> {item.name}</Text>
+                                <Text style={[Styles.Price, { color: Colors.RecomemdedTextColor, }]}> ₹{item.price}</Text>
                                 <View style={Styles.RatingAndTags}>
-                                    <View style={Styles.RatingContainer}>
+                                    <View style={[Styles.RatingContainer, { borderColor: Colors.ratingContainerTransparentBorderColor, backgroundColor: Colors.ratingContainerYellowBg, }]}>
                                         <View style={Styles.StarContainer}>
                                             <Image source={Images.Vector_15} style={Styles.Star} />
                                             <Image source={Images.Vector_15} style={Styles.Star} />
@@ -217,21 +215,21 @@ export default function OrderPage({ route }: OrderScreenProps) {
                                             <Image source={Images.Vector_16} style={Styles.HalfStar} />
                                             <Image source={Images.Vector_17} style={Styles.HalfStar} />
                                         </View>
-                                        <Text style={Styles.ratingContainerText} >{item.ratingCount}</Text>
+                                        <Text style={[Styles.ratingContainerText, { color: Colors.Black }]} >{item.ratingCount}</Text>
                                     </View>
-                                    <View style={Styles.bestsellerTag}>
-                                        <Text style={Styles.bestsellerTagText}> Must Try</Text>
+                                    <View style={[Styles.bestsellerTag, { borderColor: Colors.bestSellerBorder, backgroundColor: Colors.bestSellerBG, }]}>
+                                        <Text style={[Styles.bestsellerTagText, { color: Colors.bestSellerBorder, }]}> Must Try</Text>
                                     </View>
                                 </View>
-                                <Text style={Styles.DishDescription}> {item.description}
+                                <Text style={[Styles.DishDescription, { color: Colors.priceTextColour, }]}> {item.description}
                                     <Text style={Styles.readMore}>...read more</Text>
                                 </Text>
                             </View>
                             <View >
                                 <Image source={item.Image} style={Styles.RecomemdedContainerImage} />
-                                <Pressable style={Styles.AddButton}>
-                                    <Text style={Styles.AddButtonText}>ADD</Text>
-                                    <Text style={Styles.PlusButton}>+</Text>
+                                <Pressable style={[Styles.AddButton, { backgroundColor: Colors.AddbuttonBgColor, borderColor: Colors.AddbuttonTextColor, }]}>
+                                    <Text style={[Styles.AddButtonText, { color: Colors.AddbuttonTextColor, }]}>ADD</Text>
+                                    <Text style={[Styles.PlusButton, { color: Colors.AddbuttonTextColor, }]}>+</Text>
                                 </Pressable>
                             </View>
                         </TouchableOpacity>
@@ -240,15 +238,15 @@ export default function OrderPage({ route }: OrderScreenProps) {
             </View>
 
             {/* Offer section  */}
-            <View style={[Styles.OfferAndCartContainer, { bottom: inset.bottom }]}>
-                <View style={Styles.offerSection}>
-                    <Text style={Styles.offerSectionText} >{DeliveryInfo_Details.OfferaPercent} % OFF up to ₹{DeliveryInfo_Details.OfferAmount}</Text>
-                    <Text numberOfLines={2} style={Styles.offerSectionEndText} >Use code ZOMSAFETY on orders with items worth ₹159 or more</Text>
+            <View style={[Styles.OfferAndCartContainer, { bottom: inset.bottom + 10 }]}>
+                <View style={[Styles.offerSection, { backgroundColor: Colors.OfferSectionBGColor, borderTopColor: Colors.Black, borderBottomColor: Colors.Black }]}>
+                    <Text style={[Styles.offerSectionText, { color: Colors.conatsntWhite, backgroundColor: Colors.offerTextBgColor, }]} >{DeliveryInfo_Details.OfferaPercent} % OFF up to ₹{DeliveryInfo_Details.OfferAmount}</Text>
+                    <Text numberOfLines={2} style={[Styles.offerSectionEndText, { color: Colors.offerTextBgColor, }]} >Use code ZOMSAFETY on orders with items worth ₹159 or more</Text>
                 </View>
-                <View style={Styles.ViewCartContainer}>
+                <View style={[Styles.ViewCartContainer, { backgroundColor: Colors.AddButtonBG, }]}>
                     <View style={Styles.LeftSideContainer} >
-                        <Text style={[Styles.ViewCartText, Styles.LeftSideText]}>{1} ITEM</Text>
-                        <Text style={[Styles.ViewCartText, Styles.LeftSideText]}>₹{120} plus axes</Text>
+                        <Text style={[Styles.ViewCartText, { color: Colors.conatsntWhite }, Styles.LeftSideText]}>{1} ITEM</Text>
+                        <Text style={[Styles.ViewCartText, { color: Colors.conatsntWhite }, Styles.LeftSideText]}>₹{120} plus axes</Text>
                     </View>
                     <TouchableOpacity
                         style={Styles.RightSideContainer}
@@ -257,7 +255,7 @@ export default function OrderPage({ route }: OrderScreenProps) {
                         }
                         activeOpacity={.7}
                     >
-                        <Text style={[Styles.ViewCartText, Styles.RightSideText]}>View Cart</Text>
+                        <Text style={[Styles.ViewCartText, { color: Colors.conatsntWhite }, Styles.RightSideText]}>View Cart</Text>
                         <Continue_Option style={Styles.contunue_icon} />
                     </TouchableOpacity>
                 </View>
@@ -272,7 +270,6 @@ const Styles = StyleSheet.create({
         height: '100%',
         width: '98%',
         marginHorizontal: 'auto',
-        backgroundColor: Colors.white
     },
 
     BackButton: {
@@ -289,21 +286,17 @@ const Styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 12,
-        color: Colors.RecomemdedTextColor,
     },
     location: {
         fontSize: 10,
-        color: Colors.ActiveTabTextColor
     },
     maxSafetyContainer: {
-        backgroundColor: Colors.maxSafetyGreenBG,
         height: 18,
         width: 47,
         borderRadius: 2,
         marginTop: 10
     },
     InnerMaxSafetyContainer: {
-        backgroundColor: Colors.maxSafetyYellowBG,
         height: 8,
         width: 45,
         marginHorizontal: 'auto',
@@ -318,7 +311,6 @@ const Styles = StyleSheet.create({
     deliveryText: {
         fontSize: 7,
         marginHorizontal: 'auto',
-        color: Colors.white,
         fontWeight: 400
     },
     maxSeftyImage: {
@@ -329,7 +321,6 @@ const Styles = StyleSheet.create({
     ratingContainer: {
         width: 86,
         height: 43,
-        backgroundColor: Colors.ratingCOntainerBGColor,
         borderRadius: 4,
         position: 'absolute',
         top: 24,
@@ -342,7 +333,6 @@ const Styles = StyleSheet.create({
         width: 12
     },
     RatingContainerText: {
-        color: Colors.white,
         marginLeft: 10
     },
     RatingContainerTextCount: {
@@ -357,7 +347,6 @@ const Styles = StyleSheet.create({
         position: 'absolute',
         top: 72,
         right: -15,
-        backgroundColor: 'red',
         borderRadius: 4,
     },
     sideBgImage: {
@@ -376,11 +365,9 @@ const Styles = StyleSheet.create({
         marginTop: 20,
         display: 'flex',
         marginHorizontal: 'auto',
-        backgroundColor: Colors.white
     },
     DeliveryNavbar: {
         width: '98%',
-        backgroundColor: Colors.DeliveryDetailsNavbarColor,
         height: 38,
         borderRadius: 8,
         display: 'flex',
@@ -389,14 +376,11 @@ const Styles = StyleSheet.create({
         alignItems: 'center'
     },
     ActiveText: {
-        color: Colors.white,
-        backgroundColor: Colors.Black,
         padding: 10,
         paddingHorizontal: 24,
         borderRadius: 8
     },
     NotActiveText: {
-        color: Colors.ActiveTabTextColor,
         padding: 10,
         paddingHorizontal: 24,
         borderRadius: 8,
@@ -437,7 +421,6 @@ const Styles = StyleSheet.create({
     DeliveryModeTimeText: {
         fontSize: 9,
         fontFamily: Fonts.generalFont,
-        color: Colors.ActiveTabTextColor
     },
     DeliveryModeTimeTextLower: {
         fontSize: 9,
@@ -453,7 +436,6 @@ const Styles = StyleSheet.create({
         height: 26,
         width: '92%',
         marginTop: 10,
-        backgroundColor: Colors.DeliveryDetailsNavbarColor,
         borderRadius: 4,
         display: 'flex',
         flexDirection: 'row',
@@ -492,7 +474,6 @@ const Styles = StyleSheet.create({
     },
     vegText: {
         fontSize: 8,
-        color: Colors.RecomemdedTextColor
     },
     VegSwitchContainer: {
         display: 'flex',
@@ -514,16 +495,13 @@ const Styles = StyleSheet.create({
     Cursor: {
         height: 19,
         width: 19,
-        backgroundColor: Colors.white,
         borderRadius: 2,
         borderWidth: 2,
-        borderColor: Colors.CursorBorderColor,
     },
     CursorBG: {
         height: 14,
         width: 35,
         borderRadius: 2,
-        backgroundColor: Colors.CursorBGColor,
         display: 'flex',
         justifyContent: 'center',
     },
@@ -534,7 +512,6 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         borderWidth: 2,
-        borderColor: Colors.greyForBorder,
         borderRadius: 8
     },
     HeaderSearchIcon: {
@@ -544,14 +521,12 @@ const Styles = StyleSheet.create({
     },
     Border: {
         width: '100%',
-        borderBottomColor: Colors.brightBorderColor,
         borderWidth: .3,
         marginVertical: 10,
     },
     RecomenedAddonContainer: {
         height: 320,
         gap: 8,
-        backgroundColor: Colors.white
     },
     RecomenedAddonContainerHeader: {
         display: 'flex',
@@ -563,7 +538,6 @@ const Styles = StyleSheet.create({
     },
     Recomenedtext: {
         fontSize: 11,
-        color: Colors.RecomemdedTextColor
     },
     Down_Arrow: {
         height: 5,
@@ -572,7 +546,6 @@ const Styles = StyleSheet.create({
     AddonEntryContainer: {
         height: 108,
         width: '95%',
-        backgroundColor: Colors.white,
         marginVertical: 8,
         marginHorizontal: 'auto',
         display: 'flex',
@@ -580,7 +553,6 @@ const Styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     ExtraDishName: {
-        color: Colors.RecomemdedTextColor,
         fontSize: 14,
         fontFamily: Fonts.generalFont,
         marginTop: 2
@@ -593,7 +565,6 @@ const Styles = StyleSheet.create({
         width: 18
     },
     Price: {
-        color: Colors.RecomemdedTextColor,
         fontSize: 10,
         fontFamily: Fonts.generalFont
     },
@@ -607,8 +578,6 @@ const Styles = StyleSheet.create({
     RatingContainer: {
         borderWidth: .5,
         borderRadius: 4,
-        borderColor: Colors.ratingContainerTransparentBorderColor,
-        backgroundColor: Colors.ratingContainerYellowBg,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -630,14 +599,11 @@ const Styles = StyleSheet.create({
         width: 5.28,
     },
     ratingContainerText: {
-        color: Colors.Black,
         fontSize: 8
     },
     bestsellerTag: {
         borderWidth: .5,
         borderRadius: 6,
-        borderColor: Colors.bestSellerBorder,
-        backgroundColor: Colors.bestSellerBG,
         alignSelf: 'flex-start',
         paddingHorizontal: 6,
         paddingVertical: 2,
@@ -645,13 +611,11 @@ const Styles = StyleSheet.create({
     },
 
     bestsellerTagText: {
-        color: Colors.bestSellerBorder,
         fontSize: 10
     },
     DishDescription: {
         fontSize: 10,
         width: 221,
-        color: Colors.priceTextColour,
     },
     readMore: {
         fontSize: 11,
@@ -663,7 +627,6 @@ const Styles = StyleSheet.create({
         borderRadius: 8
     },
     AddButton: {
-        backgroundColor: Colors.AddbuttonBgColor,
         height: 25,
         width: 70,
         borderRadius: 4,
@@ -671,19 +634,16 @@ const Styles = StyleSheet.create({
         top: '-12%',
         left: '12%',
         borderWidth: .2,
-        borderColor: Colors.AddbuttonTextColor,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row'
     },
     AddButtonText: {
-        color: Colors.AddbuttonTextColor,
         fontSize: 13
     },
     PlusButton: {
         position: 'absolute',
-        color: Colors.AddbuttonTextColor,
         right: 5,
         top: 0
     },
@@ -699,8 +659,6 @@ const Styles = StyleSheet.create({
     offerSection: {
         height: 50,
         width: '100%',
-        backgroundColor: Colors.OfferSectionBGColor,
-        borderTopColor: Colors.Black,
         borderWidth: .2,
         borderLeftWidth: 0,
         borderRightWidth: 0,
@@ -710,8 +668,6 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
     },
     offerSectionText: {
-        color: Colors.white,
-        backgroundColor: Colors.offerTextBgColor,
         alignSelf: 'center',
         borderRadius: 4,
         fontFamily: Fonts.generalFont,
@@ -722,14 +678,12 @@ const Styles = StyleSheet.create({
         margin: 8
     },
     offerSectionEndText: {
-        color: Colors.offerTextBgColor,
         fontSize: 10,
         width: '60%',
         fontFamily: Fonts.generalFont
     },
     ViewCartContainer: {
         marginTop: 10,
-        backgroundColor: Colors.AddButtonBG,
         height: 40,
         width: '95%',
         borderRadius: 4,
@@ -747,7 +701,7 @@ const Styles = StyleSheet.create({
         marginRight: 15,
     },
     ViewCartText: {
-        color: Colors.white
+
     },
     LeftSideContainer: {
         marginLeft: 10,
@@ -767,3 +721,5 @@ const Styles = StyleSheet.create({
         width: 4
     }
 })
+
+

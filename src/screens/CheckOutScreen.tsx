@@ -1,13 +1,11 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+
+// component import 
 import CheckOut from '../components/OrderSection/CheckOut'
 
 const CheckOutScreen = () => {
   return (
-    <View>
-      {/* <Text>CheckOutScreen</Text> */}
-      <CheckOut/>
-    </View>
+    <CheckOut />
   )
 }
 

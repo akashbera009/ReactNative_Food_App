@@ -1,5 +1,6 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+
+// component import 
 import LoginPage from '../components/Authentication/LoginPage'
 
 const AuthScreen = () => {

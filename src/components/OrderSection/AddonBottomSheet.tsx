@@ -4,23 +4,18 @@ import React, { useEffect, useRef, useState } from 'react';
 // import navigaton  
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigation/AppNavigation';
-import { RouteProp } from '@react-navigation/native';
 
 // import utils 
-import Colors from '../../utils/ColorFile';
+import { useThemeColors } from '../../utils/ColorFile';
 import Images from '../../utils/LocalImages';
 import Fonts from '../../utils/FontsFile';
-//const Colors = useColors() 
+import { Check_List_Selected } from '../../utils/SVGFils';
 
+// safearea import
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-type AddonBottomSheetProps = {
-  route: RouteProp<RootStackParamList, 'ExtraItemAdd'>;
-};
-
-
-const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
+const AddonBottomSheet = ({ route }: AddonBottomSheetProps ) => {
+  const Colors = useThemeColors();
   const slide = useRef(new Animated.Value(800)).current;
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { ExtraItem } = route.params;
@@ -60,22 +55,31 @@ const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
     slideUp();
   }, []);
   const inset = useSafeAreaInsets();
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  console.log(selectedItems)
+  const toggleSelection = (idx: number) => {
+    if (selectedItems.includes(idx)) {
+      setSelectedItems(selectedItems.filter(item => item !== idx));
+    } else {
+      setSelectedItems([...selectedItems, idx]);
+    }
+  };
   return (
-    <View style={Styles.backDrop}>
+    <View style={[Styles.backDrop, { backgroundColor: Colors.SemiTransparent, }]}>
       <Animated.View style={[Styles.bottomSheet, { transform: [{ translateY: slide }] }]}>
         <View style={Styles.OuterContainer}>
-          <TouchableOpacity onPress={closeModal} style={Styles.closeButton}>
-            <Image source={Images.Vector_27} style={Styles.closeBtnImage} />
+          <TouchableOpacity onPress={closeModal} style={[Styles.closeButton, { backgroundColor: Colors.Black, }]}>
+            <Image source={Images.Vector_27} style={[Styles.closeBtnImage, { tintColor: Colors.white }]} />
           </TouchableOpacity>
 
-          <View style={Styles.InnerContainer}>
+          <View style={[Styles.InnerContainer, { backgroundColor: Colors.white, }]}>
             <Image source={ExtraItem.Image} style={Styles.OrderableImage} />
             <View style={Styles.DishContainer}>
 
-              <Text style={Styles.DishName}>{ExtraItem.name}</Text>
+              <Text style={[Styles.DishName, { color: Colors.Black }]}>{ExtraItem.name}</Text>
 
               <View style={Styles.ratingAndBestSellerContainer}>
-                <View style={Styles.RatingContainer}>
+                <View style={[Styles.RatingContainer, { borderColor: Colors.ratingContainerTransparentBorderColor, backgroundColor: Colors.ratingContainerYellowBg, }]}>
                   <View style={Styles.StarContainer}>
                     <Image source={Images.Vector_15} style={Styles.Star} />
                     <Image source={Images.Vector_15} style={Styles.Star} />
@@ -84,52 +88,61 @@ const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
                     <Image source={Images.Vector_16} style={Styles.HalfStar} />
                     <Image source={Images.Vector_17} style={Styles.HalfStar} />
                   </View>
-                  <Text style={Styles.ratingContainerText} >{ExtraItem.ratingCount}</Text>
+                  <Text style={[Styles.ratingContainerText, { color: Colors.Black, }]} >{ExtraItem.ratingCount}</Text>
                 </View>
-                <View style={Styles.bestsellerTag}><Text style={Styles.bestsellerTagText} >Bestseller</Text></View>
+                <View style={[Styles.bestsellerTag, { borderColor: Colors.bestSellerBorder, backgroundColor: Colors.bestSellerBG, }]}>
+                  <Text style={[Styles.bestsellerTagText, { color: Colors.bestSellerBorder, }]} >Bestseller</Text>
+                </View>
 
               </View>
-              <Text style={Styles.DishDescription}>{ExtraItem.description} ...read more</Text>
+              <Text style={[Styles.DishDescription, { color: Colors.priceTextColour }]}>{ExtraItem.description} ...read more</Text>
 
               {/* Border  */}
-              <View style={Styles.Border} />
+              <View style={[Styles.Border, { borderBottomColor: Colors.LighterGreyForBorder, }]} />
 
-              <Text style={Styles.addonHeaderText}>Add On</Text>
-              <Text style={Styles.addonDescriptionText} >You can choose upto 4 options</Text>
+              <Text style={[Styles.addonHeaderText, { color: Colors.Black }]}>Add On</Text>
+              <Text style={[Styles.addonDescriptionText, { color: Colors.priceTextColour, }]} >You can choose upto 4 options</Text>
 
               {/* extra addon section */}
               <View style={Styles.ExtraItemList}>
-                <ScrollView  >
-                  {ExtraItem.addon.map((extraItem, idx) => (
+                <ScrollView showsVerticalScrollIndicator={false}>
+                  {ExtraItem.addon.map((extraItem:Addon_Type , idx:number) => (
                     <View key={idx} style={Styles.ExtraItemListEntry}>
                       <View style={Styles.checkBoxAndPrice}>
                         <Image source={Images.Veg_Icon} />
-                        <Text style={Styles.ExtraItemName}>{extraItem.extraItemName}</Text>
+                        <Text style={[Styles.ExtraItemName, { color: Colors.priceTextColour, }]}>{extraItem.extraItemName}</Text>
                       </View>
                       <View style={Styles.checkBoxAndPrice}>
-                        <Text style={Styles.priceText}>₹{extraItem.price}</Text>
-                        <TouchableOpacity style={Styles.checkBox} onPress={() => console.log('hi')}>
-                          <View>
-                            <Image source={Images.Check_List_Selected} style={Styles.tickMarkImage} />
-                          </View>
+                        <Text style={[Styles.priceText, { color: Colors.priceTextColour, }]}>₹{extraItem.price}</Text>
+
+                        <TouchableOpacity
+                          onPress={() => toggleSelection(idx)}
+                          style={[Styles.TickBox, { borderColor: Colors.Black, }]} >
+                          {selectedItems.includes(idx) && (
+                            <View style={[Styles.TickBoxBG, { backgroundColor: Colors.ratingCOntainerBGColor, }]}>
+                              <Check_List_Selected />
+                            </View>
+                          )}
                         </TouchableOpacity>
+
                       </View>
                     </View>
                   ))}
                 </ScrollView>
               </View>
 
-              <Text style={Styles.ChooseProtienText}>Choose Your Protien </Text>
-              <Text style={Styles.ChooseProtienSubText} >You can choose upto 3 options</Text>
+              <Text style={[Styles.ChooseProtienText, { color: Colors.Black }]}>Choose Your Protien </Text>
+              <Text style={[Styles.ChooseProtienSubText, { color: Colors.priceTextColour, }]} >You can choose upto 3 options</Text>
+
               <View style={Styles.ChooseProtienList} >
                 <ScrollView  >
                   <View style={Styles.ExtraItemListEntry}>
                     <View style={Styles.checkBoxAndPrice}>
                       <Image source={Images.Veg_Icon} />
-                      <Text style={Styles.ExtraItemName}>BBQ Protien</Text>
+                      <Text style={[Styles.ExtraItemName, { color: Colors.priceTextColour, }]}>BBQ Protien</Text>
                     </View>
                     <View style={Styles.checkBoxAndPrice}>
-                      <Text style={Styles.priceText}>₹40</Text>
+                      <Text style={[Styles.priceText, { color: Colors.priceTextColour }]}>₹40</Text>
                       <TouchableOpacity style={Styles.checkBox} onPress={() => console.log('hi')}>
                         <View>
                           <Image source={Images.Check_List_Selected} style={Styles.tickMarkImage} />
@@ -141,24 +154,22 @@ const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
               </View>
 
               {/* bottom button container  */}
-              <View style={[Styles.AddonButtonContainer, { bottom: inset.bottom - 20 }]}>
-                <View style={Styles.CounterContainer}>
+              <View style={[Styles.AddonButtonContainer, { bottom: inset.bottom - 10, backgroundColor: Colors.white, }]}>
+                <View style={[Styles.CounterContainer, { borderColor: Colors.AddbuttonTextColor, backgroundColor: Colors.AddbuttonBgColor, }]}>
                   <TouchableOpacity onPress={decreaseCounter} style={{ padding: 12 }}>
                     <Image source={Images.Minus_Symbol} />
                   </TouchableOpacity>
-                  <Text style={Styles.counterText}>{counter}</Text>
+                  <Text style={[Styles.counterText, { color: Colors.Black }]}>{counter}</Text>
                   <TouchableOpacity onPress={increaseCounter} style={{ padding: 10 }}>
                     <Image source={Images.Plus_Symbol} />
                   </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={Styles.AddonButton}>
-                  <Text style={Styles.AddonButtonText}>Add ₹{ExtraItem.price}</Text>
+                <TouchableOpacity style={[Styles.AddonButton, { backgroundColor: Colors.AddButtonBG, }]}>
+                  <Text style={[Styles.AddonButtonText, { color: Colors.conatsntWhite, }]}>Add ₹{ExtraItem.price * counter}</Text>
                 </TouchableOpacity>
               </View>
-
             </View>
-
           </View>
         </View>
       </Animated.View>
@@ -166,8 +177,7 @@ const AddonBottomSheet = ({ route }: AddonBottomSheetProps) => {
   );
 };
 export const Styles = StyleSheet.create({
-  backDrop: {
-    backgroundColor: Colors.SemiTransparent,
+  backDrop: { 
     width: '100%',
     height: '100%',
     justifyContent: 'flex-end'
@@ -178,13 +188,12 @@ export const Styles = StyleSheet.create({
   },
   OuterContainer: {
 
-  }, 
+  },
   InnerContainer: {
     height: '100%',
-    backgroundColor: Colors.white,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    position: 'relative',  
+    position: 'relative',
   },
 
   closeButton: {
@@ -193,7 +202,6 @@ export const Styles = StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: '50%',
-    backgroundColor: Colors.Black,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
@@ -213,7 +221,7 @@ export const Styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   DishName: {
-    marginTop: 5 , 
+    marginTop: 5,
     fontSize: 16,
     fontFamily: Fonts.generalFont
   },
@@ -225,9 +233,7 @@ export const Styles = StyleSheet.create({
   },
   RatingContainer: {
     borderWidth: .5,
-    borderRadius: 4,
-    borderColor: Colors.ratingContainerTransparentBorderColor,
-    backgroundColor: Colors.ratingContainerYellowBg,
+    borderRadius: 4, 
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -248,35 +254,29 @@ export const Styles = StyleSheet.create({
     height: 9,
     width: 5.28,
   },
-  ratingContainerText: {
-    color: Colors.Black,
+  ratingContainerText: { 
     fontSize: 8
   },
   bestsellerTag: {
     borderWidth: .5,
-    borderRadius: 4,
-    borderColor: Colors.bestSellerBorder,
-    backgroundColor: Colors.bestSellerBG,
+    borderRadius: 4, 
     alignSelf: 'flex-start',
     paddingHorizontal: 8,
     paddingVertical: 2,
     marginTop: 4,
   },
 
-  bestsellerTagText: {
-    color: Colors.bestSellerBorder,
+  bestsellerTagText: { 
     fontSize: 10
   },
 
   DishDescription: {
     marginTop: 8,
     fontSize: 11,
-    width: 221,
-    color: Colors.priceTextColour
+    width: 221, 
   },
   Border: {
-    width: '100%',
-    borderBottomColor: Colors.LighterGreyForBorder,
+    width: '100%', 
     borderWidth: .5,
     marginVertical: 10
   },
@@ -285,8 +285,7 @@ export const Styles = StyleSheet.create({
     fontFamily: Fonts.generalFont,
   },
   addonDescriptionText: {
-    fontSize: 11,
-    color: Colors.priceTextColour,
+    fontSize: 11, 
     fontFamily: Fonts.generalFont,
   },
   ExtraItemList: {
@@ -297,7 +296,7 @@ export const Styles = StyleSheet.create({
     marginHorizontal: 'auto',
     gap: 10,
     minHeight: 110,
-    maxHeight: 310,
+    maxHeight: 210,
     marginTop: 5,
   },
 
@@ -306,7 +305,7 @@ export const Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    marginVertical: 10, 
+    marginVertical: 10,
   },
   checkBoxAndPrice: {
     display: 'flex',
@@ -315,7 +314,6 @@ export const Styles = StyleSheet.create({
   },
   ExtraItemName: {
     fontSize: 12,
-    color: Colors.priceTextColour,
     marginHorizontal: 4
   },
   checkBox: {
@@ -327,11 +325,25 @@ export const Styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: .2,
   },
-  priceText: {
-    color: Colors.priceTextColour,
+  priceText: { 
     fontSize: 12
   },
   tickMarkImage: {
+  },
+  TickBox: {
+    height: 16,
+    width: 16,
+    borderWidth: 1, 
+    borderRadius: 2,
+    marginHorizontal: 5
+  },
+  TickBoxBG: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center', 
+    borderRadius: 2
   },
   counterText: {
     fontSize: 20,
@@ -352,8 +364,7 @@ export const Styles = StyleSheet.create({
     fontFamily: Fonts.generalFont,
   },
   ChooseProtienSubText: {
-    fontSize: 11,
-    color: Colors.priceTextColour,
+    fontSize: 11, 
     fontFamily: Fonts.generalFont,
   },
 
@@ -364,13 +375,11 @@ export const Styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: Colors.white,
     paddingVertical: 10,
   },
   AddonButton: {
     width: 270,
     height: 40,
-    backgroundColor: Colors.AddButtonBG,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -378,17 +387,14 @@ export const Styles = StyleSheet.create({
   },
   AddonButtonText: {
     fontSize: 20,
-    color: Colors.white,
     fontWeight: 600,
     fontFamily: Fonts.generalFont
   },
   CounterContainer: {
     height: 40,
     width: 87,
-    borderColor: Colors.AddbuttonTextColor,
     borderWidth: 1,
     borderRadius: 4,
-    backgroundColor: Colors.AddbuttonBgColor,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
