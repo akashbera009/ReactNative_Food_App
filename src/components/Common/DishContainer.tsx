@@ -41,7 +41,14 @@ export const Styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 500,
     margin: 10,
-    fontFamily: Fonts.thinBold,
+    fontFamily: Fonts.generalFont,
+    marginLeft: 15
+  },
+  DishContainerHeaderText2: {
+    fontSize: 20,
+    fontWeight: 500,
+    margin: 10,
+    fontFamily: Fonts.dottedFont,
     marginLeft: 15
   },
   DishContainer: {

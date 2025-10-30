@@ -1,4 +1,25 @@
 {
   "migIndex": 1,
-  "data": []
+  "data": [
+    {
+      "path": "assets/fonts/BitcountGridSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf",
+      "sha1": "33de0b2bc7843652a10be38ace6ff1ba8a8a972f"
+    },
+    {
+      "path": "assets/fonts/segoeuithibd.ttf",
+      "sha1": "aeb5b83b35454c1f257b8a57e9dc10e8c20162b9"
+    },
+    {
+      "path": "assets/fonts/segoeuithis.ttf",
+      "sha1": "6bea1e76ac91b53ab21a7c199b8484cc392caf1e"
+    },
+    {
+      "path": "assets/fonts/segoeuithisi.ttf",
+      "sha1": "f3cface41a840d06e483d2f31c1d2834bd317826"
+    },
+    {
+      "path": "assets/fonts/segoeuithisz.ttf",
+      "sha1": "248fca6c966755d90b9353ee8f92313218fdc35f"
+    }
+  ]
 }

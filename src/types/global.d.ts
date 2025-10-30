@@ -8,6 +8,8 @@ type RootStackParamList = {
     CheckOutScreen: undefined
     HelpScreen: undefined;
     ProScreen: undefined;
+    DineInScreen: undefined;
+    MedicineScreen: undefined;
     FoodScreen: {FoodItem : Dish_Data_Type }
 };
  type RootDrawerParamList = {

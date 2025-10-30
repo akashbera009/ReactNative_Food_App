@@ -13,7 +13,6 @@ import {
 import React, { useState, useRef, useEffect } from 'react'
 
 // navigation import 
-import { RouteProp } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 

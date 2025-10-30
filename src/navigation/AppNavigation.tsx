@@ -17,6 +17,8 @@ import CheckOutScreen from '../screens/CheckOutScreen';
 import AuthScreen from '../screens/AuthScreen';
 import FoodScreen from '../screens/FoodScreen';
 import OTPPage from '../components/Authentication/OTPPage';
+import DineInScreen from '../screens/DineInScreen';
+import MedicineScreen from '../screens/MedicineScreen';
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -62,6 +64,14 @@ function StackNavigator() {
             <Stack.Screen
                 name='ProScreen'
                 component={ProScreen}
+            />
+            <Stack.Screen
+                name='DineInScreen'
+                component={DineInScreen}
+            />
+            <Stack.Screen
+                name='MedicineScreen'
+                component={MedicineScreen}
             />
             <Stack.Screen
                 name='FoodScreen'

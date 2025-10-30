@@ -22,14 +22,14 @@ const Footer = () => {
                 <Pressable onPress={() => navigation.navigate('HomeScreen')}>
                     <Image source={Images.Group_13} style={{ tintColor: Colors.priceTextColour }} />
                 </Pressable>
-                <Pressable onPress={() => navigation.navigate('ProScreen')}>
+                <Pressable onPress={() => navigation.navigate('DineInScreen')}>
                     <Image source={Images.Group_20} style={{ tintColor: Colors.priceTextColour }} />
                 </Pressable>
                 <Pressable onPress={() => navigation.navigate('ProScreen')}>
 
                     <Image source={Images.Group_16} style={{ tintColor: Colors.priceTextColour }} />
                 </Pressable>
-                <Pressable onPress={() => navigation.navigate('ProScreen')}>
+                <Pressable onPress={() => navigation.navigate('MedicineScreen')}>
 
                     <Image source={Images.Group_17} style={{ tintColor: Colors.priceTextColour }} />
                 </Pressable>

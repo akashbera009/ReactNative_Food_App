@@ -80,6 +80,8 @@ const Images = {
 
     otp: require(Fixed_Path+'otp.png'),
     Pro: require(Fixed_Path+'Pro.png'),
+    DIneIn: require(Fixed_Path+'DIneIn.png'),
+    Medicine: require(Fixed_Path+'Medicine.png'),
 
 }
 
