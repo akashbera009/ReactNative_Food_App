@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import React, { useState } from 'react'
 
 // styling import 
@@ -11,6 +11,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 //util files 
 import { useThemeColors } from '../../utils/ColorFile';
 import Fonts from '../../utils/FontsFile';
+import Strings from '../../utils/Strings';
 import { Email_Icon, Facebook_Icon, Google_Icon } from '../../utils/SVGFils';
 
 // safearea imports 
@@ -26,80 +27,88 @@ const LoginPage = () => {
         const numericValue = text.replace(/[^0-9]/g, '');
         setInputValue(numericValue);
     };
-    const handleLogin = () => {
+    const handleLogin = async() => {
         if (inputValue.length < 10) {
             return;
         }
+        await Keyboard.dismiss()
         navigation1.navigate('OTPVerificationScreen', { mobilenumber: inputValue })
     }
     return (
 
         <LinearGradient
-            useAngle={true}
-            angle={100}
-            angleCenter={{ x: 0.5, y: 0.5 }} colors={['#ae0000ff', 'rgba(207, 1, 84, 1)ff', 'rgba(232, 4, 95, 1)ff']}
+            start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+            colors={['#ae0000ff', 'rgba(207, 1, 84, 1)ff', 'rgba(232, 4, 95, 1)ff']}
             style={[Styles.linearGradient]}
         >
             <TouchableOpacity
-                style={[Styles.SkipContainer, { top: inset.top, backgroundColor: Colors.SemiTransparent2 }]}
+                style={[Styles.SkipContainer, { top: inset.top, backgroundColor: Colors.skipContainerBG }]}
                 onPress={() => navigation1.navigate('HomeScreen')}
             >
-                <Text style={[Styles.SkipText, { color: Colors.brightBorderColor }]} >Skip</Text>
-            </TouchableOpacity>
-            <View style={[Styles.InputContainer, { backgroundColor: Colors.white }]}>
-                <Text style={Styles.InputContainerText} >+91</Text>
-                <TextInput
-                    keyboardType='numeric'
-                    value={inputValue}
-                    onChangeText={handleTextChange}
-                    style={[Styles.NumberInput, { color: Colors.Black, }]}
-                    maxLength={10}
-                />
-            </View>
-            <TouchableOpacity
-                style={[Styles.OTPContainer, { backgroundColor: Colors.Black, }]}
-                onPress={handleLogin}
-            >
-                <Text style={[Styles.OTPText, { color: Colors.white, }]} >Send OTP</Text>
+                <Text style={[Styles.SkipText, { color: Colors.skipContainerTxt }]} >{Strings?.Skip}</Text>
             </TouchableOpacity>
 
-            <View style={Styles.ORContainer}>
-                <View style={[Styles.CustomSideBorder, { borderTopColor: Colors.white }]} />
-                <Text style={[Styles.OrText, { color: Colors.white, }]}> OR </Text>
-                <View style={[Styles.CustomSideBorder, { borderTopColor: Colors.white }]} />
-            </View>
+            <TouchableWithoutFeedback
+                onPress={Keyboard.dismiss}
+                accessible={false}>
+                <View>
+                    <View style={[Styles.InputContainer, { backgroundColor: Colors.conatsntWhite }]}>
+                        <Text style={Styles.InputContainerText} >+91</Text>
+                        <TextInput
+                            keyboardType='numeric'
+                            value={inputValue}
+                            onChangeText={handleTextChange}
+                            style={[Styles.NumberInput, { color: Colors.conatsntBlack, }]}
+                            maxLength={10}
+                        />
+                    </View>
+                    <TouchableOpacity
+                        style={[Styles.OTPContainer, { backgroundColor: Colors.conatsntBlack, }]}
+                        onPress={handleLogin}
+                    >
+                        <Text style={[Styles.OTPText, { color: Colors.conatsntWhite, }]} >{Strings?.sendOtpText}</Text>
+                    </TouchableOpacity>
 
-            <View style={Styles.bottomContainer}>
-                <View style={[Styles.LoginContainer, Styles.EmailContainer, { backgroundColor: Colors.white }]}>
-                    <Email_Icon style={Styles.LoginIcons} />
-                    <Text style={Styles.LoginText}>Continue with Email</Text>
-                </View>
-                <View style={[Styles.LoginContainer, Styles.FacebookContainer, { backgroundColor: Colors.white }]}>
-                    <Facebook_Icon style={Styles.LoginIcons} />
-                    <Text style={Styles.OtherLoginText}>Facebook</Text>
-                </View>
-                <View style={[Styles.LoginContainer, Styles.GoogleContainer, { backgroundColor: Colors.white }]}>
-                    <Google_Icon style={Styles.LoginIcons} />
-                    <Text style={Styles.OtherLoginText}>Google</Text>
-                </View>
-            </View>
-            <View style={[Styles.PrivecyPolicyContainer, { marginBottom: inset.bottom }]}>
-                <Text style={[Styles.FirstLine, { color: Colors.white, }]}> By continuing, you agree to our </Text>
-                <View style={Styles.SecondLineContainer}>
-                    <View>
-                        <Text style={[Styles.SecondtLine, { color: Colors.white, }]}>Terms of Service </Text>
-                        <View style={[Styles.CustomBorder, { borderTopColor: Colors.AddbuttonBgColor, }]} />
+                    <View style={Styles.ORContainer}>
+                        <View style={[Styles.CustomSideBorder, { borderTopColor: Colors.conatsntWhite }]} />
+                        <Text style={[Styles.OrText, { color: Colors.conatsntWhite, }]}> OR </Text>
+                        <View style={[Styles.CustomSideBorder, { borderTopColor: Colors.conatsntWhite }]} />
                     </View>
-                    <View>
-                        <Text style={[Styles.SecondtLine, { color: Colors.white, }]}> Privacy Policy </Text>
-                        <View style={[Styles.CustomBorder, { borderTopColor: Colors.AddbuttonBgColor, }]} />
+
+                    <View style={Styles.bottomContainer}>
+                        <View style={[Styles.LoginContainer, Styles.EmailContainer, { backgroundColor: Colors.conatsntWhite }]}>
+                            <Email_Icon style={Styles.LoginIcons} />
+                            <Text style={Styles.LoginText}>{Strings?.ContinueGoogle}</Text>
+                        </View>
+                        <View style={[Styles.LoginContainer, Styles.FacebookContainer, { backgroundColor: Colors.conatsntWhite }]}>
+                            <Facebook_Icon style={Styles.LoginIcons} />
+                            <Text style={[Styles.OtherLoginText, { color: Colors.conatsntBlack }]}>{Strings?.Facebook}</Text>
+                        </View>
+                        <View style={[Styles.LoginContainer, Styles.GoogleContainer, { backgroundColor: Colors.conatsntWhite }]}>
+                            <Google_Icon style={Styles.LoginIcons} />
+                            <Text style={[Styles.OtherLoginText, { color: Colors.conatsntBlack }]}>{Strings?.Google}</Text>
+                        </View>
                     </View>
-                    <View>
-                        <Text style={[Styles.SecondtLine, { color: Colors.white, }]}> Content Policy</Text>
-                        <View style={[Styles.CustomBorder, { borderTopColor: Colors.AddbuttonBgColor, }]} />
+                    <View style={[Styles.PrivecyPolicyContainer, { marginBottom: inset.bottom }]}>
+                        <Text style={[Styles.FirstLine, { color: Colors.conatsntWhite, }]}> {Strings?.Terms1} </Text>
+                        <View style={Styles.SecondLineContainer}>
+                            <View>
+                                <Text style={[Styles.SecondtLine, { color: Colors.conatsntWhite, }]}>{Strings?.Terms2} </Text>
+                                <View style={[Styles.CustomBorder, { borderTopColor: Colors.conatsntWhite, }]} />
+                            </View>
+                            <View>
+                                <Text style={[Styles.SecondtLine, { color: Colors.conatsntWhite, }]}> {Strings?.Terms3} </Text>
+                                <View style={[Styles.CustomBorder, { borderTopColor: Colors.conatsntWhite, }]} />
+                            </View>
+                            <View>
+                                <Text style={[Styles.SecondtLine, { color: Colors.conatsntWhite, }]}> {Strings?.Terms4}</Text>
+                                <View style={[Styles.CustomBorder, { borderTopColor: Colors.conatsntWhite, }]} />
+                            </View>
+                        </View>
                     </View>
+
                 </View>
-            </View>
+            </TouchableWithoutFeedback>
         </LinearGradient>
 
     )
@@ -110,13 +119,12 @@ const Styles = StyleSheet.create({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     SkipContainer: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: Colors.SemiTransparent2,
         right: 15,
         borderRadius: 12,
         height: 30,
@@ -149,7 +157,6 @@ const Styles = StyleSheet.create({
         width: '50%',
         fontSize: 27,
         fontWeight: 400,
-        // color: Colors.Black,
     },
     OTPContainer: {
         height: 60,

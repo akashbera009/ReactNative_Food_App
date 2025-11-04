@@ -25,6 +25,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 // data import 
 import { DeliveryInfo_Details, Tip_Data } from '../../data/DeliveryInfo_Details';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Fonts from '../../utils/FontsFile';
+import Strings from '../../utils/Strings';
 
 export default function CheckOut() {
     const Colors = useThemeColors();
@@ -78,7 +80,7 @@ export default function CheckOut() {
             <Animated.View style={[Styles.bottomSheet, { transform: [{ translateY: slide }] }]}>
                 <View style={Styles.OuterContainer}>
                     <TouchableOpacity onPress={closeModal} style={[Styles.closeButton, { backgroundColor: Colors.Black, }]}>
-                        <Image source={Images.Vector_27} style={[Styles.closeBtnImage, { tintColor: Colors.white }]} />
+                        <Image source={Images?.Vector_27} style={[Styles.closeBtnImage, { tintColor: Colors.white }]} />
                     </TouchableOpacity>
 
                     <View style={[Styles.InnerContainer, { backgroundColor: Colors.white, }]}>
@@ -86,52 +88,52 @@ export default function CheckOut() {
                             <View style={Styles.DeliveryDeatilsWrapper}>
                                 <View style={Styles.DeliveryDeatilsEntry}>
                                     <Loaction_SVG />
-                                    <Text style={[Styles.DeliveryDetailsText, { color: Colors.Black }]}>{DeliveryInfo_Details.Address}</Text>
+                                    <Text style={[Styles.DeliveryDetailsText, { color: Colors.Black }]}>{DeliveryInfo_Details?.Address}</Text>
                                     <Vector_11 style={{ marginLeft: 'auto' }} />
                                 </View>
                                 <View style={Styles.DeliveryDeatilsEntry}>
                                     <Timing_SVG />
-                                    <Text style={[Styles.DeliveryDetailsText, { color: Colors.Black }]}>Delivery in {DeliveryInfo_Details.Timing}</Text>
+                                    <Text style={[Styles.DeliveryDetailsText, { color: Colors.Black }]}>{Strings?.deliveryInText} {DeliveryInfo_Details?.Timing}</Text>
                                 </View>
                             </View>
                             <TouchableOpacity style={Styles.CookingInstructionContainer}>
-                                <Text style={[Styles.CookingInstruction, { color: Colors.ActiveTabTextColor, }]}>Add cooking instructions (optional)</Text>
+                                <Text style={[Styles.CookingInstruction, { color: Colors.ActiveTabTextColor, }]}>{Strings?.AddInstructionText}</Text>
                                 <View style={[Styles.CustomUnderlineBlack, { borderColor: Colors.Black, }]} />
                             </TouchableOpacity>
                             <View style={[Styles.OfferSection, { backgroundColor: Colors.white, borderTopColor: Colors.brightBorderColor, borderBottomColor: Colors.brightBorderColor, }]}>
                                 <View style={Styles.InnerOfferSection}>
-                                    <Text style={[Styles.OfferHeaderText, { color: Colors.Black }]}>Offers</Text>
+                                    <Text style={[Styles.OfferHeaderText, { color: Colors.Black }]}>{Strings?.Offers}</Text>
                                     <View style={Styles.OfferDescription}>
                                         <View style={Styles.OfferDescriptionAndIcon}>
                                             <Offer_Icon />
                                             <View style={Styles.OfferDescriptionOnly}>
-                                                <Text style={[Styles.SelectPromoText, { color: Colors.Black }]}>Select a promo code </Text>
-                                                <Text style={[Styles.PromoCodeText, { color: Colors.priceTextColour, }]}>Save 59.70 with code ZOMATOSAFETY </Text>
+                                                <Text style={[Styles.SelectPromoText, { color: Colors.Black }]}>{Strings?.SelectPromo}</Text>
+                                                <Text style={[Styles.PromoCodeText, { color: Colors.priceTextColour, }]}>{Strings?.promoCode}</Text>
                                             </View>
                                         </View>
                                         <TouchableOpacity>
-                                            <Text style={[Styles.ViewOffers, { color: Colors.AddbuttonTextColor, }]}>View Offers</Text>
+                                            <Text style={[Styles.ViewOffers, { color: Colors.AddbuttonTextColor, }]}>{Strings.viewOffer}</Text>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
                             <View style={[Styles.TipContainer, { borderBottomColor: Colors.brightBorderColor, }]}>
                                 <View style={Styles.InnerOfferSection}>
-                                    <Text style={[Styles.TipHeaderText, { color: Colors.Black }]}>Please tip your valet</Text>
-                                    <Text style={[Styles.PromoCodeText, { color: Colors.priceTextColour, }]}>Support your valet and make their day! 100% of your tip will be transferred to your valet</Text>
+                                    <Text style={[Styles.TipHeaderText, { color: Colors.Black }]}>{Strings?.tipValet}</Text>
+                                    <Text style={[Styles.PromoCodeText, { color: Colors.priceTextColour, }]}>{Strings?.tipValetText}</Text>
                                     <View style={Styles.TipBoxContainer}>
                                         {Tip_Data.map((item, idx) => (
                                             <View key={idx} style={[Styles.TipBox, { borderColor: Colors.RecomemdedTextColor, }]}>
                                                 <View style={Styles.TipBoxInnerContainer} >
-                                                    <Image source={item.image} style={item.isMostTipped ? Styles.TipBoxImageSmall : Styles.TipBoxImage} />
-                                                    {typeof (item.price) === 'string' ?
-                                                        <Text style={[Styles.TipBoxAmount, { color: Colors.Black }]}>{item.price}</Text>
+                                                    <Image source={item?.image} style={item?.isMostTipped ? Styles.TipBoxImageSmall : Styles.TipBoxImage} />
+                                                    {typeof (item?.price) === 'string' ?
+                                                        <Text style={[Styles.TipBoxAmount, { color: Colors.Black }]}>{item?.price}</Text>
                                                         :
-                                                        <Text style={[Styles.TipBoxAmount, { color: Colors.Black }]}>₹{item.price}</Text>
+                                                        <Text style={[Styles.TipBoxAmount, { color: Colors.Black }]}>₹{item?.price}</Text>
                                                     }
                                                 </View>
-                                                {item.isMostTipped && (
-                                                    <Text style={[Styles.isMostTippedText, { color: Colors.AddbuttonTextColor }]}>MOST TIPPED</Text>
+                                                {item?.isMostTipped && (
+                                                    <Text style={[Styles.isMostTippedText, { color: Colors.AddbuttonTextColor }]}>{Strings?.mostTipped}</Text>
                                                 )}
                                             </View>
                                         ))
@@ -141,35 +143,34 @@ export default function CheckOut() {
                             </View>
                             <View style={[Styles.TotalContainer, { backgroundColor: Colors.ratingContainerYellowBg, borderTopColor: Colors.brightBorderColor, borderBottomColor: Colors.brightBorderColor, borderLeftColor: Colors.Transparent, borderRightColor: Colors.Transparent, }]}>
                                 <View style={Styles.TotalInnerContainer}>
-
                                     <View style={Styles.TotalContainerEntry}>
-                                        <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]} >Item Total</Text>
-                                        <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}>₹{DeliveryInfo_Details.TotalPrice.toFixed(2)}</Text>
+                                        <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]} >{Strings?.ItemTotal   }</Text>
+                                        <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}>₹{DeliveryInfo_Details?.TotalPrice.toFixed(2)}</Text>
                                     </View>
                                     <View style={Styles.TotalContainerEntry}>
                                         <View>
-                                            <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}>Delivery Charge</Text>
+                                            <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}>{Strings?.deliveryCharge}</Text>
                                             <View style={[Styles.CustomUnderlineBlack, { borderColor: Colors.Black, }]} />
                                         </View>
-                                        <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]} >₹{DeliveryInfo_Details.DeliveryCharge}</Text>
+                                        <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]} >₹{DeliveryInfo_Details?.DeliveryCharge}</Text>
                                     </View>
                                     <View style={Styles.TotalContainerEntry}>
-                                        <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}>Taxes</Text>
-                                        <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]} >₹{DeliveryInfo_Details.Taxed.toFixed(2)}</Text>
+                                        <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}>{Strings?.taxes}</Text>
+                                        <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]} >₹{DeliveryInfo_Details?.Taxed.toFixed(2)}</Text>
                                     </View>
                                     <View style={Styles.TotalContainerEntry} >
                                         <View>
-                                            <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}>Donate ₹3 to Feeding India Foundation</Text>
+                                            <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}>{Strings?.donateText}</Text>
                                             <View style={[Styles.CustomUnderlineBlack, { borderColor: Colors.Black, }]} />
                                         </View>
                                         <TouchableOpacity style={Styles.DonateButton}>
-                                            <Text style={[Styles.DonateButtonText, { color: Colors.AddbuttonTextColor, }]}>Add</Text>
+                                            <Text style={[Styles.DonateButtonText, { color: Colors.AddbuttonTextColor, }]}>{Strings?.addText }</Text>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
                                 <View style={Styles.BottomTotalText}>
-                                    <Text style={[Styles.GrandTotal, { color: Colors.Black }]}>Grand Total</Text>
-                                    <Text style={[Styles.GrandTotal, { color: Colors.Black }]} >₹{DeliveryInfo_Details.Grand_Total.toFixed(2)}</Text>
+                                    <Text style={[Styles.GrandTotal, { color: Colors.Black }]}>{Strings?.grandTotal}</Text>
+                                    <Text style={[Styles.GrandTotal, { color: Colors.Black }]} >₹{DeliveryInfo_Details?.Grand_Total.toFixed(2)}</Text>
                                 </View>
                             </View>
                             <View style={[Styles.CovidParentContainer, { borderBottomColor: Colors.greyForBorder, backgroundColor: Colors.white }]}>
@@ -183,27 +184,27 @@ export default function CheckOut() {
                                             </View>
                                         )}
                                     </TouchableOpacity>
-                                    <Text style={[Styles.CovidHeader, { color: Colors.Black }]}>This order is related to a COVID-19 emergency</Text>
+                                    <Text style={[Styles.CovidHeader, { color: Colors.Black }]}>{Strings?.emergencyTextHeader}</Text>
                                 </View>
                                 <View style={Styles.CovidDescription}>
-                                    <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}>This order will be prepared and delivered on priority. It will be a contactless delivery. #RestaurantsAgainstCOVID</Text>
-                                    <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}> Treat this as an ambulance and please don’t misuse it.</Text>
+                                    <Text style={[Styles.SmallText , { color: Colors.priceTextColour,fontFamily:Fonts.accentFont }]}>{Strings?.covidText}</Text>
+                                    <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}> {Strings?.TreatText}</Text>
                                 </View>
                             </View>
                             <View style={Styles.LowerDeliveryInstructionCOntainer}>
                                 <View style={[Styles.DeliveryInstructionFirst, { backgroundColor: Colors.white, }]}>
                                     <View style={Styles.headerPlusButtonContainer}>
-                                        <Text style={[Styles.TipHeaderText, { color: Colors.Black }]}>Delivery instructions</Text>
+                                        <Text style={[Styles.TipHeaderText, { color: Colors.Black }]}>{Strings?.DeliveryInstruction}</Text>
                                         <TouchableOpacity >
-                                            <Text style={[Styles.redButtonText, { color: Colors.AddbuttonTextColor }]}>Change</Text>
+                                            <Text style={[Styles.redButtonText, { color: Colors.AddbuttonTextColor }]}>{Strings?.changeText}</Text>
                                         </TouchableOpacity>
                                     </View>
                                     <View style={Styles.OrderHandMe}>
                                         <Group_83 style={Styles.OfferSVG} />
                                         <View>
-                                            <Text style={[Styles.SmallText, { marginBottom: 5, color: Colors.priceTextColour, }]}>Hand me the Order</Text>
+                                            <Text style={[Styles.SmallText, { marginBottom: 5, color: Colors.priceTextColour, }]}>{Strings?.handMeText}</Text>
                                             <View style={Styles.UnderlineWrapper}>
-                                                <Text style={[Styles.UnderDotterText, { color: Colors.AddbuttonTextColor, }]}>Add Voice Direction</Text>
+                                                <Text style={[Styles.UnderDotterText, { color: Colors.AddbuttonTextColor, }]}>{Strings?.voiceDirection }</Text>
                                                 <View style={[Styles.CustomUnderline, { borderColor: Colors.AddbuttonTextColor, }]} />
                                             </View>
                                         </View>
@@ -214,12 +215,12 @@ export default function CheckOut() {
 
                                 <View style={[Styles.DeliveryInstructionFirst, { backgroundColor: Colors.white, }]}>
                                     <View style={Styles.headerPlusButtonContainer}>
-                                        <Text style={[Styles.TipHeaderText, { color: Colors.Black }]} >Your details</Text>
+                                        <Text style={[Styles.TipHeaderText, { color: Colors.Black }]} >{Strings?.yourDetails}</Text>
                                         <TouchableOpacity >
-                                            <Text style={[Styles.redButtonText, { color: Colors.AddbuttonTextColor }]}>Change</Text>
+                                            <Text style={[Styles.redButtonText, { color: Colors.AddbuttonTextColor }]}>{Strings?.changeText}</Text>
                                         </TouchableOpacity>
                                     </View>
-                                    <Text style={[Styles.CaptionText, { color: Colors.Black }]}>Divya Sigatapu, 9109109109</Text>
+                                    <Text style={[Styles.CaptionText, { color: Colors.Black }]}>{DeliveryInfo_Details.customerName} {DeliveryInfo_Details.mobileNumber}</Text>
                                 </View>
 
                                 <View style={[Styles.CommonBorder, { borderBottomColor: Colors.greyForBorder, }]} />
@@ -227,12 +228,12 @@ export default function CheckOut() {
                                 <View style={[Styles.DeliveryInstructionFirst, { backgroundColor: Colors.white, }]}>
                                     <View style={Styles.headerPlusButtonContainer}>
 
-                                        <Text style={[Styles.TipHeaderText, { color: Colors.Black }]} >Order for someone else</Text>
+                                        <Text style={[Styles.TipHeaderText, { color: Colors.Black }]} >{Strings?.forSomeOne}</Text>
                                         <TouchableOpacity >
-                                            <Text style={[Styles.redButtonText, { color: Colors.AddbuttonTextColor }]}>Add</Text>
+                                            <Text style={[Styles.redButtonText, { color: Colors.AddbuttonTextColor }]}>{Strings?.addText}</Text>
                                         </TouchableOpacity>
                                     </View>
-                                    <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]} >Send personalized message and e-card</Text>
+                                    <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]} >{Strings?.personalizedMessage}</Text>
                                 </View>
                                 <View style={[Styles.CommonBorder, { borderBottomColor: Colors.greyForBorder, }]} />
 
@@ -240,14 +241,14 @@ export default function CheckOut() {
                             <View style={[Styles.Environmentwrapper, { backgroundColor: Colors.white }]}>
                                 <Green_Leaf_Icon />
                                 <View style={Styles.RightEnvContainer}>
-                                    <Text style={[Styles.ClimateHeader, { color: Colors.Black, }]}>Climate conscious delivery</Text>
+                                    <Text style={[Styles.ClimateHeader, { color: Colors.Black, }]}>{Strings?.ClimateDelivery}</Text>
                                     <View style={Styles.LowerEnvContainer}>
-                                        <Text style={[Styles.SmallText, Styles.FundText, { color: Colors.priceTextColour, }]}>We fund environmental projects to offset the carbon footprint of our deliveries.</Text>
+                                        <Text style={[Styles.SmallText, Styles.FundText, { color: Colors.priceTextColour, }]}>{Strings?.climateDescription}</Text>
                                         <View style={Styles.KnowMoreWrapper}>
-                                            <Text style={[Styles.redButtonText, { fontWeight: 600, color: Colors.AddbuttonTextColor }]} >Know more </Text>
+                                            <Text style={[Styles.redButtonText, { fontWeight: 600, color: Colors.AddbuttonTextColor }]} >{Strings?.knowMore} </Text>
                                             <Polygon_2 />
                                         </View>
-                                        <Text style={[Styles.redButtonText, Styles.ClimateDescriptionText, { color: Colors.AddbuttonTextColor }]} >Orders once placed cannot be cancelled and are non-refundable.</Text>
+                                        <Text style={[Styles.redButtonText, Styles.ClimateDescriptionText, { color: Colors.AddbuttonTextColor }]} >{Strings?.nonReturnableText}</Text>
                                     </View>
                                 </View>
                             </View>
@@ -259,18 +260,18 @@ export default function CheckOut() {
                         <View style={Styles.PayBoxLeft}>
                             <View style={Styles.IconAndPayContainer}>
                                 <G_Pay style={[Styles.Gpay, { borderColor: Colors.Black, }]} />
-                                <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}> PAY USING</Text>
+                                <Text style={[Styles.SmallText, { color: Colors.priceTextColour, }]}> {Strings?.payUsing}</Text>
                                 <Polygon_4 />
                             </View>
-                            <Text style={[Styles.GooglePay, { color: Colors.Black }]}> Google Pay</Text>
+                            <Text style={[Styles.GooglePay, { color: Colors.Black }]}> {Strings?.googlePay}</Text>
                         </View>
                         <View style={[Styles.placeOrderButton, { backgroundColor: Colors.AddButtonBG, }]}>
                             <View style={Styles.amountBox}>
-                                <Text style={[Styles.TotalPriceButtonText, { color: Colors.conatsntWhite, }]}>₹{(DeliveryInfo_Details.TotalPrice + DeliveryInfo_Details.DeliveryCharge + DeliveryInfo_Details.Taxed).toFixed(2)}</Text>
-                                <Text style={[Styles.TotalPriceButtonTextDown, { color: Colors.conatsntWhite, }]}>TOTAL</Text>
+                                <Text style={[Styles.TotalPriceButtonText, { color: Colors.conatsntWhite, }]}>₹{(DeliveryInfo_Details?.TotalPrice + DeliveryInfo_Details?.DeliveryCharge + DeliveryInfo_Details?.Taxed).toFixed(2)}</Text>
+                                <Text style={[Styles.TotalPriceButtonTextDown, { color: Colors.conatsntWhite, }]}>{Strings?.totalText}</Text>
                             </View>
                             <TouchableOpacity style={Styles.PlaceOrderTextBox}>
-                                <Text style={[Styles.PlaceOrderText, { color: Colors.conatsntWhite, }]}>Place Order</Text>
+                                <Text style={[Styles.PlaceOrderText, { color: Colors.conatsntWhite, }]}>{Strings?.placeOrder}</Text>
                                 <Continue_Option style={Styles.contunue_icon} />
                             </TouchableOpacity>
                         </View>
@@ -317,7 +318,8 @@ const Styles = StyleSheet.create({
         margin: 5
     },
     DeliveryDetailsText: {
-        fontSize: 11
+        fontSize: 11,
+        fontFamily:Fonts.accentFont
     },
     closeButton: {
         marginVertical: 8,
@@ -336,7 +338,7 @@ const Styles = StyleSheet.create({
         padding: 5
     },
     OfferSection: {
-        height: 80,
+        height: 100,
         width: '100%',
         borderWidth: 3,
         borderRightWidth: 0,
@@ -349,7 +351,7 @@ const Styles = StyleSheet.create({
     },
     OfferHeaderText: {
         fontSize: 16,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         fontWeight: 600
     },
     OfferDescription: {
@@ -378,16 +380,15 @@ const Styles = StyleSheet.create({
         fontSize: 12
     },
     TipContainer: {
-        height: 120,
+        height: 140,
         borderBottomWidth: 1
     },
     TipHeaderText: {
         fontSize: 18,
-        fontFamily: 'Segoe UI',
+        fontFamily: Fonts.generalFont,
         fontWeight: 600
     },
-    TipBoxContainer: {
-        // marginHorizontal: 10,
+    TipBoxContainer: { 
         marginVertical: 10,
         display: 'flex',
         flexDirection: 'row',
@@ -441,7 +442,6 @@ const Styles = StyleSheet.create({
     TotalInnerContainer: {
         width: '90%',
         marginHorizontal: 'auto',
-        // backgroundColor:'#f8ddddff'
     },
     TotalContainerEntry: {
         display: 'flex',
@@ -518,8 +518,9 @@ const Styles = StyleSheet.create({
 
     },
     SmallText: {
-        marginTop: 5,
         fontSize: 12,
+        fontFamily:Fonts.generalFont,
+        marginTop: 5
     },
     CaptionText: {
         marginTop: 5,
@@ -617,7 +618,7 @@ const Styles = StyleSheet.create({
     ClimateDescriptionText: {
         width: '80%',
         height: 'auto',
-        marginBottom: 10
+        // marginBottom: 10
     },
     LowerButtonContainer: {
         height: 70,
@@ -671,10 +672,12 @@ const Styles = StyleSheet.create({
     },
     TotalPriceButtonText: {
         fontSize: 18,
-        fontWeight: 600
+        fontWeight: 600,
+        fontFamily: Fonts.thinSpecial
     },
     TotalPriceButtonTextDown: {
-        fontSize: 12
+        fontSize: 12,
+        fontFamily: Fonts.thinSemi
     },
     PlaceOrderTextBox: {
         display: 'flex',
@@ -685,7 +688,8 @@ const Styles = StyleSheet.create({
     },
     PlaceOrderText: {
         fontSize: 20,
-        fontWeight: 500
+        fontWeight: 500,
+        fontFamily: Fonts.generalFont
     },
     contunue_icon: {
         marginLeft: 5,

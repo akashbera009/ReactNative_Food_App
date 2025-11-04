@@ -16,7 +16,10 @@ import ProScreen from '../screens/ProScreen';
 import CheckOutScreen from '../screens/CheckOutScreen';
 import AuthScreen from '../screens/AuthScreen';
 import FoodScreen from '../screens/FoodScreen';
-import OTPPage from '../components/Authentication/OTPPage';
+import DineInScreen from '../screens/DineInScreen';
+import MedicineScreen from '../screens/MedicineScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import OTPVerificationScreen from '../screens/OTPVerificationScreen';
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -31,7 +34,7 @@ function StackNavigator() {
             />
             <Stack.Screen
                 name='OTPVerificationScreen'
-                component={OTPPage}
+                component={OTPVerificationScreen}
             />
             <Stack.Screen
                 name='HomeScreen'
@@ -64,8 +67,20 @@ function StackNavigator() {
                 component={ProScreen}
             />
             <Stack.Screen
+                name='DineInScreen'
+                component={DineInScreen}
+            />
+            <Stack.Screen
+                name='MedicineScreen'
+                component={MedicineScreen}
+            />
+            <Stack.Screen
                 name='FoodScreen'
                 component={FoodScreen}
+            />
+            <Stack.Screen
+                name='SettingsScreen'
+                component={SettingsScreen}
             />
         </Stack.Navigator>
     )

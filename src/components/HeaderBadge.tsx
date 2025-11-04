@@ -5,6 +5,7 @@ import React from 'react'
 import Images from '../utils/LocalImages'
 import { useThemeColors } from '../utils/ColorFile';
 import Fonts from '../utils/FontsFile'
+import Strings from '../utils/Strings';
 
 const HeaderBadge = () => {
     const Colors = useThemeColors()
@@ -12,28 +13,28 @@ const HeaderBadge = () => {
         <ScrollView style={Styles.BadgeBoxContainer} horizontal showsHorizontalScrollIndicator={false}>
             <View style={[Styles.BadgeBox, { borderColor: Colors.brightBorderColor, backgroundColor: Colors.white }]}>
                 <View style={Styles.BadgeBoxInner}>
-                    <Text style={[Styles.BadgeText, { color: Colors.priceTextColour }]} allowFontScaling={false}>Max </Text>
-                    <Text style={[Styles.BadgeText, { color: Colors.priceTextColour }]} allowFontScaling={false}>Safety</Text>
+                    <Text style={[Styles.BadgeText, { color: Colors.Black }]} allowFontScaling={false}>{Strings?.max}</Text>
+                    <Text style={[Styles.BadgeText, { color: Colors.Black }]} allowFontScaling={false}>{Strings?.Safety}</Text>
                 </View>
             </View>
             <View style={[Styles.BadgeBox, { borderColor: Colors.brightBorderColor, backgroundColor: Colors.white }]}>
-                <Image source={Images.Group_16} style={Styles.ProSvgIcon} />
-                <Text style={[Styles.BadgeText, { color: Colors.priceTextColour }]} allowFontScaling={false}>PRO</Text>
+                <Image source={Images?.Group_16} style={Styles.ProSvgIcon} />
+                <Text style={[Styles.BadgeText, { color: Colors.Black }]} allowFontScaling={false}>{Strings?.pro}</Text>
 
             </View>
             <View style={[Styles.BadgeBox, { borderColor: Colors.brightBorderColor, backgroundColor: Colors.white }]}>
-                <Text style={[Styles.BadgeText, { color: Colors.priceTextColour }]} allowFontScaling={false}>Cuisines</Text>
-                <Image source={Images.Vector_4} style={{ tintColor: Colors.priceTextColour }} />
+                <Text style={[Styles.BadgeText, { color: Colors.Black }]} allowFontScaling={false}>{Strings?.Cuisines}</Text>
+                <Image source={Images?.Vector_4} style={{ tintColor: Colors.Black }} />
             </View>
             <View style={[Styles.BadgeBox, { borderColor: Colors.brightBorderColor, backgroundColor: Colors.white }]}>
                 <View style={Styles.RatingContainer}>
-                    <Image source={Images.BlackStar} style={[Styles.BlackRatingsStar, { tintColor: Colors.priceTextColour }]} />
-                    <Text style={[Styles.BadgeText, { color: Colors.priceTextColour }]} allowFontScaling={false}>Rating</Text>
+                    <Image source={Images?.BlackStar} style={[Styles.BlackRatingsStar, { tintColor: Colors.Black }]} />
+                    <Text style={[Styles.BadgeText, { color: Colors.Black }]} allowFontScaling={false}>{Strings?.Rating}</Text>
                 </View>
             </View>
             <View style={[Styles.BadgeBox, { borderColor: Colors.brightBorderColor, backgroundColor: Colors.white }]}>
-                <Image source={Images.Group_12} height={20} width={20} style={{ tintColor: Colors.priceTextColour }} />
-                <Text style={[Styles.BadgeText, { color: Colors.priceTextColour }]} allowFontScaling={false}>Popular</Text>
+                <Image source={Images?.Group_12} height={20} width={20} style={{ tintColor: Colors.Black }} />
+                <Text style={[Styles.BadgeText, { color: Colors.Black }]} allowFontScaling={false}>{Strings?.Popular}</Text>
             </View>
         </ScrollView>
     )

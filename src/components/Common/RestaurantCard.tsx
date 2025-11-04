@@ -8,6 +8,7 @@ import { Restaurant_Dish_Data } from '../../data/Restaurant_Dish'
 import Images from '../../utils/LocalImages'
 import { useThemeColors } from '../../utils/ColorFile';
 import Fonts from '../../utils/FontsFile'
+import Strings from '../../utils/Strings';
 
 // nagiation import 
 import { useNavigation } from '@react-navigation/native';
@@ -23,8 +24,8 @@ const RestaurantCard = () => {
     }
     return (
         <View style={CommonStyles.RestauranScrollContainer} >
-            <Text style={[CommonStyles.NoOfRestaurantHeader, { color: Colors.priceTextColour }]} allowFontScaling={false}>
-                {Restaurant_Dish_Data.length} restaurants around you
+            <Text style={[CommonStyles.NoOfRestaurantHeader, { color: Colors.Black }]} allowFontScaling={false}>
+                {Restaurant_Dish_Data.length} {Strings?.RestaurantCardHeaderText}
             </Text>
             {Restaurant_Dish_Data.map((item, idx) => (
                 <TouchableOpacity
@@ -33,39 +34,39 @@ const RestaurantCard = () => {
                     onPress={() => openBottomSheet(item)}
                     activeOpacity={.7}
                 >
-                    <Image source={item.image}
+                    <Image source={item?.image}
                         style={CommonStyles.RestaurantDishImage}
                     />
                     <View style={CommonStyles.CommonContainer}>
 
                         <View style={CommonStyles.UpperContainer}>
                             <View style={CommonStyles.UpperLeftContainer}>
-                                <Text style={[CommonStyles.DishName, { color: Colors.priceTextColour }]} allowFontScaling={false}>{item.dishName}</Text>
-                                <Text style={[CommonStyles.subTitle, { color: Colors.RecomemdedTextColor, }]} allowFontScaling={false}>{item.subTitle}</Text>
+                                <Text style={[CommonStyles.DishName, { color: Colors.priceTextColour , }]} allowFontScaling={false}>{item?.dishName}</Text>
+                                <Text style={[CommonStyles.subTitle, { color: Colors.RecomemdedTextColor, }]} allowFontScaling={false}>{item?.subTitle}</Text>
                             </View>
                             <View style={CommonStyles.UpperRightContainer}>
                                 <View style={[CommonStyles.RatingsContainer, { backgroundColor: Colors.ragingsBackground, }]}>
-                                    <Text style={[CommonStyles.RatingsText, { color: Colors.conatsntWhite, }]} allowFontScaling={false}>{item.ratings}</Text>
-                                    <Image source={Images.StarIcon} style={CommonStyles.ratingStarImage} />
+                                    <Text style={[CommonStyles.RatingsText, { color: Colors.conatsntWhite, }]} allowFontScaling={false}>{item?.ratings}</Text>
+                                    <Image source={Images?.StarIcon} style={CommonStyles.ratingStarImage} />
                                 </View>
-                                <Text style={[CommonStyles.PriceText, { color: Colors.Black }]} allowFontScaling={false}>{item.price} for one</Text>
+                                <Text style={[CommonStyles.PriceText, { color: Colors.Black, }]} allowFontScaling={false}>{item?.price} {Strings?.priceForYou}</Text>
                             </View>
                         </View>
 
                         <View style={CommonStyles.LowerContainer}>
-                            <Image source={Images.Green_leaf} />
+                            <Image source={Images?.Green_leaf} />
                             <View style={CommonStyles.LowerLeftContainer}>
-                                <Text style={[CommonStyles.descriptionText, { color: Colors.RecomemdedTextColor, }]} allowFontScaling={false}>{item.description1}</Text>
-                                <Text style={[CommonStyles.descriptionText, { color: Colors.RecomemdedTextColor, }]} allowFontScaling={false}>{item.description2}</Text>
+                                <Text style={[CommonStyles.descriptionText, { color: Colors.RecomemdedTextColor,}]} allowFontScaling={false}>{item?.description1}</Text>
+                                <Text style={[CommonStyles.descriptionText, { color: Colors.RecomemdedTextColor,}]} allowFontScaling={false}>{item?.description2}</Text>
                             </View>
 
                             <View style={CommonStyles.LowerRightContainer}>
-                                <Image source={Images.ZigZagArrow} />
+                                <Image source={Images?.ZigZagArrow} />
                                 <View style={[CommonStyles.maxSafetyContainer, { backgroundColor: Colors.maxSafetyGreenBG, }]}>
                                     <View style={[CommonStyles.InnerMaxSafetyContainer, { backgroundColor: Colors.maxSafetyYellowBG, }]}>
-                                        <Text style={CommonStyles.maxSafetyText}>MAX SAFELTY</Text>
+                                        <Text style={CommonStyles.maxSafetyText}>{Strings?.mxSafety}</Text>
                                     </View>
-                                    <Text style={[CommonStyles.deliveryText, { color: Colors.conatsntWhite, }]}>DELIVERY</Text>
+                                    <Text style={[CommonStyles.deliveryText, { color: Colors.conatsntWhite, }]}>{Strings?.delivery}</Text>
                                 </View>
                             </View>
                         </View>
@@ -83,7 +84,7 @@ export const CommonStyles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 500,
         margin: 10,
-        fontFamily: Fonts.generalFont,
+        fontFamily: Fonts.accentFont,
         marginLeft: 10
     },
     RestaurantDishCard: {

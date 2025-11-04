@@ -1,5 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
+
 
 // safeare import
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -12,41 +13,33 @@ import { useThemeColors } from '../utils/ColorFile';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-
-export default function ProScreen() {
+export default function DineInScreen() {
     const Colors = useThemeColors();
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     return (
-        <SafeAreaView style={[Styles.HomeScreen, { backgroundColor: Colors.white }]} >
+        <SafeAreaView style={[Styles.HomeScreen, { backgroundColor: Colors.white }]}>
             <TouchableOpacity onPress={() => navigation.pop()}>
-                <Image source={Images?.Back_Symbol} style={[Styles.BackIcon, { tintColor: Colors.Black }]} />
+                <Image source={Images?.Back_Symbol} style={{ height: 20, width: 20, tintColor: Colors.Black }} />
             </TouchableOpacity>
-            <View style={Styles.ProContainer}>
-                <Text style={{ color: Colors.Black }}>Pro Screen</Text>
-                <Image source={Images?.Pro} style={Styles.ProImage} />
+            <View style={Styles.DineInContainer}>
+                <Text style={{color:Colors.priceTextColour}}>DineIn Screen</Text>
+                <Image source={Images?.DIneIn} style={Styles.DineImage} />
             </View>
         </SafeAreaView>
     )
 }
 
 const Styles = StyleSheet.create({
-    HomeScreen: {
+        HomeScreen: {
         height: '100%',
     },
-    ScrollView: {
-    },
-    BackIcon: {
-        height: 20,
-        width: 20,
-    },
-    ProContainer: {
+    DineInContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    ProImage: {
+    DineImage: {
         height: 200,
         width: 200
     }
-
 })

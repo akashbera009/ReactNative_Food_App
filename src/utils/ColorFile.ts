@@ -3,13 +3,18 @@ import { ThemeContext } from '../context/ThemeContext';
 
 const ColorsLight = {
   white: '#ffffff',
-  conatsntWhite : '#ffffffff',
+  conatsntWhite: '#ffffffff',
+  conatsntBlack: '#000000',
   greyForBorder: '#c4c4c494',
   brightBorderColor: '#E5E5E5',
+  verifyBgColor: 'rgba(0, 0, 0, 0.38))',
+  skipContainerTxt: '#E5E5E5',
+  skipContainerBG: 'rgba(0, 0, 0, 0.38))',
   ragingsBackground: '#2B7D0F',
   ratingCOntainerBGColor: '#4AB425',
   boxShadowColor: '#00000067',
   priceTextColour: '#817070',
+  placeHolder: '#C4C4C4',
   LighterGreyForBorder: '#aaa6a621',
   DeliveryDetailsNavbarColor: '#8c7b7b44',
   Black: '#000000',
@@ -36,13 +41,18 @@ const ColorsLight = {
 
 const ColorsDark = {
   white: '#1B1212',
-  conatsntWhite : '#ffffffff',
+  conatsntWhite: '#ffffffff',
+  conatsntBlack: '#000000',
   greyForBorder: '#3a3a3a',
   brightBorderColor: '#656565ff',
+  verifyBgColor:'#656565ff',
+  skipContainerTxt: '#E5E5E5',
+  skipContainerBG: 'rgba(0, 0, 0, 0.38))',
   ragingsBackground: '#2B7D0F',
   ratingCOntainerBGColor: '#4AB425',
   boxShadowColor: '#ffffff22',
   priceTextColour: '#d1cfcf',
+  placeHolder: '#C4C4C4',
   LighterGreyForBorder: '#555555',
   DeliveryDetailsNavbarColor: '#5a5959ff',
   Black: '#ffffff',
@@ -77,4 +87,3 @@ export const useThemeColors = () => {
   return isDarkMode === 'dark' ? ColorsDark : ColorsLight;
 };
 
-export { ColorsLight, ColorsDark };

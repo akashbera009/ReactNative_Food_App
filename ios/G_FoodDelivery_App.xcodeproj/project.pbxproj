@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02AE7F5049FE461EBFB8D82B /* segoeuithis.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7A8C2BD6650491BB8EE139E /* segoeuithis.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-G_FoodDelivery_App.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-G_FoodDelivery_App.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		15F81AF1DD3F9835379B3AD2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		29F7981330994142BF010F34 /* segoeuithisz.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49BD2EF37957412882BA986A /* segoeuithisz.ttf */; };
+		38FDD1E474AA429FB3B259F5 /* segoeuithibd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 412CBB0C2C1841C798A974DD /* segoeuithibd.ttf */; };
+		632ED9FF90CE43A1AD66FB94 /* BitcountGridSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64B2992C4CF742369F697EBC /* BitcountGridSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		7BBCF30429C74F948A1B9470 /* segoeuithisi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54B8371F43F647E3ABC6790E /* segoeuithisi.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -20,10 +25,15 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = G_FoodDelivery_App/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = G_FoodDelivery_App/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-G_FoodDelivery_App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-G_FoodDelivery_App.debug.xcconfig"; path = "Target Support Files/Pods-G_FoodDelivery_App/Pods-G_FoodDelivery_App.debug.xcconfig"; sourceTree = "<group>"; };
+		412CBB0C2C1841C798A974DD /* segoeuithibd.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = segoeuithibd.ttf; path = ../assets/fonts/segoeuithibd.ttf; sourceTree = "<group>"; };
+		49BD2EF37957412882BA986A /* segoeuithisz.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = segoeuithisz.ttf; path = ../assets/fonts/segoeuithisz.ttf; sourceTree = "<group>"; };
+		54B8371F43F647E3ABC6790E /* segoeuithisi.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = segoeuithisi.ttf; path = ../assets/fonts/segoeuithisi.ttf; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-G_FoodDelivery_App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-G_FoodDelivery_App.release.xcconfig"; path = "Target Support Files/Pods-G_FoodDelivery_App/Pods-G_FoodDelivery_App.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-G_FoodDelivery_App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-G_FoodDelivery_App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64B2992C4CF742369F697EBC /* BitcountGridSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "BitcountGridSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf"; path = "../assets/fonts/BitcountGridSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = G_FoodDelivery_App/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = G_FoodDelivery_App/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C7A8C2BD6650491BB8EE139E /* segoeuithis.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = segoeuithis.ttf; path = ../assets/fonts/segoeuithis.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -75,6 +85,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				C68650934F0A4644A7617C90 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -96,6 +107,19 @@
 				5709B34CF0A7D63546082F79 /* Pods-G_FoodDelivery_App.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C68650934F0A4644A7617C90 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				64B2992C4CF742369F697EBC /* BitcountGridSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf */,
+				412CBB0C2C1841C798A974DD /* segoeuithibd.ttf */,
+				C7A8C2BD6650491BB8EE139E /* segoeuithis.ttf */,
+				54B8371F43F647E3ABC6790E /* segoeuithisi.ttf */,
+				49BD2EF37957412882BA986A /* segoeuithisz.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +185,11 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				15F81AF1DD3F9835379B3AD2 /* PrivacyInfo.xcprivacy in Resources */,
+				632ED9FF90CE43A1AD66FB94 /* BitcountGridSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf in Resources */,
+				38FDD1E474AA429FB3B259F5 /* segoeuithibd.ttf in Resources */,
+				02AE7F5049FE461EBFB8D82B /* segoeuithis.ttf in Resources */,
+				7BBCF30429C74F948A1B9470 /* segoeuithisi.ttf in Resources */,
+				29F7981330994142BF010F34 /* segoeuithisz.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
