@@ -3,6 +3,7 @@ import React from 'react'
 
 // utils import 
 import Images from '../../utils/LocalImages';
+import Strings from '../../utils/Strings';
 import { useThemeColors } from '../../utils/ColorFile';
 
 // import navigaton  
@@ -22,18 +23,18 @@ export default function FoodPage({ route }: FoodPageProps) {
     <SafeAreaView style={{ height: '100%', backgroundColor: Colors.white }}>
       <TouchableOpacity
         onPress={() => navigation.pop()}>
-        <Image source={Images.Back_Symbol} style={{ height: 20, width: 20, tintColor: Colors.Black }} />
+        <Image source={Images?.Back_Symbol} style={{ height: 20, width: 20, tintColor: Colors.Black }} />
       </TouchableOpacity>
       <Text style={[Styles.HeaderText, { color: Colors.Black }]}>FoodPage</Text>
       <View style={Styles.FoodContainer}>
-        <Image source={FoodItem.image} style={Styles.FoodImage} />
-        <Text style={[Styles.FoodText, { color: Colors.Black }]}>{FoodItem.name}</Text>
+        <Image source={FoodItem?.image} style={Styles.FoodImage} />
+        <Text style={[Styles.FoodText, { color: Colors.Black }]}>{FoodItem?.name}</Text>
       </View>
 
       <View style={[Styles.BottomButtonContainer, { bottom: inset.bottom }]}>
         <TouchableOpacity onPress={() => navigation.navigate('CheckOutScreen')}
           style={[Styles.buttonContainer, { backgroundColor: Colors.AddbuttonTextColor, }]}>
-          <Text style={[Styles.buttonContainerText, { color: Colors.conatsntWhite, }]}>Goto Order</Text>
+          <Text style={[Styles.buttonContainerText, { color: Colors.conatsntWhite, }]}>{Strings?.FoodPageOrderText}</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

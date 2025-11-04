@@ -1,7 +1,7 @@
 
 type RootStackParamList = {
-    AuthScreen: undefined; 
-    OTPVerificationScreen:{ mobilenumber :string}; 
+    AuthScreen: undefined;
+    OTPVerificationScreen: { mobilenumber: string };
     HomeScreen: undefined;
     OrderScreen: { DishItem: Restaurant_Dish_Data_Type };
     ExtraItemAdd: { ExtraItem: Extra_Addon_Data_Type };
@@ -10,21 +10,22 @@ type RootStackParamList = {
     ProScreen: undefined;
     DineInScreen: undefined;
     MedicineScreen: undefined;
-    FoodScreen: {FoodItem : Dish_Data_Type }
+    FoodScreen: { FoodItem: Dish_Data_Type }
+    SettingsScreen: undefined
 };
- type RootDrawerParamList = {
+type RootDrawerParamList = {
     Main: undefined;
     Help: undefined;
 };
 
 type OTPScreenProps = {
-  route: RouteProp<RootStackParamList, 'OTPVerificationScreen'>;
+    route: RouteProp<RootStackParamList, 'OTPVerificationScreen'>;
 };
 type FoodPageProps = {
-  route: RouteProp<RootStackParamList, 'FoodScreen'>;
+    route: RouteProp<RootStackParamList, 'FoodScreen'>;
 };
 type AddonBottomSheetProps = {
-  route: RouteProp<RootStackParamList, 'ExtraItemAdd'>;
+    route: RouteProp<RootStackParamList, 'ExtraItemAdd'>;
 };
 
 type OrderScreenProps = {
@@ -72,15 +73,18 @@ type DeliveryInfo_Type = {
     OfferaPercent: number,
     OfferAmount: number,
     Address: string,
+    customerName: string,
+    mobileNumber: number,
+    profileImage?: Image,
     Timing: number,
-    TotalPrice: number ,
-    DeliveryCharge : number  , 
-    Taxed: number , 
-    Grand_Total: number 
+    TotalPrice: number,
+    DeliveryCharge: number,
+    Taxed: number,
+    Grand_Total: number
 }
 
 type Tip_Data_Type = {
     image: Image,
-    price: number| string,
+    price: number | string,
     isMostTipped: boolean,
 }

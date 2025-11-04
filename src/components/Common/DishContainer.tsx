@@ -7,7 +7,7 @@ import { Dish_Data } from '../../data/Dish_Data'
 //util file 
 import { useThemeColors } from '../../utils/ColorFile';
 import Fonts from '../../utils/FontsFile'
-
+import Strings from '../../utils/Strings';
 // navigation
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -17,7 +17,7 @@ const DishContainer = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
     <View style={[Styles.DishContinerOuter, { backgroundColor: Colors.white }]}>
-      <Text style={[Styles.DishContainerHeaderText , { color: Colors.priceTextColour }]} allowFontScaling={false}>Eat what makes you happy</Text>
+      <Text style={[Styles.DishContainerHeaderText , { color: Colors.Black }]} allowFontScaling={false}>{Strings?.DishContainerHeader}</Text>
 
       <View style={Styles.DishContainer}>
         {Dish_Data.map((item, idx) => (
@@ -25,8 +25,8 @@ const DishContainer = () => {
             onPress={() => navigation.push('FoodScreen', { FoodItem: item })}
             key={idx}
             style={Styles.DishCard}>
-            <Image source={item.image} style={Styles.DishImage} />
-            <Text style={[Styles.DishSectionDishName ,{color:Colors.RecomemdedTextColor}]} allowFontScaling={false}> {item.name}</Text>
+            <Image source={item?.image} style={Styles.DishImage} />
+            <Text style={[Styles.DishSectionDishName ,{color:Colors.RecomemdedTextColor}]} allowFontScaling={false}> {item?.name}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -41,7 +41,7 @@ export const Styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 500,
     margin: 10,
-    fontFamily: Fonts.generalFont,
+    fontFamily: Fonts.accentFont,
     marginLeft: 15
   },
   DishContainerHeaderText2: {

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View ,TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
 // safeare import
@@ -12,27 +12,27 @@ import { useThemeColors } from '../utils/ColorFile';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 export default function MedicineScreen() {
-  const Colors = useThemeColors();
+    const Colors = useThemeColors();
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     return (
         <SafeAreaView style={[Styles.HomeScreen, { backgroundColor: Colors.white }]} >
-                <TouchableOpacity onPress={() => navigation.pop()}>
-                    <Image source={Images.Back_Symbol} style={{ height: 20, width: 20, tintColor: Colors.Black }} />
-                </TouchableOpacity>
-                <View style={Styles.MedicineContainer}>
-                    <Text style={{ color: Colors.Black }}>MedicineScreen</Text>
-                    <Image source={Images.Medicine} style={Styles.MedicineImage} />
-                </View>
+            <TouchableOpacity onPress={() => navigation.pop()}>
+                <Image source={Images.Back_Symbol} style={{ height: 20, width: 20, tintColor: Colors.Black }} />
+            </TouchableOpacity>
+            <View style={Styles.MedicineContainer}>
+                <Text style={{ color: Colors.Black }}>Medicine Screen</Text>
+                <Image source={Images.Medicine} style={Styles.MedicineImage} />
+            </View>
         </SafeAreaView>
     )
 
 }
 
 const Styles = StyleSheet.create({
-      HomeScreen: {
+    HomeScreen: {
         height: '100%',
     },
-        MedicineContainer: {
+    MedicineContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'

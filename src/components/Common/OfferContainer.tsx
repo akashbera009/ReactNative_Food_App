@@ -8,9 +8,9 @@ const OfferContainer = () => {
     return (
         <ScrollView  horizontal showsHorizontalScrollIndicator= {false}>
             <View style={Styles.OfferContainer}>
-                <Image source={Images.Offer} />
-                <Image source={Images.Discounts} />
-                <Image source={Images.Offer} />
+                <Image source={Images?.Offer} />
+                <Image source={Images?.Discounts} />
+                <Image source={Images?.Offer} />
             </View>
         </ScrollView>
     )

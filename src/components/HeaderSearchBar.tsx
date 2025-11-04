@@ -1,28 +1,29 @@
-import { View, TextInput, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { View, TextInput, Image, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React, { useState } from 'react'
 
 
 //utility import
 import { useThemeColors } from '../utils/ColorFile';
 import Images from '../utils/LocalImages'
+import Fonts from '../utils/FontsFile';
+import Strings from '../utils/Strings';
 
 const HeaderSearchBar = () => {
   const Colors = useThemeColors()
   const [searchTerm, setSearchTerm] = useState('')
   return (
-    <TouchableWithoutFeedback accessible={true} >
-      <View style={[Styles.headerSearchBar, { borderColor: Colors.greyForBorder, }]} >
-        <Image source={Images.HeaderSearchIcon} style={Styles.HeaderSearchIcon} />
-        <TextInput
-          value={searchTerm}
-          onChangeText={setSearchTerm}
-          placeholder='Restaurant name, cuisine, or a dish...'
-          allowFontScaling={false}
-          placeholderTextColor={Colors.priceTextColour}
-          style={{ color: Colors.priceTextColour }}
-        />
-      </View>
-    </TouchableWithoutFeedback>
+    <View style={[Styles.headerSearchBar, { borderColor: Colors.greyForBorder, }]} >
+      <Image source={Images.HeaderSearchIcon} style={Styles.HeaderSearchIcon} />
+      <TextInput
+        returnKeyType='search'
+        value={searchTerm}
+        onChangeText={setSearchTerm}
+        placeholder={Strings?.searchbarPlaceholder}
+        allowFontScaling={false}
+        placeholderTextColor={Colors.placeHolder}
+        style={[Styles.SearchBar, { color: Colors.priceTextColour  }]}
+      />
+    </View>
   )
 }
 const Styles = StyleSheet.create({
@@ -35,6 +36,12 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 2,
     borderRadius: 8
+  },
+  SearchBar: {
+    fontFamily: Fonts.generalFont,
+    width: '80%',
+    paddingVertical: 8,
+
   },
   HeaderSearchIcon: {
     marginHorizontal: 15,

@@ -19,11 +19,11 @@ export default function DineInScreen() {
     return (
         <SafeAreaView style={[Styles.HomeScreen, { backgroundColor: Colors.white }]}>
             <TouchableOpacity onPress={() => navigation.pop()}>
-                <Image source={Images.Back_Symbol} style={{ height: 20, width: 20, tintColor: Colors.Black }} />
+                <Image source={Images?.Back_Symbol} style={{ height: 20, width: 20, tintColor: Colors.Black }} />
             </TouchableOpacity>
             <View style={Styles.DineInContainer}>
-                <Text>DineInScreen</Text>
-                <Image source={Images.DIneIn} style={Styles.DineImage} />
+                <Text style={{color:Colors.priceTextColour}}>DineIn Screen</Text>
+                <Image source={Images?.DIneIn} style={Styles.DineImage} />
             </View>
         </SafeAreaView>
     )

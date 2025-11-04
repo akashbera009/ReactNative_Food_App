@@ -1,4 +1,4 @@
-import { View, Image, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { View, Image, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React from 'react'
 
 // custom components import 
@@ -17,13 +17,15 @@ const Header = () => {
     const Colors = useThemeColors()
     const drawerNavigation = useNavigation<DrawerNavigationProp<RootDrawerParamList>>();
     return (
-        <TouchableWithoutFeedback >
+        <TouchableWithoutFeedback
+            accessible={true} onPress={Keyboard.dismiss}
+        >
             <View style={[Styles.HeaderSection, { backgroundColor: Colors.white, }]}>
                 <View style={Styles.HeaderTopbar}>
-                    <Image source={Images.Group_86} height={21} width={14.25} style={{ tintColor: Colors.Black }} />
-                    <Image source={Images.Line_31} style={{ tintColor: Colors.Black }} />
+                    <Image source={Images?.Group_86} height={21} width={14.25} style={{ tintColor: Colors.Black }} />
+                    <Image source={Images?.Line_31} style={{ tintColor: Colors.Black }} />
                     <TouchableOpacity onPress={() => drawerNavigation.toggleDrawer()}>
-                        <Image source={Images.Menu_Icon} height={27.15} width={21} style={{ tintColor: Colors.Black }} />
+                        <Image source={Images?.Menu_Icon} height={27.15} width={21} style={{ tintColor: Colors.Black }} />
                     </TouchableOpacity>
                 </View>
                 <HeaderSearchBar />

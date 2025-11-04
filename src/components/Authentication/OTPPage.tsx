@@ -8,7 +8,9 @@ import {
   TextInput,
   Image,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+   Dimensions,
+  ImageBackground
 } from 'react-native'
 import React, { useState, useRef, useEffect } from 'react'
 
@@ -24,35 +26,65 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Back_Option } from '../../utils/SVGFils';
 import { useThemeColors } from '../../utils/ColorFile';
 import Images from '../../utils/LocalImages';
+import Fonts from '../../utils/FontsFile';
 
 export default function OTPPage({ route }: OTPScreenProps) {
   const Colors = useThemeColors();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const inset = useSafeAreaInsets();
-  const [inputValue, setInputValue] = useState<string>('')
+  const [inputValue, setInputValue] = useState<string[]>([])
+
+  const inputRef1 = useRef<TextInput | null>(null);
+  const inputRef2 = useRef<TextInput | null>(null);
+  const inputRef3 = useRef<TextInput | null>(null);
+  const inputRef4 = useRef<TextInput | null>(null);
+  const inputRef5 = useRef<TextInput | null>(null);
+  const inputRef6 = useRef<TextInput | null>(null);
+
+      const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
+
+  const [goodToLogin,setGoodToLogin] = useState(false)
   const handleLogin = () => {
     if (inputValue.length < 6) {
       return;
     }
-    console.log('doing')
     navigation.navigate('HomeScreen')
   }
 
-  const inputRef = useRef<TextInput>(null);
+  useEffect(() => {
+    if(inputValue.length >= 6 )
+      setGoodToLogin(true)
+    else
+    setGoodToLogin(false)
+    // handleLogin()
+  }, [inputValue])
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      inputRef.current?.focus();
+      inputRef1.current?.focus();
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleAddOTP = (text: string) => {
+    const updatedArray = [...inputValue, text]
+    setInputValue(updatedArray)
+
+  }
+  const handleRemoveOTP = () => {
+    const updatedArray = inputValue.filter((ele, idx )=> idx != inputValue.length -1 )
+    setInputValue(updatedArray)
+  }
+
   return (
-    <SafeAreaView style={{ height: '100%' }} >
+      <ImageBackground source={Images.otp}  resizeMode={'contain'} style={{ height: screenHeight,width:screenWidth, backgroundColor:Colors.white }} >
       <TouchableWithoutFeedback
         onPress={Keyboard.dismiss}
         accessible={false} >
-        <View>
+        <View
+        >
           <TouchableOpacity
-            style={[Styles.BackOption, { top: inset.top }]}
+            style={[Styles.BackOption, {}]}
             onPress={() => navigation.pop()}>
             <Back_Option />
           </TouchableOpacity>
@@ -62,64 +94,131 @@ export default function OTPPage({ route }: OTPScreenProps) {
         </View>
       </TouchableWithoutFeedback>
       <KeyboardAvoidingView
-        keyboardVerticalOffset={40}
+        keyboardVerticalOffset={20}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={[Styles.LowerContainer, { bottom: inset.bottom }]}>
+
         <View style={Styles.VeryfyContainerWrapper}>
           <View style={Styles.OTPInputContainer}>
             <View style={[Styles.SingleOtp, { borderColor: Colors.greyForBorder, }]}>
               <TextInput
-                ref={inputRef}
+                ref={inputRef1}
                 keyboardType='numeric'
                 maxLength={1}
                 style={Styles.OtpInputText}
+                onChangeText={(text) => {
+                  if (text.length >= 1) {
+                    inputRef2.current?.focus()
+                    handleAddOTP(text)
+                  }
+                  else {
+                    inputRef1.current?.focus()
+                    handleRemoveOTP()
+                  }
+                }}
               />
             </View>
-            <View style={Styles.SingleOtp}>
+            <View style={[Styles.SingleOtp, { borderColor: Colors.greyForBorder, }]}>
               <TextInput
+                ref={inputRef2}
                 keyboardType='numeric'
                 maxLength={1}
                 style={Styles.OtpInputText}
+                onChangeText={(text) => {
+                  if (text.length >= 1) {
+                    inputRef3.current?.focus()
+                    handleAddOTP(text)
+                  }
+                  else {
+                    inputRef1.current?.focus()
+                    handleRemoveOTP()
+                  }
+                }}
               />
             </View>
-            <View style={Styles.SingleOtp}>
+            <View style={[Styles.SingleOtp, { borderColor: Colors.greyForBorder, }]}>
               <TextInput
+                ref={inputRef3}
                 keyboardType='numeric'
                 maxLength={1}
                 style={Styles.OtpInputText}
+                onChangeText={(text) => {
+                  if (text.length >= 1) {
+                    inputRef4.current?.focus()
+                    handleAddOTP(text)
+                  }
+                  else {
+                    inputRef2.current?.focus()
+                    handleRemoveOTP()
+                  }
+                }}
               />
             </View>
-            <View style={Styles.SingleOtp}>
+            <View style={[Styles.SingleOtp, { borderColor: Colors.greyForBorder, }]}>
               <TextInput
+                ref={inputRef4}
                 keyboardType='numeric'
                 maxLength={1}
                 style={Styles.OtpInputText}
+                onChangeText={(text) => {
+                  if (text.length >= 1) {
+                    inputRef5.current?.focus()
+                    handleAddOTP(text)
+                  }
+                  else {
+                    inputRef3.current?.focus()
+                    handleRemoveOTP()
+                  }
+                }}
               />
             </View>
-            <View style={Styles.SingleOtp}>
+            <View style={[Styles.SingleOtp, { borderColor: Colors.greyForBorder, }]}>
               <TextInput
+                ref={inputRef5}
                 keyboardType='numeric'
                 maxLength={1}
                 style={Styles.OtpInputText}
+                onChangeText={(text) => {
+
+                  if (text.length >= 1) {
+                    inputRef6.current?.focus()
+                    handleAddOTP(text)
+                  }
+                  else {
+                    inputRef4.current?.focus()
+                    handleRemoveOTP()
+                  }
+                }}
               />
             </View>
-            <View style={Styles.SingleOtp}>
+            <View style={[Styles.SingleOtp, { borderColor: Colors.greyForBorder, }]}>
               <TextInput
+                ref={inputRef6}
                 keyboardType='numeric'
                 maxLength={1}
                 style={Styles.OtpInputText}
+                onChangeText={(text) => {
+                  if (text.length >= 1) {
+                    inputRef6.current?.focus()
+                    handleAddOTP(text)
+                  }
+                  else {
+                    inputRef5.current?.focus()
+                    handleRemoveOTP()
+                  }
+                }}
               />
             </View>
           </View>
           <TouchableOpacity
-            style={[Styles.VeryfyContainer, { backgroundColor: Colors.AddButtonBG, }]}
-            onPress={handleLogin}
+            style={[Styles.VeryfyContainer, (goodToLogin == true) ? {  backgroundColor: Colors.AddButtonBG}: { backgroundColor: Colors.skipContainerBG , }]}
+            onPress={() => handleLogin()}
           >
             <Text style={[Styles.VerifyText, { color: Colors.white, }]} >Verify</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </ImageBackground>
   )
 }
 
@@ -128,12 +227,13 @@ const Styles = StyleSheet.create({
     marginLeft: 5,
     position: 'absolute',
     left: 5,
-    marginTop: -60,
   },
   BackOptionText: {
-    marginHorizontal: 'auto',
+    // marginHorizontal: 'auto',
+    alignSelf: 'center',
     fontSize: 16,
-    marginTop: 10
+    marginTop: 10,
+    fontFamily: Fonts.generalFont
   },
   PhoneNumber: {
     fontSize: 16,
@@ -158,21 +258,23 @@ const Styles = StyleSheet.create({
     marginVertical: 40,
   },
   SingleOtp: {
-    height: 35,
-    width: 35,
+    height: 50,
+    width: 50,
     borderWidth: 2,
-    // borderColor: Colors.greyForBorder,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 4,
-    // backgroundColor: '#ebc0c0ff'
+    fontFamily: Fonts.generalFont
   },
   OtpInputText: {
-    fontSize: 20,
+    fontSize: 24,
     height: '100%',
     width: '100%',
-    textAlign: 'center'
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
   },
   VeryfyContainer: {
     marginHorizontal: 'auto',
@@ -185,7 +287,8 @@ const Styles = StyleSheet.create({
   },
   VerifyText: {
     fontSize: 20,
-    fontWeight: 600
+    fontWeight: 600,
+    fontFamily: Fonts.generalFont
   },
   LowerContainer: {
     position: 'absolute',

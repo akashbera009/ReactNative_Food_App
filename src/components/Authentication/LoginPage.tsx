@@ -11,6 +11,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 //util files 
 import { useThemeColors } from '../../utils/ColorFile';
 import Fonts from '../../utils/FontsFile';
+import Strings from '../../utils/Strings';
 import { Email_Icon, Facebook_Icon, Google_Icon } from '../../utils/SVGFils';
 
 // safearea imports 
@@ -26,25 +27,25 @@ const LoginPage = () => {
         const numericValue = text.replace(/[^0-9]/g, '');
         setInputValue(numericValue);
     };
-    const handleLogin = () => {
+    const handleLogin = async() => {
         if (inputValue.length < 10) {
             return;
         }
+        await Keyboard.dismiss()
         navigation1.navigate('OTPVerificationScreen', { mobilenumber: inputValue })
     }
     return (
 
         <LinearGradient
-            useAngle={true}
-            angle={100}
-            angleCenter={{ x: 0.5, y: 0.5 }} colors={['#ae0000ff', 'rgba(207, 1, 84, 1)ff', 'rgba(232, 4, 95, 1)ff']}
+            start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+            colors={['#ae0000ff', 'rgba(207, 1, 84, 1)ff', 'rgba(232, 4, 95, 1)ff']}
             style={[Styles.linearGradient]}
         >
             <TouchableOpacity
                 style={[Styles.SkipContainer, { top: inset.top, backgroundColor: Colors.skipContainerBG }]}
                 onPress={() => navigation1.navigate('HomeScreen')}
             >
-                <Text style={[Styles.SkipText, { color: Colors.skipContainerTxt }]} >Skip</Text>
+                <Text style={[Styles.SkipText, { color: Colors.skipContainerTxt }]} >{Strings?.Skip}</Text>
             </TouchableOpacity>
 
             <TouchableWithoutFeedback
@@ -65,7 +66,7 @@ const LoginPage = () => {
                         style={[Styles.OTPContainer, { backgroundColor: Colors.conatsntBlack, }]}
                         onPress={handleLogin}
                     >
-                        <Text style={[Styles.OTPText, { color: Colors.conatsntWhite, }]} >Send OTP</Text>
+                        <Text style={[Styles.OTPText, { color: Colors.conatsntWhite, }]} >{Strings?.sendOtpText}</Text>
                     </TouchableOpacity>
 
                     <View style={Styles.ORContainer}>
@@ -77,30 +78,30 @@ const LoginPage = () => {
                     <View style={Styles.bottomContainer}>
                         <View style={[Styles.LoginContainer, Styles.EmailContainer, { backgroundColor: Colors.conatsntWhite }]}>
                             <Email_Icon style={Styles.LoginIcons} />
-                            <Text style={Styles.LoginText}>Continue with Email</Text>
+                            <Text style={Styles.LoginText}>{Strings?.ContinueGoogle}</Text>
                         </View>
                         <View style={[Styles.LoginContainer, Styles.FacebookContainer, { backgroundColor: Colors.conatsntWhite }]}>
                             <Facebook_Icon style={Styles.LoginIcons} />
-                            <Text style={[Styles.OtherLoginText, { color: Colors.conatsntBlack }]}>Facebook</Text>
+                            <Text style={[Styles.OtherLoginText, { color: Colors.conatsntBlack }]}>{Strings?.Facebook}</Text>
                         </View>
                         <View style={[Styles.LoginContainer, Styles.GoogleContainer, { backgroundColor: Colors.conatsntWhite }]}>
                             <Google_Icon style={Styles.LoginIcons} />
-                            <Text style={[Styles.OtherLoginText, { color: Colors.conatsntBlack }]}>Google</Text>
+                            <Text style={[Styles.OtherLoginText, { color: Colors.conatsntBlack }]}>{Strings?.Google}</Text>
                         </View>
                     </View>
                     <View style={[Styles.PrivecyPolicyContainer, { marginBottom: inset.bottom }]}>
-                        <Text style={[Styles.FirstLine, { color: Colors.conatsntWhite, }]}> By continuing, you agree to our </Text>
+                        <Text style={[Styles.FirstLine, { color: Colors.conatsntWhite, }]}> {Strings?.Terms1} </Text>
                         <View style={Styles.SecondLineContainer}>
                             <View>
-                                <Text style={[Styles.SecondtLine, { color: Colors.conatsntWhite, }]}>Terms of Service </Text>
+                                <Text style={[Styles.SecondtLine, { color: Colors.conatsntWhite, }]}>{Strings?.Terms2} </Text>
                                 <View style={[Styles.CustomBorder, { borderTopColor: Colors.conatsntWhite, }]} />
                             </View>
                             <View>
-                                <Text style={[Styles.SecondtLine, { color: Colors.conatsntWhite, }]}> Privacy Policy </Text>
+                                <Text style={[Styles.SecondtLine, { color: Colors.conatsntWhite, }]}> {Strings?.Terms3} </Text>
                                 <View style={[Styles.CustomBorder, { borderTopColor: Colors.conatsntWhite, }]} />
                             </View>
                             <View>
-                                <Text style={[Styles.SecondtLine, { color: Colors.conatsntWhite, }]}> Content Policy</Text>
+                                <Text style={[Styles.SecondtLine, { color: Colors.conatsntWhite, }]}> {Strings?.Terms4}</Text>
                                 <View style={[Styles.CustomBorder, { borderTopColor: Colors.conatsntWhite, }]} />
                             </View>
                         </View>

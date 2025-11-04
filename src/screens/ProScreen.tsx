@@ -18,13 +18,13 @@ export default function ProScreen() {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     return (
         <SafeAreaView style={[Styles.HomeScreen, { backgroundColor: Colors.white }]} >
-                <TouchableOpacity onPress={() => navigation.pop()}>
-                    <Image source={Images.Back_Symbol} style={{ height: 20, width: 20, tintColor: Colors.Black }} />
-                </TouchableOpacity>
-                <View style={Styles.ProContainer}>
-                    <Text style={{ color: Colors.Black }}>ProScreen</Text>
-                    <Image source={Images.Pro} style={Styles.ProImage} />
-                </View>
+            <TouchableOpacity onPress={() => navigation.pop()}>
+                <Image source={Images?.Back_Symbol} style={[Styles.BackIcon, { tintColor: Colors.Black }]} />
+            </TouchableOpacity>
+            <View style={Styles.ProContainer}>
+                <Text style={{ color: Colors.Black }}>Pro Screen</Text>
+                <Image source={Images?.Pro} style={Styles.ProImage} />
+            </View>
         </SafeAreaView>
     )
 }
@@ -34,6 +34,10 @@ const Styles = StyleSheet.create({
         height: '100%',
     },
     ScrollView: {
+    },
+    BackIcon: {
+        height: 20,
+        width: 20,
     },
     ProContainer: {
         flex: 1,
